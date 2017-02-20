@@ -1,0 +1,122 @@
+<div id="mainMenu" class="sidebar-vertical sidebar-hidden">
+
+  <button id="sidebar_vertical_btn"><i></i></button>
+
+  <div class="sidebar-nav">
+    <aa class="navbar navbar-default" role="navigation">
+
+      <!-- OPTIONS -->
+      <ul class="top-links list-inline text-center block">
+        <li><a class="dropdown-toggle no-text-underline" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> 로그인 </a></li>
+        <li><a class="dropdown-toggle no-text-underline" href="#"><i class="fa fa-user-circle-o"></i> 마이페이지</a></li>
+      </ul>
+      <!-- /OPTIONS -->
+
+      <a href="<%= url_for(action: :header) %>" class="logo text-center">
+        <img src="<%= asset_path 'favicon_s.png' %>" alt="">
+      </a>
+      <br>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <div class="navbar-collapse sidebar-navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+
+        <!-- MENU -->
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="index.html">
+              <i class="et-trophy"></i>
+              홈
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="et-layers"></i>
+              블로그
+            </a>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="">
+              <i class="et-beaker"></i>
+              과제
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="portfolio-grid-2-columns.html">2 Columns</a></li>
+              <li><a href="portfolio-grid-3-columns.html">3 Columns</a></li>
+              <li><a href="portfolio-grid-4-columns.html">4 Columns</a></li>
+              <li><a href="portfolio-layout-default.html">Single Basic</a></li>
+              <li><a href="portfolio-layout-aside-left.html">Left Sidebar</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="">
+              <i class="et-heart"></i>
+              게시판
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="blog-default-aside-left.html">자유 게시판</a></li>
+              <li><a href="blog-default-aside-right.html">사진 게시판</a></li>
+              <li><a href="blog-default-fullwidth.html">질문 게시판</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="page-contact-1.html">
+              <i class="et-envelope"></i>
+              아이디어
+            </a>
+          </li>
+        </ul>
+        <!-- /MENU -->
+
+        <!-- INLINE SEARCH -->
+        <!--<div class="inline-search clearfix margin-top-30 margin-left-15 margin-right-15">-->
+        <!--<form action="" method="get" class="widget_search">-->
+        <!--<input type="search" placeholder="Search..." id="s" name="s" class="serch-input">-->
+        <!--<button type="submit">-->
+        <!--<i class="fa fa-search"></i>-->
+        <!--</button>-->
+        <!--</form>-->
+        <!--</div>-->
+        <!-- /INLINE SEARCH -->
+      </div><!--/.nav-collapse -->
+    </aa>
+  </div>
+
+
+  <!-- Social Icons -->
+  <div class="social-icons hidden-md hidden-sm hidden-xs text-center">
+    <a href="#" class="social-icon social-icon-sm social-icon-light social-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+      <i class="icon-facebook"></i>
+      <i class="icon-facebook"></i>
+    </a>
+    <a href="#" class="social-icon social-icon-sm social-icon-light social-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+      <i class="icon-twitter"></i>
+      <i class="icon-twitter"></i>
+    </a>
+    <a href="#" class="social-icon social-icon-sm social-icon-light social-pinterest" data-toggle="tooltip" data-placement="top" title="Pinterest">
+      <i class="icon-pinterest"></i>
+      <i class="icon-pinterest"></i>
+    </a>
+    <a href="#" class="social-icon social-icon-sm social-icon-light social-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin">
+      <i class="icon-linkedin"></i>
+      <i class="icon-linkedin"></i>
+    </a>
+    <a href="#" class="social-icon social-icon-sm social-icon-light social-gplus" data-toggle="tooltip" data-placement="top" title="Google Plus">
+      <i class="icon-gplus"></i>
+      <i class="icon-gplus"></i>
+    </a>
+  </div>
+  <!-- /Social Icons -->
+
+
+  <!-- Paragraph -->
+  <p class="text-center hidden-xs">office@yourdomain.com</p>
+  <!-- /Paragraph -->
+
+</div>

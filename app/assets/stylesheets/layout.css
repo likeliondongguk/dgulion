@@ -1666,8 +1666,9 @@ section.dark.page-header ul.page-options a {
 	body.menu-vertical #mainMenu.sidebar-vertical .navbar-default .navbar-nav>li>a {
 		border-bottom:#eee 1px solid;
 		text-align:left;
-
-		font-size:12px;
+        /*no_custom_default*/
+		/*font-size:12px;*/
+        font-size:20px;
 		text-transform:uppercase;
 	}
 		body.menu-vertical #mainMenu.sidebar-vertical .navbar-default .navbar-nav>li>a.dropdown-toggle {
@@ -2012,8 +2013,11 @@ section.dark.page-header ul.page-options a {
 			display: block;
 		}
 		body.menu-vertical #mainMenu.sidebar-vertical .sidebar-nav .navbar li a {
-			padding-top: 8px;
-			padding-bottom: 8px;
+            /*no_custom_default*/
+			/*padding-top: 8px;*/
+			/*padding-bottom: 8px;*/
+            padding-top: 18px;
+            padding-bottom: 18px;
 			color:#000;
 
 			-webkit-transition: all .10s;
