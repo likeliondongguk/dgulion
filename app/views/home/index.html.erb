@@ -28,12 +28,14 @@
                 data-animation="fade|flip|flipCube|flipUp|spin"
               -->
               <span class="rotate" data-animation="flipCube" data-speed="2500">
-										Hack Your Life, Hello World! , 아이디어를 실현하자
+										Hack Your Life, Hello World!, 아이디어를 실현하자
 									</span>
             </h1>
             <br>
             <h2 class="weight-300 text-white wow fadeInUp" data-wow-delay="0.8s">당신이 꿈꾸는 모든 것</h2>
-            <a class="btn btn-primary btn-lg wow fadeInUp" data-wow-delay="1s" href="#">어흥하러 가기</a>
+            <div id="topMain" class="nav-onepage">
+              <a class="btn btn-primary btn-lg wow fadeInUp" data-wow-delay="1s" href="#notice">내려가기</a>
+            </div>
           </div>
 
         </div>
@@ -53,60 +55,187 @@
     alert-danger
     alert-success
   -->
+  <!--<div class="callout alert alert-info noborder noradius nomargin">-->
+  <!--<div class="text-center">-->
+  <!--<h3>Call now at <strong>+800-565-2390</strong> and get 15% discount!</h3>-->
+  <!--<p class="font-lato size-20">-->
+  <!--We truly care about our users and our product.-->
+  <!--</p>-->
+  <!--<a href="#purchase" rel="nofollow" target="_blank" class="btn btn-default btn-lg margin-top-30">PURCHASE NOW</a>-->
+  <!--</div>-->
+  <!--</div>-->
 
-  <div class="callout alert alert-info noborder noradius nomargin">
-
-    <div class="text-center">
-
-      <h3>Call now at <strong>+800-565-2390</strong> and get 15% discount!</h3>
-      <p class="font-lato size-20">
-        We truly care about our users and our product.
-      </p>
-
-      <a href="#purchase" rel="nofollow" target="_blank" class="btn btn-default btn-lg margin-top-30">PURCHASE NOW</a>
-
-    </div>
-
-  </div>
-
-
-  <!-- -->
-  <section>
+  <section id="notice">
     <div class="container">
 
-      <p class="lead">Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies
-        vehicula ut id elit.</p>
-      <p>Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id
-        elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus.
-        Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum. Donec id elit
-        non mi porta gravida at eget metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id
-        ligula porta felis euismod semper.</p>
+      <div class="row mix-grid">
 
-      <div class="row">
+        <!-- LEFT COLUMNS -->
+        <div class="col-md-8 col-md-offset-2">
+          <header class="margin-bottom-60 text-center">
+            <h1>Lion's Notice</h1>
+            <p class="lead font-lato">공지사항</p>
+          </header>
+          <!-- FILTER -->
+          <ul class="nav nav-pills mix-filter margin-bottom-30">
+            <li data-filter="all" class="filter active"><a href="#">All</a></li>
+            <li data-filter="development" class="filter"><a href="#">공지사항</a></li>
+            <li data-filter="photography" class="filter"><a href="#">이벤트</a></li>
+            <li data-filter="design" class="filter"><a href="#">Best Post</a></li>
+          </ul>
+          <!-- /FILTER -->
+          <!-- TOGGLES -->
+          <div class="toggle toggle-transparent toggle-bordered-simple">
 
-        <div class="col-md-6">
-          <p>Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula
-            ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non
-            commodo luctus. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet
-            fermentum. Donec id elit non mi porta gravida at eget metus. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Vestibulum id ligula porta felis euismod semper.</p>
+            <div class="toggle mix design active"><!-- toggle -->
+              <label>동국대 멋쟁이 사자처럼 아이디어톤</label>
+              <div class="toggle-content">
+                <p class="clearfix">
+                  <img class="hidden-sm pull-left img-responsive" src="<%= asset_path 'intro.png' %>" alt="Careers"/>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                  iaculis ac massa.
+                  <br/><br/>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                  iaculis ac massa.
+                </p>
+
+              </div>
+            </div><!-- /toggle -->
+
+            <div class="toggle mix photography"><!-- toggle -->
+              <label>박성준 보아라</label>
+              <div class="toggle-content">
+                <p class="clearfix">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                  iaculis ac massa.
+                </p>
+
+                <div class="row">
+
+                  <div class="col-md-4 col-sm-6">
+
+                    <ul class="list-icon check-square"><!-- block 2 -->
+                      <li>Nulla lacinia iaculis nulla</li>
+                      <li>Cum sociis natoque penatibus</li>
+                      <li>Magnis dis parturient montes</li>
+                    </ul>
+
+                  </div>
+
+                  <div class="col-md-4 col-sm-6">
+
+                    <ul class="list-icon check-square"><!-- block 2 -->
+                      <li>Nulla lacinia iaculis nulla</li>
+                      <li>Cum sociis natoque penatibus</li>
+                      <li>Magnis dis parturient montes</li>
+                    </ul>
+
+                  </div>
+
+                  <div class="col-md-4 col-sm-6">
+
+                    <ul class="list-icon check-square"><!-- block 2 -->
+                      <li>Nulla lacinia iaculis nulla</li>
+                      <li>Cum sociis natoque penatibus</li>
+                      <li>Magnis dis parturient montes</li>
+                    </ul>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div><!-- /toggle -->
+
+            <div class="toggle mix design"><!-- toggle -->
+              <label>싸이먼 도미닉</label>
+              <div class="toggle-content">
+                <p class="clearfix">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                  iaculis ac massa.
+                </p>
+
+                <div class="row">
+
+                  <div class="col-md-4 col-sm-6">
+
+                    <div class="box-content thumbnail text-center">
+                      <a href="assets/images/demo/1200x800/10-min.jpg" class="item-image lightbox" data-plugin-options='{"type":"image"}'>
+                        <img class="img-responsive" src="assets/images/demo/451x300/10-min.jpg" alt=""/>
+                      </a>
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-4 col-sm-6">
+
+                    <div class="box-content thumbnail text-center">
+                      <a href="http://www.youtube.com/watch?v=s0MDY9fl-IA" class="item-image lightbox" data-plugin-options='{"type":"iframe"}'>
+                        <img class="img-responsive" src="assets/images/demo/451x300/11-min.jpg" alt=""/>
+                      </a>
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-4 col-sm-6">
+
+                    <div class="box-content thumbnail text-center">
+                      <a href="assets/images/demo/1200x800/25-min.jpg" class="item-image lightbox" data-plugin-options='{"type":"image"}'>
+                        <img class="img-responsive" src="assets/images/demo/451x300/25-min.jpg" alt=""/>
+                      </a>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div><!-- /toggle -->
+
+            <div class="toggle mix development"><!-- toggle -->
+              <label>은지 스케쥴 화이팅</label>
+              <div class="toggle-content">
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque.</p>
+                <p class="clearfix">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                  iaculis ac massa.
+                  <br/><br/>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                  iaculis ac massa.
+                </p>
+
+              </div>
+            </div><!-- /toggle -->
+
+          </div>
+          <!-- /TOGGLES -->
+
         </div>
+        <!-- /LEFT COLUMNS -->
 
-        <div class="col-md-6">
-          <p>Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula
-            ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non
-            commodo luctus. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet
-            fermentum. Donec id elit non mi porta gravida at eget metus. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Vestibulum id ligula porta felis euismod semper.</p>
-        </div>
 
       </div>
-
     </div>
   </section>
-  <!-- / -->
-
-
   <!-- -->
   <section>
     <div class="container">
@@ -183,21 +312,7 @@
   </section>
   <!-- / -->
 
-
-  <!-- FOOTER -->
-  <footer id="footer">
-    <div class="copyright">
-      <div class="container">
-        <ul class="pull-right nomargin list-inline mobile-block">
-          <li><a href="#">Terms &amp; Conditions</a></li>
-          <li>&bull;</li>
-          <li><a href="#">Privacy</a></li>
-        </ul>
-        &copy; All Rights Reserved, Company LTD
-      </div>
-    </div>
-  </footer>
-  <!-- /FOOTER -->
+  <%= render partial: "sticky/footer" %>
 
 </div>
 <!-- /wrapper -->
@@ -214,14 +329,4 @@
   </div>
 </div><!-- /PRELOADER -->
 
-
-<!-- JAVASCRIPT FILES -->
-<script type="text/javascript">var plugin_path = '/assets/plugins/';</script>
-<script type="text/javascript" src="/assets/plugins/jquery/jquery-2.2.3.min.js"></script>
-
-<script type="text/javascript" src="/assets/js/scripts.js"></script>
-
-
-<!-- SWIPER SLIDER -->
-<script type="text/javascript" src="/assets/plugins/slider.swiper/dist/js/swiper.min.js"></script>
-<script type="text/javascript" src="/assets/js/view/demo.swiper_slider.js"></script>
+<%= render partial: "script" %>

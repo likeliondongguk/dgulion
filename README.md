@@ -19,9 +19,24 @@ rails version 4.2.6 <br> ruby version 2.3.1 <br> 템플릿 : 미노형의 SMARTY
 ## 현재 상황
 
 ###노종원
+17.02.20
+-
 메인 페이지 css만 왼쪽 메뉴바 디자인 고민중.. <br>
-메뉴바 render partial함...view/sticky는 공통으로 들어갈 부분 렌더링 할 예정
+메뉴바 render partial함<br>
+view/sticky는 공통으로 들어갈 부분 렌더링 할 예정
 ```html
-     <%= render partial: "sticky/mainMenu" %>
+<%= render partial: "sticky/mainMenu" %>
 ```
-
+17.02.21
+-
+왼쪽 메뉴바 디자인 신경 안 쓰기로 함...<br>
+footer와 script파일도 render partial함<br>
+index화면 구성 slider - 공지사항 - coming up next - 3개 post(과제, 연관 post, Best Idea)설정<bt>
+공지사항 masonry사용해서 만듬!<br>
+만약 onepage 이동 링크 걸고 싶다면
+```html
+<div id="topMain" class="nav-onepage">
+    <a href="#id"></a>
+</div>
+<section id="#id"></section>
+```
