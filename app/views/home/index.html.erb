@@ -236,19 +236,95 @@
       </div>
     </div>
   </section>
-  <!-- -->
+
   <section>
     <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <header class="margin-bottom-60 text-center">
-            <h1>Coming Up Next</h1>
-            <p class="lead font-lato">다가오는 일정</p>
-          </header>
+      <header class="margin-bottom-60 text-center">
+        <h1>Coming Up Next</h1>
+        <p class="lead font-lato">다가오는 일정</p>
+      </header>
+      <br/>
+      <!--
+        controlls-over		= navigation buttons over the image
+        buttons-autohide 	= navigation buttons visible on mouse hover only
+
+        data-plugin-options:
+          "singleItem": true
+          "autoPlay": true (or ms. eg: 4000)
+          "navigation": true
+          "pagination": true
+          "items": "4"
+
+        owl-carousel item paddings
+          .owl-padding-0
+          .owl-padding-3
+          .owl-padding-6
+          .owl-padding-10
+          .owl-padding-15
+          .owl-padding-20
+      -->
+      <div class="text-center">
+        <div class="owl-carousel owl-padding-10 buttons-autohide controlls-over" data-plugin-options='{"singleItem": false, "items":"3", "autoPlay": 4000, "navigation": true, "pagination": false}'>
+          <div class="img-hover">
+            <div class="text-center list-inline list-separator">
+              <h2>
+                <span class="label label-default">2017 02 25</span>
+              </h2>
+            </div>
+            <a href="blog-single-default.html">
+              <img class="img-responsive" src="<%= asset_path 'hack2.jpg' %>" alt="">
+            </a>
+            <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
+            <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores quod
+              est tenetur in.</p>
+          </div>
+          <div class="img-hover">
+            <div class="text-center list-inline list-separator">
+              <h2>
+                <span class="label label-default">2017 03 22</span>
+              </h2>
+            </div>
+            <a href="blog-single-default.html">
+              <img class="img-responsive" src="<%= asset_path 'intro.png' %>" alt="">
+            </a>
+
+            <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
+            <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores quod
+              est tenetur in.</p>
+          </div>
+          <div class="img-hover">
+            <div class="text-center list-inline list-separator">
+              <h2>
+                <span class="label label-default">2017 04 20</span>
+              </h2>
+            </div>
+            <a href="blog-single-default.html">
+              <img class="img-responsive" src="assets/images/demo/451x300/30-min.jpg" alt="">
+            </a>
+
+            <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
+            <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores quod
+              est tenetur in.</p>
+          </div>
+          <div class="img-hover">
+            <div class="text-center list-inline list-separator">
+              <h2>
+                <span class="label label-default">2017 05 20</span>
+              </h2>
+            </div>
+            <a href="blog-single-default.html">
+              <img class="img-responsive" src="assets/images/demo/451x300/26-min.jpg" alt="">
+            </a>
+
+            <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
+            <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores quod
+              est tenetur in.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
+  <!-- /Carousel 4 -->
   <!-- / -->
 
   <%= render partial: "sticky/footer" %>

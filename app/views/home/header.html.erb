@@ -1,6 +1,173 @@
 <div id="wrapper">
   <%= render partial: "sticky/mainMenu" %>
-  
+  <%= render partial: "sticky/pageHeader" %>
+  <section id="notice">
+    <div class="container">
+
+      <div class="row mix-grid">
+
+        <!-- Full COLUMNS -->
+        <div class="col-md-8 col-md-offset-2">
+          <!-- FILTER -->
+          <ul class="nav nav-pills mix-filter margin-bottom-30">
+            <li data-filter="all" class="filter active"><a href="#">All</a></li>
+            <li data-filter="development" class="filter"><a href="#">공지사항</a></li>
+            <li data-filter="photography" class="filter"><a href="#">이벤트</a></li>
+            <li data-filter="design" class="filter"><a href="#">Best Post</a></li>
+          </ul>
+          <!-- /FILTER -->
+          <!-- TOGGLES -->
+          <div class="toggle toggle-transparent toggle-bordered-simple">
+
+            <div class="toggle mix design active"><!-- toggle -->
+              <label>동국대 멋쟁이 사자처럼 아이디어톤</label>
+              <div class="toggle-content">
+                <p class="clearfix">
+                  <img class="hidden-sm pull-left img-responsive" src="<%= asset_path 'intro.png' %>" alt="Careers"/>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                  iaculis ac massa.
+                  <br/><br/>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                  iaculis ac massa.
+                </p>
+
+              </div>
+            </div><!-- /toggle -->
+
+            <div class="toggle mix photography"><!-- toggle -->
+              <label>박성준 보아라</label>
+              <div class="toggle-content">
+                <p class="clearfix">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                  iaculis ac massa.
+                </p>
+
+                <div class="row">
+
+                  <div class="col-md-4 col-sm-6">
+
+                    <ul class="list-icon check-square"><!-- block 2 -->
+                      <li>Nulla lacinia iaculis nulla</li>
+                      <li>Cum sociis natoque penatibus</li>
+                      <li>Magnis dis parturient montes</li>
+                    </ul>
+
+                  </div>
+
+                  <div class="col-md-4 col-sm-6">
+
+                    <ul class="list-icon check-square"><!-- block 2 -->
+                      <li>Nulla lacinia iaculis nulla</li>
+                      <li>Cum sociis natoque penatibus</li>
+                      <li>Magnis dis parturient montes</li>
+                    </ul>
+
+                  </div>
+
+                  <div class="col-md-4 col-sm-6">
+
+                    <ul class="list-icon check-square"><!-- block 2 -->
+                      <li>Nulla lacinia iaculis nulla</li>
+                      <li>Cum sociis natoque penatibus</li>
+                      <li>Magnis dis parturient montes</li>
+                    </ul>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div><!-- /toggle -->
+
+            <div class="toggle mix design"><!-- toggle -->
+              <label>싸이먼 도미닉</label>
+              <div class="toggle-content">
+                <p class="clearfix">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                  iaculis ac massa.
+                </p>
+
+                <div class="row">
+
+                  <div class="col-md-4 col-sm-6">
+
+                    <div class="box-content thumbnail text-center">
+                      <a href="assets/images/demo/1200x800/10-min.jpg" class="item-image lightbox" data-plugin-options='{"type":"image"}'>
+                        <img class="img-responsive" src="assets/images/demo/451x300/10-min.jpg" alt=""/>
+                      </a>
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-4 col-sm-6">
+
+                    <div class="box-content thumbnail text-center">
+                      <a href="http://www.youtube.com/watch?v=s0MDY9fl-IA" class="item-image lightbox" data-plugin-options='{"type":"iframe"}'>
+                        <img class="img-responsive" src="assets/images/demo/451x300/11-min.jpg" alt=""/>
+                      </a>
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-4 col-sm-6">
+
+                    <div class="box-content thumbnail text-center">
+                      <a href="assets/images/demo/1200x800/25-min.jpg" class="item-image lightbox" data-plugin-options='{"type":"image"}'>
+                        <img class="img-responsive" src="assets/images/demo/451x300/25-min.jpg" alt=""/>
+                      </a>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div><!-- /toggle -->
+
+            <div class="toggle mix development"><!-- toggle -->
+              <label>은지 스케쥴 화이팅</label>
+              <div class="toggle-content">
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque.</p>
+                <p class="clearfix">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                  iaculis ac massa.
+                  <br/><br/>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                  iaculis ac massa.
+                </p>
+
+              </div>
+            </div><!-- /toggle -->
+
+          </div>
+          <!-- /TOGGLES -->
+
+        </div>
+        <!-- /LEFT COLUMNS -->
+
+
+      </div>
+    </div>
+  </section>
   <%= render partial: "sticky/footer" %>
 </div>
 
