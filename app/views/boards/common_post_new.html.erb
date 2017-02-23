@@ -1,28 +1,29 @@
+<div id="wrapper">
+  <!--
+      SIDE MENU
 
-<!--
-    SIDE MENU
+      .sidebar-hidden = open only on click
+    -->
+  <%= render partial: "sticky/mainMenu" %>
+  <%= render "sticky/pageHeader", name: "Common_post_new" %>
+  <!--<section class="page-header dark page-header-xs">-->
+    <!--<div class="container">-->
+      <!--<h1>New</h1>-->
+      <!--&lt;!&ndash; breadcrumbs &ndash;&gt;-->
+      <!--<ol class="breadcrumb">-->
+        <!--<li><a href="/">Main</a></li>-->
+        <!--<li><a href="board">Board</a></li>-->
+        <!--<li class="active">New</li>-->
+      <!--</ol>&lt;!&ndash; /breadcrumbs &ndash;&gt;-->
 
-    .sidebar-hidden = open only on click
-  -->
-<%= render partial: "sticky/mainMenu" %>
+    <!--</div>-->
+  <!--</section>-->
 
-<section class="page-header dark page-header-xs">
-  <div class="container">
+  <!-- <textarea class="summernote form-control" data-height="200" data-lang="en-US"></textarea> -->
+  <div class="container" style="margin-top: 40px; padding-right: 100px; padding-left: 100px">
 
-    <h1>New</h1>
-
-    <!-- breadcrumbs -->
-    <ol class="breadcrumb">
-      <li><a href="/">Main</a></li>
-      <li><a href="board">Board</a></li>
-      <li class="active">New</li>
-    </ol><!-- /breadcrumbs -->
-
+    <%= render partial: "boards/summernote" %>
   </div>
-</section>
-
-<!-- <textarea class="summernote form-control" data-height="200" data-lang="en-US"></textarea> -->
-<div class="container" style="margin-top: 40px; padding-right: 100px; padding-left: 100px">
-
-  <%= render partial: "boards/summernote" %>
 </div>
+
+<%= render partial: "script"%>
