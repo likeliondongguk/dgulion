@@ -1,6 +1,6 @@
 <div id="wrapper">
-  <%= render partial: "sticky/mainMenu" %>
-  <%= render partial: "sticky/pageHeader" %>
+  <%= render "sticky/mainMenu" %>
+  <%= render "sticky/pageHeader", name: "헤더" %>
   <section id="notice">
     <div class="container">
 
@@ -160,15 +160,11 @@
 
           </div>
           <!-- /TOGGLES -->
-
         </div>
         <!-- /LEFT COLUMNS -->
-
-
       </div>
     </div>
   </section>
   <%= render partial: "sticky/footer" %>
 </div>
-
 <%= render partial: "script" %>
