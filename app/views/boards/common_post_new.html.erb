@@ -1,0 +1,28 @@
+
+<!--
+    SIDE MENU
+
+    .sidebar-hidden = open only on click
+  -->
+<%= render partial: "sticky/mainMenu" %>
+
+<section class="page-header dark page-header-xs">
+  <div class="container">
+
+    <h1>New</h1>
+
+    <!-- breadcrumbs -->
+    <ol class="breadcrumb">
+      <li><a href="/">Main</a></li>
+      <li><a href="board">Board</a></li>
+      <li class="active">New</li>
+    </ol><!-- /breadcrumbs -->
+
+  </div>
+</section>
+
+<!-- <textarea class="summernote form-control" data-height="200" data-lang="en-US"></textarea> -->
+<div class="container" style="margin-top: 40px; padding-right: 100px; padding-left: 100px">
+
+  <%= render partial: "boards/summernote" %>
+</div>
