@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	 <!--<![endif]-->
+
+	<!--
+		AVAILABLE BODY CLASSES:
+
+		smoothscroll 			= create a browser smooth scroll
+
+
+		enable-animation		= enable WOW animations
+
+		bg-grey					= grey background
+		grain-grey				= grey grain background
+		grain-blue				= blue grain background
+		grain-green				= green grain background
+		grain-blue				= blue grain background
+		grain-orange			= orange grain background
+		grain-yellow			= yellow grain background
+
+		boxed 					= boxed layout
+		pattern1 ... patern11	= pattern background
+		menu-vertical-hide		= hidden, open on click
+
+		BACKGROUND IMAGE [together with .boxed class]
+		data-background="/assets/images/boxed_background/1.jpg"
+	-->
+	<body class="smoothscroll enable-animation">
+
+		<!-- SLIDE TOP -->
+		<div id="slidetop">
+
+			<div class="container">
+
+				<div class="row">
+
+					<div class="col-md-4">
+						<h6><i class="icon-heart"></i> WHY SMARTY?</h6>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa. </p>
+					</div>
+
+					<div class="col-md-4">
+						<h6><i class="icon-attachment"></i> RECENTLY VISITED</h6>
+						<ul class="list-unstyled">
+							<li><a href="#"><i class="fa fa-angle-right"></i> Consectetur adipiscing elit amet</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> This is a very long text, very very very very very very very very very very very very </a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> Lorem ipsum dolor sit amet</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> Dolor sit amet,consectetur adipiscing elit amet</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> Consectetur adipiscing elit amet,consectetur adipiscing elit</a></li>
+						</ul>
+					</div>
+
+					<div class="col-md-4">
+						<h6><i class="icon-envelope"></i> CONTACT INFO</h6>
+						<ul class="list-unstyled">
+							<li><b>Address:</b> PO Box 21132, Here Weare St, <br /> Melbourne, Vivas 2355 Australia</li>
+							<li><b>Phone:</b> 1-800-565-2390</li>
+							<li><b>Email:</b> <a href="mailto:support@yourname.com">support@yourname.com</a></li>
+						</ul>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+		<!-- /SLIDE TOP -->
+
+
+		<!-- wrapper -->
+		<div id="wrapper">
+
+			<!--
+				AVAILABLE HEADER CLASSES
+
+				Default nav height: 96px
+				.header-md 		= 70px nav height
+				.header-sm 		= 60px nav height
+
+				.noborder 		= remove bottom border (only with transparent use)
+				.transparent	= transparent header
+				.translucent	= translucent header
+				.sticky			= sticky header
+				.static			= static header
+				.dark			= dark header
+				.bottom			= header on bottom
+
+				shadow-before-1 = shadow 1 header top
+				shadow-after-1 	= shadow 1 header bottom
+				shadow-before-2 = shadow 2 header top
+				shadow-after-2 	= shadow 2 header bottom
+				shadow-before-3 = shadow 3 header top
+				shadow-after-3 	= shadow 3 header bottom
+
+				.clearfix		= required for mobile menu, do not remove!
+
+				Example Usage:  class="clearfix sticky header-sm transparent noborder"
+			-->
+			<div id="header" class="sticky clearfix">
+
+				<!-- TOP NAV -->
+				<header id="topNav">
+					<div class="container">
+
+						<!-- Mobile Menu Button -->
+						<button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+							<i class="fa fa-bars"></i>
+						</button>
+
+
+
+				</header>
+				<!-- /Top Nav -->
+
+			</div>
+
+
+			<!--
+				PAGE HEADER
+
+				CLASSES:
+					.page-header-xs	= 20px margins
+					.page-header-md	= 50px margins
+					.page-header-lg	= 80px margins
+					.page-header-xlg= 130px margins
+					.dark			= dark page header
+
+					.shadow-before-1 	= shadow 1 header top
+					.shadow-after-1 	= shadow 1 header bottom
+					.shadow-before-2 	= shadow 2 header top
+					.shadow-after-2 	= shadow 2 header bottom
+					.shadow-before-3 	= shadow 3 header top
+					.shadow-after-3 	= shadow 3 header bottom
+			-->
+
+			<!-- /PAGE HEADER -->
+
+
+
+
+      <!-- 사진 시작 -->
+				<div class="container">
+
+					<ul id="portfolio_filter" class="nav nav-pills margin-bottom-60 margin-left-90">
+						<li class="filter active"><a data-filter="*" href="#">모두</a></li>
+						<li class="filter"><a data-filter=".development" href="#">스터디</a></li>
+						<li class="filter"><a data-filter=".photography" href="#">모임</a></li>
+						<li class="filter"><a data-filter=".design" href="#">기타</a></li>
+					</ul>
+
+					<div id="portfolio" class="clearfix portfolio-isotope portfolio-isotope-4" style="width: 1140px; position: relative; height: 733.719px;">
+            <!-- 사진 1 -->
+						<div class="portfolio-item has-title development" style="width: 365px; position: absolute; left: 0px; top: 0px;"><!-- item -->
+
+							<div class="item-box">
+								<figure>
+									<span class="item-hover">
+										<span class="overlay dark-5"></span>
+										<span class="inner">
+                      <!-- + 버튼 -->
+											<!-- lightbox -->
+											<a class="ico-rounded lightbox" href="<%= asset_path '3-min.jpg' %>" data-plugin-options='{"type":"image"}'>
+												<span class="fa fa-plus size-20"></span>
+											</a>
+                      <!-- 설명 페이지 넘어가는 부분-->
+											<!-- details -->
+											<a class="ico-rounded" href="portfolio-single-slider.html">
+												<span class="glyphicon glyphicon-option-horizontal size-20"></span>
+											</a>
+
+										</span>
+
+										<!-- overlay title -->
+										<div class="item-box-overlay-title">
+											<h3>Street Photography</h3>
+											<ul class="list-inline categories nomargin">
+												<li><a href="#">Photography</a></li>
+												<li><a href="#">Design</a></li>
+											</ul>
+										</div><!-- /overlay title -->
+
+									</span>
+
+                  <img class="img-responsive" src="<%= asset_path '1-min.jpg' %>" width="600" height="399" alt="">
+						    </figure>
+							</div>
+
+						</div><!-- /item -->
+            <!-- 사진 1 끝 -->
+            <!-- 사진 2 -->
+            <div class="portfolio-item has-title development" style="width: 365px; position: absolute; left: 380px; top: 0px;"><!-- item -->
+
+              <div class="item-box">
+                <figure>
+                  <span class="item-hover">
+                    <span class="overlay dark-5"></span>
+                    <span class="inner">
+                      <!-- + 버튼 -->
+                      <!-- lightbox -->
+                      <a class="ico-rounded lightbox" href="<%= asset_path '1-min.jpg' %>" data-plugin-options='{"type":"image"}'>
+                        <span class="fa fa-plus size-20"></span>
+                      </a>
+
+                      <!-- 설명 페이지 넘어가는 부분-->
+                      <!-- details -->
+                      <a class="ico-rounded" href="portfolio-single-slider.html">
+                        <span class="glyphicon glyphicon-option-horizontal size-20"></span>
+                      </a>
+
+                    </span>
+
+                    <!-- overlay title -->
+                    <div class="item-box-overlay-title">
+                      <h3>Street Photography</h3>
+                      <ul class="list-inline categories nomargin">
+                        <li><a href="#">Photography</a></li>
+                        <li><a href="#">Design</a></li>
+                      </ul>
+                    </div><!-- /overlay title -->
+
+                  </span>
+
+                  <img class="img-responsive" src="<%= asset_path '3-min.jpg' %>" width="600" height="399" alt="">
+                </figure>
+              </div>
+
+            </div><!-- /item -->
+            <!-- 사진 2 끝 -->
+            <!-- 사진 3 -->
+            <div class="portfolio-item has-title development" style="width: 365px; position: absolute; left: 760px; top: 0px;"><!-- item -->
+
+              <div class="item-box">
+                <figure>
+                  <span class="item-hover">
+                    <span class="overlay dark-5"></span>
+                    <span class="inner">
+                      <!-- + 버튼 -->
+                      <!-- lightbox -->
+                      <a class="ico-rounded lightbox" href="<%= asset_path '3-min.jpg' %>" data-plugin-options='{"type":"image"}'>
+                        <span class="fa fa-plus size-20"></span>
+                      </a>
+
+                      <!-- 설명 페이지 넘어가는 부분-->
+                      <!-- details -->
+                      <a class="ico-rounded" href="portfolio-single-slider.html">
+                        <span class="glyphicon glyphicon-option-horizontal size-20"></span>
+                      </a>
+
+                    </span>
+
+                    <!-- overlay title -->
+                    <div class="item-box-overlay-title">
+                      <h3>Street Photography</h3>
+                      <ul class="list-inline categories nomargin">
+                        <li><a href="#">Photography</a></li>
+                        <li><a href="#">Design</a></li>
+                      </ul>
+                    </div><!-- /overlay title -->
+
+                  </span>
+
+                  <img class="img-responsive" src="<%= asset_path '1-min.jpg' %>" width="600" height="399" alt="">
+                </figure>
+              </div>
+
+            </div><!-- /item -->
+            <!-- 사진 3 끝 -->
+
+					</div>
+          <button type="button" onclick="window.open('/photo_upload','win','width=350,height=250,toolbar=0,scrollbars=0,resizable=0');">사진 올리기</button>
+
+
+			  </div>
+      <!-- 사진 끝 -->
+
+
+		</div>
+		<!-- /wrapper -->
+
+
+
+	</body>
+</html>
