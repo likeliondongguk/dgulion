@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "home#index"
   get 'home/header'
   get 'home/index'
+  get 'home/photo_gallery'
 
   get 'boards/board'
   get 'boards/common_post'
