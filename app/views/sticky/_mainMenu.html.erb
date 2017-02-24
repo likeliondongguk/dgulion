@@ -7,7 +7,9 @@
 
       <!-- OPTIONS -->
       <ul class="top-links list-inline text-center block">
-        <li><a class="dropdown-toggle no-text-underline"  data-toggle="modal" data-target="#myModal"><i class="fa fa-sign-in" aria-hidden="true" ></i> 로그인 </a></li>
+        <li>
+          <a class="dropdown-toggle no-text-underline " data-toggle="modal" data-target="#myModal" data-backdrop="false"><i class="fa fa-sign-in"></i>
+            로그인 </a></li>
         <!-- sample modal content -->
         <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -15,33 +17,39 @@
 
               <!-- Modal Header -->
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">로그인</h4>
               </div>
 
               <!-- Modal Body -->
               <div class="modal-body">
-                <h4>Text in a modal</h4>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+               <h2>Log in</h2>
 
-                <h4>Popover in a modal</h4>
-                <p>This <a href="#" data-toggle="popover" class="btn btn-default" title="A Title" data-content="And here's some amazing content. It's very engaging. right?">button</a> should trigger a popover on click.</p>
+                <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="7oHFemBQ1f/hEJbe7qXIHGJv2QAYz18L8ticE1n/4QK/OYh4eTtoFHKdM5ihhJgQnxKfp54ptqOSG6mqhZiPag==">
+                  <div class="field">
+                    <label for="user_email">Email</label><br>
+                    <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">
+                  </div>
 
-                <h4>Tooltips in a modal</h4>
-                <p><a href="#" data-toggle="tooltip" title="Tooltip">This link</a> and <a href="#" data-toggle="tooltip" title="Tooltip">that link</a> should have tooltips on hover.</p>
+                  <div class="field">
+                    <label for="user_password">Password</label><br>
+                    <input autocomplete="off" type="password" name="user[password]" id="user_password">
+                  </div>
 
-                <hr />
+                  <div class="field">
+                    <input name="user[remember_me]" type="hidden" value="0"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+                    <label for="user_remember_me">Remember me</label>
+                  </div>
 
-                <h4>Overflowing text to show scroll behavior</h4>
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                  <div class="actions">
+                    <input type="submit" name="commit" value="Log in">
+                  </div>
+                </form>
+                <%= link_to "Sign_up", new_user_registration_path %>
+                <br>
+                <%= link_to "Forgat your password" ,new_user_password_path %>
+
               </div>
 
               <!-- Modal Footer -->
@@ -57,7 +65,10 @@
         <li><a class="dropdown-toggle no-text-underline" href="#"><i class="fa fa-user-circle-o"></i> 마이페이지</a></li>
       </ul>
       <!-- /OPTIONS -->
-
+      <%if user_signed_in? %>
+          <%= current_user.email %>
+          <%= link_to "로그아웃",destroy_user_session_path, method: :delete %>
+      <%end%>
       <a href="<%= url_for(action: :header) %>" class="logo text-center">
         <img src="<%= asset_path 'favicon_s.png' %>" alt="">
       </a>
@@ -76,7 +87,7 @@
         <!-- MENU -->
         <ul class="nav navbar-nav">
           <li>
-            <a href="<%= url_for(controller: :home ,action: :index) %>">
+            <a href="<%= url_for(controller: :home, action: :index) %>">
               <i class="et-trophy"></i>
               홈
             </a>
@@ -106,9 +117,7 @@
               게시판
             </a>
             <ul class="dropdown-menu">
-              <li><a href="<%= url_for(action: 'board', controller:'boards') %>">자유 게시판</a></li>
-              <li><a href="blog-default-aside-right.html">사진 게시판</a></li>
-              <li><a href="blog-default-aside-left.html">자유 게시판</a></li>
+              <li><a href="<%= url_for(action: 'board', controller: 'boards') %>">자유 게시판</a></li>
               <li><a href="/home/photo_gallery">사진 게시판</a></li>
               <li><a href="blog-default-fullwidth.html">질문 게시판</a></li>
             </ul>
