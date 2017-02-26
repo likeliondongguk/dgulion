@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'pry-rails'
+gem 'awesome_print'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'

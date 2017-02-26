@@ -5,7 +5,7 @@ rails version 4.2.6 <br> ruby version 2.3.1 <br> 템플릿 : 미노형의 SMARTY
 ##주의 사항
 1. 각 개발자들은 자신의 이름 별로 branch를 만들어서 설정한다.
 1. 컨트롤러 명이나 액션 명은 각 기능 별로 따로 작성한다.
-1. 1주에 한 번 씩 master로 합치는 작업을 하고 그 것을 pull 받아서 작업한다.
+1. 1주에 한 번 씩 ma       ster로 합치는 작업을 하고 그 것을 pull 받아서 작업한다.
 1. 모델명은 드라이브에 정리되어 있는 이름으로 설정한다.
 1. 기본 데이터베이스는 sqlite로 설정하고 후에 mysql로 변경한다.
 1. 이슈가 생기면 이슈에 (브랜치 명) 위치 : 이슈 이렇게 적어 둔다. 후에 이슈가 해결되면 ~~취소선 처리~~ 한다. 
@@ -40,3 +40,6 @@ index화면 구성 slider - 공지사항 - coming up next - 3개 post(과제, �
 </div>
 <section id="#id"></section>
 ```
+css 변경시
+no_custom_default
+
