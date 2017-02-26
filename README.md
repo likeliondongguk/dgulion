@@ -43,3 +43,11 @@ index화면 구성 slider - 공지사항 - coming up next - 3개 post(과제, �
 css 변경시
 no_custom_default
 
+17.02.27
+-
+로그인 회원가입 모달 완성(아직 영어임)<br>
+로그아웃 기능 구현 , 마이페이지 버튼 생성<br>
+이제 회원 정보 어찌 보일지 구상해야할 듯..<br>
+```ruby
+current_user.username #사용가능 
+```
