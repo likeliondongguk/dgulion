@@ -57,4 +57,5 @@ current_user.username #사용가능
 블로그 기능 만드는중 스카폴드 비슷하게 구현하는데<br>
 resources 하면서 scaffold 안하면 index의 prefix가 다른 문제 발생 <br>
 show 기능에서 태그 시스템과 댓글 시스템 연관 포스트 시스템 고민 해봐야할듯<br>
-is_writer?메소드를 global하게 사용하기 고민해봅시다.
+is_writer?메소드를 global하게 사용하기 고민해봅시다. <br>
+index show 까지함
