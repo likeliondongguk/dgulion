@@ -1623,7 +1623,8 @@ section.dark.page-header ul.page-options a {
 	/** Menu Vertical
 	 ********************** **/
 	body.menu-vertical.menu-vertical #wrapper .container {
-		width:100%;
+		/*no_custom_default*/
+        /*width:100%;*/
 	}
 	body.menu-vertical.menu-vertical #wrapper {
 		margin-left:263px;

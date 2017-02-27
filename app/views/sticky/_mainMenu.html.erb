@@ -133,7 +133,7 @@
           </ul>
       <!-- /OPTIONS -->
 
-      <a href="<%= url_for(action: :header) %>" class="logo text-center">
+      <a href="<%= url_for(controller: :home ,action: :header) %>" class="logo text-center">
         <img src="<%= asset_path 'favicon_s.png' %>" alt="">
       </a>
       <div class="navbar-header">
@@ -156,7 +156,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="<%= url_for(blog_index_path) %>">
               <i class="et-layers"></i>
               블로그
             </a>
