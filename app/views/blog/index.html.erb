@@ -3,73 +3,76 @@
   <%= render 'sticky/pageHeader', name: 'blog' %>
   <!-- -->
   <p id="notice"><%= notice %></p>
-    <section>
-      <div class="container">
-        <div class="row">
-          <div id="blog" class="clearfix blog-isotope blog-isotope-2 ">
-            <% @blogs.each do |blog| %>
+  <%= link_to 'New Post', new_blog_path %>
+  <% if @blogs.count==0 %>
+      <%= render 'sticky/blank' %>
+  <% else %>
+      <section>
+        <div class="container">
+          <div class="row">
+            <div id="blog" class="clearfix blog-isotope blog-isotope-2 ">
+              <% @blogs.each do |blog| %>
                   <!--<td><%#= link_to 'Show', blog %></td>-->
                   <!--<td><%#= link_to 'Edit', edit_blog_path(blog) %></td>-->
                   <!--<td><%#= link_to 'Destroy', blog, method: :delete, data: {confirm: 'Are you sure?'} %></td>-->
-                <div class="blog-post-item">
-                  <!-- carousel -->
-                  <div class="flexslider" data-arrowNav="false" data-slideshowSpeed="3000">
-                    <ul class="slides">
-                      <!-- Slide 1 -->
+                  <div class="blog-post-item">
+                    <!-- carousel -->
+                    <div class="flexslider" data-arrowNav="false" data-slideshowSpeed="3000">
+                      <ul class="slides">
+                        <!-- Slide 1 -->
+                        <li>
+                          <a href="#">
+                            <img class="img-responsive" src="<%= asset_path 'intro.png' %>" width="600" height="399" alt="">
+                          </a>
+                        </li>
+                        <!-- Slide 2 -->
+                        <li>
+                          <a href="#">
+                            <img class="img-responsive" src="<%= asset_path 'intro2.png' %>" width="600" height="399" alt="">
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- /carousel -->
+                    <h2><a href="blog-single-default.html"><%= blog.title %></a></h2>
+
+                    <ul class="blog-post-info list-inline">
                       <li>
-                        <a href="#">
-                          <img class="img-responsive" src="<%= asset_path 'intro.png' %>" width="600" height="399" alt="">
+                        <a href="">
+                          <i class="fa fa-user"></i>
+                          <span class="font-lato"><%= blog.user.username %></span>
                         </a>
                       </li>
-                      <!-- Slide 2 -->
                       <li>
                         <a href="#">
-                          <img class="img-responsive" src="<%= asset_path 'intro2.png' %>" width="600" height="399" alt="">
+                          <i class="fa fa-clock-o"></i>
+                          <span class="font-lato"><%= time_ago_in_words(blog.created_at) %></span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-comment-o"></i>
+                          <span class="font-lato">28</span>
                         </a>
                       </li>
                     </ul>
+
+                    <p><%= blog.content %></p>
+
+                    <a href="<%= url_for(blog) %>" class="btn btn-reveal btn-default">
+                      <i class="fa fa-plus"></i>
+                      <span>Read More</span>
+                    </a>
+
                   </div>
-                  <!-- /carousel -->
-                  <h2><a href="blog-single-default.html"><%= blog.title %></a></h2>
-
-                  <ul class="blog-post-info list-inline">
-                    <li>
-                      <a href="#">
-                        <i class="fa fa-clock-o"></i>
-                        <span class="font-lato">June 29, 2015</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="fa fa-comment-o"></i>
-                        <span class="font-lato">28</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <i class="fa fa-comment-o"></i>
-                        <span class="font-lato"><%= blog.user.username %></span>
-                      </a>
-                    </li>
-                  </ul>
-
-                  <p><%= blog.content %></p>
-
-                  <a href="<%= url_for(blog) %>" class="btn btn-reveal btn-default">
-                    <i class="fa fa-plus"></i>
-                    <span>Read More</span>
-                  </a>
-
-                </div>
-            <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+  <% end %>
 
-  <br>
 
-  <%= link_to 'New Post', new_blog_path %>
 
   <%= render 'sticky/footer' %>
 </div>
