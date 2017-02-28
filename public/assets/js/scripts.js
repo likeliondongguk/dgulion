@@ -2678,16 +2678,16 @@
 
 					_container_1.each(function() {
 
-						var _lang = jQuery(this).attr('data-lang') || 'en-US';
+						var _lang = jQuery(this).attr('data-lang') || 'ko-KR';
 
-						if(_lang != 'en-US') { // Language!
+						if(_lang != 'ko-KR') { // Language!
 						alert(_lang);
 							loadScript(plugin_path + 'editor.summernote/lang/summernote-'+_lang+'.js');
 						}
 
 						jQuery(this).summernote({
 							height: jQuery(this).attr('data-height') || 200,
-							lang: 	jQuery(this).attr('data-lang') || 'en-US', // default: 'en-US'
+							lang: 	jQuery(this).attr('data-lang') || 'ko-KR', // default: 'en-US'
 							toolbar: [
 							/*	[groupname, 	[button list]]	*/
 								['style', 		['style']],

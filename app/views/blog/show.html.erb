@@ -85,7 +85,7 @@
 
 
       <!-- article content -->
-      <p class="dropcap"><%= @blog.content %></p>
+      <p class="dropcap"><%= @blog.content.html_safe %></p>
       <br>
 
       <div class="divider divider-dotted"><!-- divider --></div>
@@ -147,7 +147,7 @@
             <div class="form-group">
               <div class="col-md-12">
                 <label>COMMENT</label>
-                <textarea required="required" maxlength="5000" rows="5" class="form-control" name="comment" id="comment"></textarea>
+                <textarea required="required" maxlength="5000" rows="2" class="form-control" name="comment" id="comment"></textarea>
               </div>
             </div>
           </div>

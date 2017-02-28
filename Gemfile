@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'ckeditor'
 gem 'pry-rails'
 gem 'awesome_print'
 gem 'devise'
