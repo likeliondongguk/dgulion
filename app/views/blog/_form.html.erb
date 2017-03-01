@@ -1,11 +1,17 @@
-<%= form_for(@blog, url: blog_index_path) do |b| %>
+<% case url %>
+<% when :new then
+     path=blog_index_path %>
+<% when :edit then
+     path=@blog %>
+<% end %>
+<%= form_for(@blog, url: path) do |b| %>
     <div class="field">
       <%= b.label :title %><br>
       <%= b.text_field :title %>
     </div>
     <div class="field">
       <%= b.label :content %><br>
-      <%= b.cktext_area :content %>
+      <%= b.text_area :content, class: :summernote %>
     </div>
     <div class="field">
       <input name="blog[user_id]" id="blog_user_id" value="<%= current_user.id unless current_user.nil? %>" type="hidden">
