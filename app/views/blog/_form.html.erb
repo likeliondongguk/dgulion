@@ -4,7 +4,7 @@
 <% when :edit then
      path=@blog %>
 <% end %>
-<%= form_for(@blog, url: path) do |b| %>
+<%= form_for(@blog, url: path, html: {multipart: true}) do |b| %>
     <div class="field">
       <%= b.label :title %><br>
       <%= b.text_field :title %>

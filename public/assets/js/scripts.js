@@ -2657,8 +2657,26 @@
 
 	}
 
-
-
+// 이미지 업로드 로직 구현 성공
+function sendFile(file,editor,welEditable){
+		data = new FormData();
+		data.append("upload", file);
+		$.ajax({
+			data : data,
+			type : "POST",
+			url  : "/imageUpload",
+			cache : false,
+			contentType : false,
+			processData : false,
+			success : function (data) {
+                console.log(data.url);
+                $('textarea.summernote').summernote('insertImage', data.url);
+            },
+            error : function(request,status,error){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+		})
+}
 
 
 /** Editors
@@ -2686,6 +2704,10 @@
 						// }
 
 						jQuery(this).summernote({
+                            onImageUpload : function(files, editor, welEditable) {
+                                console.log(files, editor, welEditable);
+                                sendFile(files[0],editor,welEditable);
+                            },
 							height: jQuery(this).attr('data-height') || 400,
 							lang: 'ko-KR', // default: 'en-US'
 							toolbar: [
