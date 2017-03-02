@@ -3,9 +3,9 @@
   <%= render 'sticky/pageHeader', name: 'blog' %>
   <!-- -->
 
-  <% if @blogs.count==0 %>
-      <%= render 'sticky/blank' %>
-  <% else %>
+  <%# if @blogs.count==0 %>
+      <%#= render 'sticky/blank' %>
+  <%# else %>
       <section>
         <div class="container">
           <div class="row">
@@ -24,7 +24,7 @@
                       <img class="img-responsive" src="<%= asset_path 'intro.png' %>" width="600" height="399" alt="">
 
                     </figure>
-                    <h2><a href="<%= url_for(blog) %>"><%= blog.title %></a></h2>
+                    <h2><a href="<%= url_for(controller: :blog ,action: :show, id: blog.id) %>"><%= blog.title %></a></h2>
 
                     <ul class="blog-post-info list-inline">
                       <li>
@@ -49,7 +49,7 @@
 
                     <p><%= blog.content %></p>
 
-                    <a href="<%= url_for(blog) %>" class="btn btn-reveal btn-default">
+                    <a href="<%= url_for(controller: :blog ,action: :show, id: blog.id) %>" class="btn btn-reveal btn-default">
                       <i class="fa fa-plus"></i>
                       <span>Read More</span>
                     </a>
@@ -60,7 +60,7 @@
           </div>
         </div>
       </section>
-  <% end %>
+  <%# end %>
 
 
 

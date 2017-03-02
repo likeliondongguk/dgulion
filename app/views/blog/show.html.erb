@@ -46,13 +46,13 @@
         </li>
         <% if @blog.is_writer?(current_user) %>
             <li class="text-right">
-              <a href="<%= url_for(edit_blog_path(@blog)) %>" class="btn btn-xs btn-3d btn-red">
-                <span>수정하기</span>
-              </a>
+              <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_blog_path(@blog)), class: "btn btn-xs btn-3d btn-blue"%>
+            </li>
+            <li class="text-right">
+              <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :blog, action: :destroy, id: @blog.id), method: :delete, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
             </li>
         <% end %>
       </ul>
-
       <!-- article content -->
       <p class="dropcap"><%= @blog.content.html_safe %></p>
       <br>
