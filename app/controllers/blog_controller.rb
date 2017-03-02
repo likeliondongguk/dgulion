@@ -1,16 +1,19 @@
 class BlogController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy ]
   def index
-    @blogs=Blog.all
+     @blogs=Blog.all
+    # @blogs=Tag.find_by(name: "blog").posts
   end
   def show
 
   end
   def new
-    @blog = Blog.new
+     @blog = Blog.new
+    #@blog = Post.new
   end
   def create
     @blog=Blog.new(blog_params)
+    # @blog=Post.new(blog_params)
     @blog.save
     redirect_to @blog
   end
