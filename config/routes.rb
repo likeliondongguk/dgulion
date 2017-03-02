@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'boards/common_post_new'
 
   resources :blog
-  post '/imageUpload' => 'home#imageUpload'
+  post '/imageUpload' => 'summerimage#imageUpload'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
