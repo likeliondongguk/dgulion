@@ -39,14 +39,11 @@
                         </a>
                       </li>
                     </ul>
-
                     <p><%= blog.content.html_safe %></p>
-
                     <a href="<%= url_for(controller: :blog ,action: :show, id: blog.id) %>" class="btn btn-reveal btn-default">
                       <i class="fa fa-plus"></i>
                       <span>Read More</span>
                     </a>
-
                   </div>
               <% end %>
             </div>
@@ -54,12 +51,8 @@
         </div>
       </section>
   <%# end %>
-
-
-
   <%= render 'sticky/footer' %>
 </div>
-
 <!--&lt;!&ndash; PRELOADER &ndash;&gt;-->
 <!--<div id="preloader">-->
 <!--<div class="inner">-->

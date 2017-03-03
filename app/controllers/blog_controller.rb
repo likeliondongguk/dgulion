@@ -1,31 +1,24 @@
 class BlogController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
-
   def index
     @blogs=Tag.get_post("blog")
   end
-
   def show
   end
-
   def new
     @blog = Post.new
   end
-
   def create
     @blog=Post.new(blog_params)
     @blog.tag_save("blog")
     redirect_to url_for(controller: :blog, action: :show, id: @blog.id)
   end
-
   def edit
   end
-
   def update
     @blog.update(blog_params)
     redirect_to url_for(controller: :blog, action: :show, id: @blog.id)
   end
-
   def destroy
     @blog.destroy
     redirect_to url_for(controller: :blog, action: :index)

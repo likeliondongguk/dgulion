@@ -3,9 +3,7 @@
   <%= render 'sticky/pageHeader', name: 'blog' %>
   <section>
     <h1>Editing Blog</h1>
-
     <%= render 'form', url: :edit %>
-
     <%= link_to 'Show', url_for(controller: :blog ,action: :show, id: @blog.id) %> |
     <%= link_to 'Back', blog_index_path %>
   </section>

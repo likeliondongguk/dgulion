@@ -14,7 +14,6 @@
           </a>
         </div>
       </div>
-
       <ul class="blog-post-info list-inline">
         <li>
           <a href="#">
@@ -56,57 +55,25 @@
       <!-- article content -->
       <p class="dropcap"><%= @blog.content.html_safe %></p>
       <br>
-
       <div class="divider divider-dotted"><!-- divider --></div>
-
       <!--todo: 태그만들기-->
       <!-- TAGS -->
-      <a class="tag" href="#">
-        <span class="txt">RESPONSIVE</span>
-        <span class="num">12</span>
-      </a>
-      <a class="tag" href="#">
-        <span class="txt">CSS</span>
-        <span class="num">3</span>
-      </a>
-      <a class="tag" href="#">
-        <span class="txt">HTML</span>
-        <span class="num">1</span>
-      </a>
-      <a class="tag" href="#">
-        <span class="txt">JAVASCRIPT</span>
-        <span class="num">28</span>
-      </a>
-      <a class="tag" href="#">
-        <span class="txt">DESIGN</span>
-        <span class="num">6</span>
-      </a>
-      <a class="tag" href="#">
-        <span class="txt">DEVELOPMENT</span>
-        <span class="num">3</span>
-      </a>
+      <% @blog.tags.where(level: 2).each do |t| %>
+          <a class="tag" href="#">
+            <span class="txt"><%= t.name %></span>
+            <span class="num"><%= Tagging.where(tag_id: t.id).count %></span>
+          </a>
+      <% end %>
       <!-- /TAGS -->
-
-
       <!--todo-won: 연관 블로그 넘어가게 하기-->
-
-
       <div class="divider"><!-- divider --></div>
-
-
       <ul class="pager">
         <li class="previous"><a class="noborder" href="#">&larr; Previous Post</a></li>
         <li class="next"><a class="noborder" href="#">Next Post &rarr;</a></li>
       </ul>
-
-
       <div class="divider"><!-- divider --></div>
-
-
       <!-- COMMENTS -->
       <div id="comments" class="comments">
-
-
         <h4 class="page-header margin-bottom-60 size-20">
           <span>3</span> COMMENTS
         </h4>
@@ -120,21 +87,17 @@
               </div>
             </div>
           </div>
-
           <div class="row">
             <div class="col-md-12">
-
               <button class="btn btn-3d btn-lg btn-reveal btn-black">
                 <i class="fa fa-check"></i>
                 <span>SUBMIT COMMENT</span>
               </button>
-
             </div>
           </div>
         </form>
         <!--댓글 달기 폼-->
         <div class="comment-list">
-
           <!-- First Comment -->
           <div class="row">
             <div class="col-md-2 col-sm-2 hidden-xs">
@@ -163,7 +126,6 @@
               </div>
             </div>
           </div>
-
           <!-- Second Comment Reply -->
           <div class="row">
             <div class="col-md-2 col-sm-2 col-md-offset-1 col-sm-offset-0 hidden-xs">
@@ -193,19 +155,11 @@
               </div>
             </div>
           </div>
-
-
         </div>
-
-
       </div>
       <!-- /COMMENTS -->
-
-
     </div>
   </section>
   <%= render 'sticky/footer' %>
 </div>
 <%= render 'script' %>
-
-
