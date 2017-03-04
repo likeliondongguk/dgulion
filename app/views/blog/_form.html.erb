@@ -13,9 +13,6 @@
       <%= b.label :content %><br>
       <%= b.text_area :content, class: :summernote %>
     </div>
-    <div class="field">
-      <input name="post[user_id]" id="post_user_id" value="<%= current_user.id unless current_user.nil? %>" type="hidden">
-    </div>
     <div class="actions">
       <%= b.submit '저장' %>
     </div>

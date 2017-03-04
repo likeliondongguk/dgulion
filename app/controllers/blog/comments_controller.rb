@@ -3,6 +3,6 @@ class Blog::CommentsController < CommentsController
 
   private
   def set_commentable
-    @commentable = Tag.get_post("blog").find(params[:blog_id])
+    @commentable = Category.get_posts("blog").find(params[:blog_id])
   end
 end

@@ -102,3 +102,8 @@ show.html.erb
 </div>
 ```
 나머지는 views/comments에서 확인 
+
+17.03.05
+-
+category table 추가함
+확인 요망 
