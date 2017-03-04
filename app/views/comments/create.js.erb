@@ -1,6 +1,6 @@
 (function($){
     console.log("<%= @comment.body %>")
     $("#comment_body").val("")
-    var html = "<%= escape_javascript(render(partial: 'comments/item', locals: {c: @comment, url: :blog})) %>";
+    var html = "<%= escape_javascript(render(partial: 'comments/item', locals: {comment: @comment, url: :blog})) %>";
     $("#comments").append(html);
 })(jQuery)

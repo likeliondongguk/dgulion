@@ -82,3 +82,23 @@ Post.first.comments.create(body: "dd", user_id: 1)
 #2번 방법 
 Comment.create(commentable: Post.first, body: "dd", user_id: 1)
 ```
+뷰에 적용하는 방법은
+
+<br>route.rb
+```ruby
+resources :blog do
+    resources :comments, module: :blog, only: [:create, :destroy]
+end
+```
+show.html.erb
+```ruby
+//댓글 달기 폼 추가하고 
+<%= render 'comments/form', commentable: @blog, url: :blog %>
+<div class="comment-list">
+  <% @blog.comments.each do |comment| %>
+          <!--댓글달기 ajax용 렌더-->
+          <%= render 'comments/item', comment: comment, count: count, url: :blog %>
+  <% end %>
+</div>
+```
+나머지는 views/comments에서 확인 

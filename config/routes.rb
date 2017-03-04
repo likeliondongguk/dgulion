@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   # nojong
   resources :blog do
-    resources :comments, module: :blog
+    resources :comments, module: :blog, only: [:create, :destroy]
   end
 
   post '/imageUpload' => 'summerimage#imageUpload'
