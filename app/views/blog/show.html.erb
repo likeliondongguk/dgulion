@@ -80,41 +80,21 @@
         <!--댓글 달기폼-->
         <%= render 'comments/form', commentable: @blog, url: :blog %>
         <!--댓글 달기 폼끝-->
+        <!--댓글 리스트 반복문 시작 -->
         <div class="comment-list">
-          <!-- First Comment -->
-          <%= render 'comments/comments', commentable: @blog, url: :blog %>
 
-
-          <!-- Second Comment Reply -->
-          <!--<div class="row">-->
-            <!--<div class="col-md-2 col-sm-2 col-md-offset-1 col-sm-offset-0 hidden-xs">-->
-              <!--<figure class="thumbnail">-->
-                <!--<img class="img-responsive" src="<%= asset_path 'avatar2.jpg' %>">-->
-                <!--<figcaption class="text-center">user name</figcaption>-->
-              <!--</figure>-->
-            <!--</div>-->
-            <!--<div class="col-md-9 col-sm-9">-->
-              <!--<div class="panel panel-default arrow left">-->
-                <!--<div class="panel-heading right">Reply</div>-->
-                <!--<div class="panel-body">-->
-                  <!--<header class="text-left">-->
-                    <!--<div class="comment-user"><i class="fa fa-user"></i> That Guy</div>-->
-                    <!--<span class="comment-date"><i class="fa fa-clock-o"></i> Dec 16, 2014</span>-->
-                  <!--</header>-->
-                  <!--<div class="comment-post">-->
-                    <!--<p>-->
-                      <!--Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut-->
-                      <!--labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris-->
-                      <!--nisi ut aliquip ex ea commodo consequat.-->
-                    <!--</p>-->
-                  <!--</div>-->
-                  <!--<p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a>-->
-                  <!--</p>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
+          <% count =0 %>
+          <% @blog.comments.each do |comment| %>
+              <!--count보다 더 많이 돌아가는 버그-->
+              <% unless count >= @blog.comments.count %>
+                  <!--댓글달기 ajax용 렌더-->
+                  <%= render 'comments/item', c: comment, count: count, url: :blog %>
+              <% end %>
+              <% count+=1 %>
+          <% end %>
         </div>
+        <!--댓글 리스트 반복문 끝-->
+        <%#= render 'comments/comments', commentable: @blog, url: :blog %>
       </div>
       <!-- /COMMENTS -->
     </div>

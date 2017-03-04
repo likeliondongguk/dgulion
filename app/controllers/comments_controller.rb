@@ -1,20 +1,27 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-
+  #ajax create destroy
   def create
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
-    @comment.save
+    if @comment.save
+      respond_to do |format|
+        format.js
+      end
+    else
 
-    redirect_to :back
+    end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
-
-    redirect_to :back
+    if @comment.destroy
+      respond_to do |format|
+        format.js
+      end
+    end
   end
+
   private
   def comment_params
     params.require(:comment).permit(:body)
