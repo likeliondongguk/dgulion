@@ -18,13 +18,13 @@
         <li>
           <a href="#">
             <i class="fa fa-clock-o"></i>
-            <span class="font-lato"><%= @blog.created_at %></span>
+            <span class="font-lato"><%= time_ago_in_words(@blog.created_at) %></span>
           </a>
         </li>
         <li>
           <a href="#">
             <i class="fa fa-comment-o"></i>
-            <span class="font-lato">28 Comments</span>
+            <span class="font-lato"><%= @blog.comments.count %> Comments</span>
           </a>
         </li>
         <li>
@@ -45,7 +45,7 @@
         </li>
         <% if @blog.is_writer?(current_user) %>
             <li class="text-right">
-              <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_blog_path(@blog)), class: "btn btn-xs btn-3d btn-blue"%>
+              <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_blog_path(@blog)), class: "btn btn-xs btn-3d btn-blue" %>
             </li>
             <li class="text-right">
               <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :blog, action: :destroy, id: @blog.id), method: :delete, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
@@ -75,86 +75,45 @@
       <!-- COMMENTS -->
       <div id="comments" class="comments">
         <h4 class="page-header margin-bottom-60 size-20">
-          <span>3</span> COMMENTS
+          <span><%= @blog.comments.count %></span> COMMENTS
         </h4>
         <!--댓글 달기폼-->
-        <form action="#" method="post">
-          <div class="row">
-            <div class="form-group">
-              <div class="col-md-12">
-                <label>COMMENT</label>
-                <textarea required="required" maxlength="5000" rows="2" class="form-control" name="comment" id="comment"></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <button class="btn btn-3d btn-lg btn-reveal btn-black">
-                <i class="fa fa-check"></i>
-                <span>SUBMIT COMMENT</span>
-              </button>
-            </div>
-          </div>
-        </form>
-        <!--댓글 달기 폼-->
+        <%= render 'comments/form', commentable: @blog, url: :blog %>
+        <!--댓글 달기 폼끝-->
         <div class="comment-list">
           <!-- First Comment -->
-          <div class="row">
-            <div class="col-md-2 col-sm-2 hidden-xs">
-              <figure class="thumbnail">
-                <img class="img-responsive" src="<%= asset_path 'avatar2.jpg' %>">
-                <figcaption class="text-center">user name</figcaption>
-              </figure>
-            </div>
-            <div class="col-md-10 col-sm-10">
-              <div class="panel panel-default arrow left">
-                <div class="panel-body">
-                  <header class="text-left">
-                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-                    <span class="comment-date"><i class="fa fa-clock-o"></i> Dec 16, 2014</span>
-                  </header>
-                  <div class="comment-post">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                      nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                  </div>
-                  <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <%= render 'comments/comments', commentable: @blog, url: :blog %>
+
+
           <!-- Second Comment Reply -->
-          <div class="row">
-            <div class="col-md-2 col-sm-2 col-md-offset-1 col-sm-offset-0 hidden-xs">
-              <figure class="thumbnail">
-                <img class="img-responsive" src="<%= asset_path 'avatar2.jpg' %>">
-                <figcaption class="text-center">user name</figcaption>
-              </figure>
-            </div>
-            <div class="col-md-9 col-sm-9">
-              <div class="panel panel-default arrow left">
-                <div class="panel-heading right">Reply</div>
-                <div class="panel-body">
-                  <header class="text-left">
-                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-                    <span class="comment-date"><i class="fa fa-clock-o"></i> Dec 16, 2014</span>
-                  </header>
-                  <div class="comment-post">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                      nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                  </div>
-                  <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!--<div class="row">-->
+            <!--<div class="col-md-2 col-sm-2 col-md-offset-1 col-sm-offset-0 hidden-xs">-->
+              <!--<figure class="thumbnail">-->
+                <!--<img class="img-responsive" src="<%= asset_path 'avatar2.jpg' %>">-->
+                <!--<figcaption class="text-center">user name</figcaption>-->
+              <!--</figure>-->
+            <!--</div>-->
+            <!--<div class="col-md-9 col-sm-9">-->
+              <!--<div class="panel panel-default arrow left">-->
+                <!--<div class="panel-heading right">Reply</div>-->
+                <!--<div class="panel-body">-->
+                  <!--<header class="text-left">-->
+                    <!--<div class="comment-user"><i class="fa fa-user"></i> That Guy</div>-->
+                    <!--<span class="comment-date"><i class="fa fa-clock-o"></i> Dec 16, 2014</span>-->
+                  <!--</header>-->
+                  <!--<div class="comment-post">-->
+                    <!--<p>-->
+                      <!--Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut-->
+                      <!--labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris-->
+                      <!--nisi ut aliquip ex ea commodo consequat.-->
+                    <!--</p>-->
+                  <!--</div>-->
+                  <!--<p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a>-->
+                  <!--</p>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
         </div>
       </div>
       <!-- /COMMENTS -->

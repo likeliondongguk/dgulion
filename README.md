@@ -59,3 +59,26 @@ resources 하면서 scaffold 안하면 index의 prefix가 다른 문제 발생 <
 show 기능에서 태그 시스템과 댓글 시스템 연관 포스트 시스템 고민 해봐야할듯<br>
 is_writer?메소드를 global하게 사용하기 고민해봅시다. <br>
 index show 까지함
+
+17.03.04
+-
+summernote쓰면 자동으로 s3 연동됨
+```angular2html
+text_area :content, class: :summernote
+```
+이거에 대한 코드는 scripts.js, route.rb, summerimage_controller.rb, summernote_uploader.rb
+에 위치함 <br>
+
+comment 기능은 polymorphic으로 구현 <br>
+사용법은 추가 시키고 싶은 모델에
+```ruby
+has_many :comments, as: commentable
+```
+추가 시키고 create 작업은 
+```ruby
+#1번 방법  
+Post.first.comments.create(body: "dd", user_id: 1)
+
+#2번 방법 
+Comment.create(commentable: Post.first, body: "dd", user_id: 1)
+```
