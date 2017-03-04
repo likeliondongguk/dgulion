@@ -3,11 +3,12 @@ Rails.application.routes.draw do
   get 'home/header'
   get 'home/index'
 
-  get 'boards/board'
-  get 'boards/common_post'
+  get 'boards/index'
+  post 'boards/index'
   get 'boards/header'
-  get 'boards/common_post_new'
 
+
+  resources :boards
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

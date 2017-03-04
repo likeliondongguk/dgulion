@@ -29,7 +29,7 @@
 
     <!-- go to write button-->
     <div align="right">
-      <a class="btn btn-warning btn-lg wow fadeInUp" data-wow-delay="1s" href="new.html">New Post</a>
+      <%=link_to 'new post', new_board_path %>
     </div><br>
 
 
@@ -45,30 +45,41 @@
     </div>
     <!-- /INLINE SEARCH -->
 
+
+
+
     <!-- common_post 1 -->
-    <h2><a href="show">common_post_title 1</a></h2> <p>First phrases of show</p>
+    <h2>
+      <%@boards.each do |p|%>
+          <div>
+            <%=link_to "#{p.title}", board_path(p) %>
 
-    <ul class="blog-post-info list-inline">
-      <li>
-        <a href="#">
-          <i class="fa fa-user"></i>
-          <span class="font-lato">Author</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-clock-o"></i>
-          <span class="font-lato">common_post_created or edited time</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-comment-o"></i>
-          <span class="font-lato"># of Comments</span>
-        </a>
-      </li>
+            <ul class="blog-post-info list-inline">
+              <li>
+                <a href="#">
+                  <i class="fa fa-user"></i>
+                  <span class="font-lato">Author</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-clock-o"></i>
+                  <span class="font-lato">common_post_created or edited time</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-comment-o"></i>
+                  <span class="font-lato"># of Comments</span>
+                </a>
+              </li>
 
-    </ul>
+            </ul>
+
+          </div>
+      <%end%>
+    </h2>
+
 
 
 

@@ -124,11 +124,17 @@
     <div class="container">
 
       <div class="row">
+        <div align="right">
+          <%= link_to 'edit post', edit_board_path(@board) %>
+          <%= link_to 'delete post', @board, method: :delete %>
+          <%= link_to '돌아가기', boards_path %>
 
+        </div><br>
         <!-- LEFT -->
         <div class="col-md-9 col-sm-9">
 
-          <h1 class="blog-post-title">common_post_title</h1>
+
+          <h1 class="blog-post-title"><%=@board.title%></h1>
           <ul class="blog-post-info list-inline">
             <li>
               <a href="#">
@@ -183,8 +189,7 @@
 
 
           <!-- article content -->
-          <p class="dropcap">Aliquam fringilla, sapien eget scelerisque placerat, lorem libero cursus lorem, sed sodales lorem libero eu sapien. Nunc mattis feugiat justo vel faucibus. Nulla consequat feugiat malesuada. Ut justo nulla, <strong>facilisis vel molestie id</strong>, dictum ut arcu. Nunc ipsum nulla, eleifend non blandit quis, luctus quis orci. Cras blandit turpis mattis nulla ultrices interdum. Mauris pretium pretium dictum. Nunc commodo, felis sed dictum bibendum, risus justo iaculis dui, nec euismod orci sem eget neque. Donec in metus metus, vitae eleifend lorem. Ut vestibulum gravida venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque suscipit tincidunt magna non mollis. Fusce tempus tincidunt nisi, in luctus elit pellentesque quis. Sed velit mi, ullamcorper ut tempor ut, mattis eu lacus. Morbi rhoncus aliquet tellus, id accumsan enim sollicitudin vitae.</p>
-          <p>Vivamus <a href="#">magna justo</a>, lacinia eget consectetur sed, convallis at tellus. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Sed porttitor lectus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla porttitor accumsan tincidunt.</p>
+          <p class="dropcap"><%=@board.content%></p>
 
           <!-- BLOCKQUOTE -->
           <blockquote>
