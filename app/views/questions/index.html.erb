@@ -1,0 +1,71 @@
+<div id="wrapper">
+  <%= render 'sticky/mainMenu' %>
+  <%= render 'sticky/pageHeader', name: 'questions' %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <!--<p id="notice"><%#= notice %></p>-->
+        <!--<h1>Listing Questions</h1>-->
+        <div class="text-right margin-bottom-6">
+          <%= link_to_unless(current_user.nil?, 'New Question', new_question_path, class: "btn btn-info") %>
+        </div>
+
+        <table class="table table-vertical-middle margin-bottom-30">
+          <thead>
+          <tr class="size-15">
+            <th class="weight-400">질문</th>
+            <th class="text-center hidden-xs width-100 weight-300">댓글</th>
+            <th class="text-center hidden-xs width-100 weight-300">답변</th>
+            <th class="text-center hidden-xs width-200 weight-300">작성자</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @questions.each do |question| %>
+              <tr>
+                <td>
+                  <h4 class="nomargin size-16">
+                    <!--글 제목-->
+                    <a href="<%= url_for(controller: :questions, action: :show, id: question.id) %>">
+                      <%= question.title %>
+                    </a>
+                    <!--tag-list-->
+                    <div class="margin-top-3 tag-list hidden-xs">
+                      <a class="label label-success">Rails</a>
+                      <a class="label label-default">Ruby</a>
+
+                    </div>
+                  </h4>
+                </td>
+                <td class="text-center hidden-xs">
+                  <a href="#"><%= question.comments.count %></a>
+                </td>
+                <td class="text-center hidden-xs">
+                  <a href="#">322</a>
+                </td>
+                <td class="hidden-xs text-center">
+                  <small class="block size-11 text-muted"><%= time_ago_in_words(question.created_at) %></small>
+                  <a class="size-13" href="page-profile.html"><%= question.user.username %></a>
+                </td>
+              </tr>
+          <% end %>
+
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </section>
+  <%= render 'sticky/footer' %>
+</div>
+<%= render 'home/script' %>
+<%# @questions.each do |questions| %>
+<!--<tr>-->
+<!--<td><%#= questions.title %></td>-->
+<!--<td><%#= questions.content %></td>-->
+<!--<td><%#= link_to 'Show', url_for(controller: :questions, action: :show, id: questions.id) %></td>-->
+<!--<td><%#= link_to 'Edit', edit_question_path(questions) %></td>-->
+<!--<td><%#= link_to 'Destroy', url_for(controller: :questions, action: :destroy, id: questions.id), method: :delete, data: {confirm: 'Are you sure?'} %></td>-->
+<!--</tr>-->
+<%# end %>
+

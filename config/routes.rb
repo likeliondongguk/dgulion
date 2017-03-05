@@ -10,10 +10,14 @@ Rails.application.routes.draw do
   get 'boards/index'
   post 'boards/index'
   get 'boards/header'
-
+  resources :boards
   # nojong
   resources :blog do
     resources :comments, module: :blog, only: [:create, :destroy]
+  end
+
+  resources :questions do
+    resources :comments, module: :question, only: [:create, :destroy]
   end
 
   post '/imageUpload' => 'summerimage#imageUpload'

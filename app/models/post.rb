@@ -17,4 +17,15 @@ class Post < ActiveRecord::Base
     self.save
     Tagging.create(post_id: self.id, tag_id: Tag.find_by_name(tagName).id)
   end
+
+  # 이미지만 뽑아내기
+  def get_first_thumb
+    if self.content.slice(/h([^<]+)(png|jpg|psd|gif|jpeg)/).nil?
+      return "https://placehold.it/600x399"
+    else
+      self.content.slice(/h([^<]+)(png|jpg|psd|gif|jpeg)/)
+    end
+  end
+
+
 end
