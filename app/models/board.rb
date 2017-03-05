@@ -5,7 +5,6 @@ class Board < ActiveRecord::Base
   has_many :taggings
   has_many :tags, through: :taggings
   has_many :comments, as: :commentable
-  validates :user_id, presence: true
 
   #작성자 확인 메소드
   def is_writer?(u)

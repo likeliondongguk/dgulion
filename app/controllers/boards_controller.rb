@@ -11,7 +11,7 @@ class BoardsController < ApplicationController
   def create
     @board=Board.new(board_params)
     @board.save
-    redirect_to url_for(controller: :boards, action: :show, id: @board.id)
+    redirect_to url_for(controller: :boards, action: :index, id: @board.id)
   end
   def edit
   end
