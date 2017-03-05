@@ -1,0 +1,95 @@
+<div id="wrapper">
+
+  <!--
+      SIDE MENU
+
+      .sidebar-hidden = open only on click
+    -->
+  <%= render partial: "sticky/mainMenu" %>
+  <%= render "sticky/pageHeader", name: "Board" %>
+  <!--<section class="page-header dark page-header-xs">-->
+  <!--<div class="container">-->
+
+  <!--<h1>Board</h1>-->
+
+  <!--&lt;!&ndash; breadcrumbs &ndash;&gt;-->
+  <!--<ol class="breadcrumb">-->
+  <!--<li><a href="/">Main</a></li>-->
+  <!--<li class="active">Board</li>-->
+  <!--</ol>&lt;!&ndash; /breadcrumbs &ndash;&gt;-->
+
+  <!--</div>-->
+  <!--</section>-->
+
+
+  <!-- POST ITEM -->
+  <div class="blog-post-item container" style="margin-top: 40px; padding-right: 100px; padding-left: 100px">
+
+
+
+    <!-- go to write button-->
+    <div align="right">
+      <%=link_to 'new post', new_board_path %>
+    </div><br>
+
+
+    <!-- INLINE SEARCH -->
+    <div class="inline-search clearfix margin-bottom-30">
+      <form action="#" method="get" class="widget_search">
+
+        <input type="search" placeholder="Start Searching..." id="search" name="search_box" class="serch-input">
+        <button type="submit">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    </div>
+    <!-- /INLINE SEARCH -->
+
+
+
+
+    <!-- common_post 1 -->
+    <h2>
+      <%@boards.each do |p|%>
+          <div>
+            <%=link_to "#{p.title}", board_path(p) %>
+
+            <ul class="blog-post-info list-inline">
+              <li>
+                <a href="#">
+                  <i class="fa fa-user"></i>
+                  <span class="font-lato">Author</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-clock-o"></i>
+                  <span class="font-lato">common_post_created or edited time</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-comment-o"></i>
+                  <span class="font-lato"># of Comments</span>
+                </a>
+              </li>
+
+            </ul>
+
+          </div>
+      <%end%>
+    </h2>
+
+
+
+
+  </div>
+  <!-- /POST ITEM -->
+
+  <!-- FOOTER -->
+  <%= render partial: "sticky/footer" %>
+</div>
+<!-- SCROLL TO TOP -->
+<a href="#" id="toTop"></a>
+<%= render partial: "script"%>
+

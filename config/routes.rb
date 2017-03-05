@@ -7,10 +7,9 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/photo_gallery'
 
-  get 'boards/board'
-  get 'boards/common_post'
+  get 'boards/index'
+  post 'boards/index'
   get 'boards/header'
-  get 'boards/common_post_new'
 
   # nojong
   resources :blog do

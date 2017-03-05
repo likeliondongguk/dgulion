@@ -1,0 +1,32 @@
+<% case url %>
+<% when :new then
+     path=boards_index_path %>
+<% when :edit then
+<<<<<<< HEAD
+     path=  url_for(controller: :boards, action: :update, id: @board.id) %>
+=======
+     path=@board %>
+>>>>>>> origin/sungjun
+<% end %>
+<%= form_for(@board, url: path, html: {multipart: true}) do |b| %>
+    <div class="field">
+      <%= b.label :title %><br>
+      <%= b.text_field :title %>
+    </div>
+    <div class="field">
+      <%= b.label :content %><br>
+      <%= b.text_area :content, class: :summernote %>
+    </div>
+
+    <!-- Need to set up devise by getting pull through jongwon's part-->
+<<<<<<< HEAD
+    <div class="field">
+      <!--<input name="board[user_id]" id="board_user_id" value="" type="hidden"> -->
+    </div>
+=======
+    <input type="hidden" name="board[user_id]" value="<%=current_user.id unless current_user.nil?%>" id="board_user_id">
+>>>>>>> origin/sungjun
+    <div class="actions">
+      <%= b.submit '저장' %>
+    </div>
+<% end %>
