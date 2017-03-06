@@ -1,0 +1,1 @@
+json.array! @questions, partial: 'questions/questions', as: :questions

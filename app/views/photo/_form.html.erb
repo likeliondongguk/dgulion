@@ -1,0 +1,23 @@
+<% case url %>
+  <% when :new then
+       path=photo_index_path %>
+  <% when :edit then
+       path=  url_for(controller: :photo, action: :update, id: @gallery.id) %>
+<% end %>
+
+<%= form_for(@gallery, url: path, html: {multipart: true}) do |b| %>
+    <div class="field">
+      <%= b.label :title %><br>
+      <%= b.text_field :title %>
+    </div>
+    <div class="field">
+      <%= b.label :content %><br>
+      <%= b.text_area :content, class: :summernote %>
+    </div>
+
+    <!-- Need to set up devise by getting pull through jongwon's part-->
+    <input type="hidden" name="gallery[user_id]" value="<%=current_user.id unless current_user.nil?%>" id="gallery_user_id">
+    <div class="actions">
+      <%= b.submit '저장' %>
+    </div>
+<% end %>
