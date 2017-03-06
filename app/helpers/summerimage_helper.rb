@@ -1,0 +1,2 @@
+module SummerimageHelper
+end

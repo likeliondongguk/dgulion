@@ -1,14 +1,22 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+      :registrations => "user/registrations",
+      :sessions => "user/sessions" }
   root "home#index"
   get 'home/header'
   get 'home/index'
+  get 'home/photo_gallery'
 
   get 'boards/index'
   post 'boards/index'
   get 'boards/header'
 
+  # nojong
+  resources :blog do
+    resources :comments, module: :blog, only: [:create, :destroy]
+  end
 
-  resources :boards
+  post '/imageUpload' => 'summerimage#imageUpload'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

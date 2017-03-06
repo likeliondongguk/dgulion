@@ -2657,8 +2657,26 @@
 
 	}
 
-
-
+// 이미지 업로드 로직 구현 성공
+function sendFile(file,editor,welEditable){
+		data = new FormData();
+		data.append("upload", file);
+		$.ajax({
+			data : data,
+			type : "POST",
+			url  : "/imageUpload",
+			cache : false,
+			contentType : false,
+			processData : false,
+			success : function (data) {
+                console.log(data.url);
+                $('textarea.summernote').summernote('insertImage', data.url);
+            },
+            error : function(request,status,error){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+		})
+}
 
 
 /** Editors
@@ -2669,25 +2687,29 @@
 			<textarea class="summernote form-control" data-height="200"></textarea>
 		 ***************************** **/
 		var _container_1 = jQuery('textarea.summernote');
-		
+
 		if(_container_1.length > 0) {
-			
-			loadScript(plugin_path + 'editor.summernote/summernote.min.js', function() {
-		
+
+			loadScript(plugin_path + 'editor.summernote/summernote.js', function() {
+
 				if(jQuery().summernote) {
 
 					_container_1.each(function() {
 
-						var _lang = jQuery(this).attr('data-lang') || 'en-US';
+						var _lang = 'ko-KR';
 
-						if(_lang != 'en-US') { // Language!
-						alert(_lang);
+						// if(_lang != 'ko-KR') { // Language!
+						// // alert(_lang);
 							loadScript(plugin_path + 'editor.summernote/lang/summernote-'+_lang+'.js');
-						}
+						// }
 
 						jQuery(this).summernote({
-							height: jQuery(this).attr('data-height') || 200,
-							lang: 	jQuery(this).attr('data-lang') || 'en-US', // default: 'en-US'
+                            onImageUpload : function(files, editor, welEditable) {
+                                console.log(files, editor, welEditable);
+                                sendFile(files[0],editor,welEditable);
+                            },
+							height: jQuery(this).attr('data-height') || 400,
+							lang: 'ko-KR', // default: 'en-US'
 							toolbar: [
 							/*	[groupname, 	[button list]]	*/
 								['style', 		['style']],
@@ -2714,11 +2736,11 @@
 			<textarea class="markdown" data-height="300" name="content" data-provide="markdown" data-lang="en" rows="10"></textarea>
 		 ***************************** **/
 		var _container_2 = jQuery('textarea.markdown');
-		
+
 		if(_container_2.length > 0) {
-			
+
 			loadScript(plugin_path + 'editor.markdown/js/bootstrap-markdown.min.js', function() {
-		
+
 				if(jQuery().markdown) {
 
 					_container_2.each(function() {
@@ -2740,9 +2762,9 @@
 					});
 
 				}
-				
+
 			});
-			
+
 		}
 
 	}

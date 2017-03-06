@@ -1,0 +1,19 @@
+<% case url %>
+<% when :blog then
+     path=url_for(controller: "blog/comments", action: :create, blog_id: commentable.id) %>
+<% end %>
+<%= form_for [commentable, commentable.comments.new], url: path, remote: true  do |reply| %>
+    <div class="row">
+      <div class="form-group">
+        <div class="col-md-12">
+          <label>COMMENT</label>
+          <%= reply.text_area :body, class: "form-control", row: 2 %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= reply.submit "SUBMIT COMMENT".html_safe, class: "btn btn-3d btn-lg btn-reveal btn-black" %>
+      </div>
+    </div>
+<% end %>

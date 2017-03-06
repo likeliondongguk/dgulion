@@ -1,4 +1,5 @@
 class BoardsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_board, only: [:show, :edit, :update, :destroy ]
   def index
     @boards=Board.all
@@ -10,6 +11,7 @@ class BoardsController < ApplicationController
   end
   def create
     @board=Board.new(board_params)
+    @board.user=current_user
     @board.save
     redirect_to url_for(controller: :boards, action: :index, id: @board.id)
   end

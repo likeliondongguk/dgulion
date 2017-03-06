@@ -1,0 +1,13 @@
+<div id="wrapper">
+  <%= render 'sticky/mainMenu' %>
+  <%= render 'sticky/pageHeader', name: 'blog' %>
+  <section>
+    <div class="container">
+      <h1>New Blog</h1>
+      <%= render 'form', url: :new %>
+      <%= link_to 'Back', blog_index_path %>
+    </div>
+  </section>
+  <%= render 'sticky/footer' %>
+</div>
+<%= render 'script' %>

@@ -13,16 +13,13 @@
     Classes:
       .fullheight = full height slider
   -->
-  <section id="slider" class="fullheight" style="background-image:url('<%= asset_path 'background.jpg' %>')">
+  <section id="slider" class="fullheight" style="background-image:url('<%= asset_path '17-min.jpg' %>')">
     <div class="overlay dark-3"><!-- dark overlay [0 to 9 opacity] --></div>
-
     <div class="display-table">
       <div class="display-table-cell vertical-align-middle">
         <div class="container">
-
           <div class="slider-featured-text text-center">
             <h1 class="text-white wow fadeInUp" data-wow-delay="0.4s">
-
               <!--
                 TEXT ROTATOR
                 data-animation="fade|flip|flipCube|flipUp|spin"
@@ -33,9 +30,8 @@
             </h1>
             <br>
             <h2 class="weight-300 text-white wow fadeInUp" data-wow-delay="0.8s">당신이 꿈꾸는 모든 것</h2>
-            <div id="topMain" class="nav-onepage">
-              <a class="btn btn-primary btn-lg wow fadeInUp" data-wow-delay="1s" href="#notice">내려가기</a>
-            </div>
+            <a class="btn btn-default btn-lg wow fadeIn margin-top-40 scrollTo animated" data-wow-delay="1.5s" href="#notice" style="visibility: visible; animation-delay: 1.5s; animation-name: fadeIn;"><i class="fa fa-angle-down"></i>
+              보러가기 &nbsp;<i class="fa fa-angle-down"></i></a>
           </div>
 
         </div>
@@ -67,166 +63,162 @@
 
   <section id="notice">
     <div class="container">
-
       <div class="row mix-grid">
-
         <!-- Full COLUMNS -->
-        <div class="col-md-8 col-md-offset-2">
-          <header class="margin-bottom-60 text-center">
-            <h1>Lion's Notice</h1>
-            <p class="lead font-lato">공지사항</p>
-          </header>
-          <!-- FILTER -->
-          <ul class="nav nav-pills mix-filter margin-bottom-30">
-            <li data-filter="all" class="filter active"><a href="#">All</a></li>
-            <li data-filter="development" class="filter"><a href="#">공지사항</a></li>
-            <li data-filter="photography" class="filter"><a href="#">이벤트</a></li>
-            <li data-filter="design" class="filter"><a href="#">Best Post</a></li>
-          </ul>
-          <!-- /FILTER -->
-          <!-- TOGGLES -->
-          <div class="toggle toggle-transparent toggle-bordered-simple">
+        <header class="margin-bottom-60 text-center">
+          <h1>Lion's Notice</h1>
+          <p class="lead font-lato">공지사항</p>
+        </header>
+        <!-- FILTER -->
+        <ul class="nav nav-pills mix-filter margin-bottom-30">
+          <li data-filter="all" class="filter active"><a href="#">All</a></li>
+          <li data-filter="development" class="filter"><a href="#">공지사항</a></li>
+          <li data-filter="photography" class="filter"><a href="#">이벤트</a></li>
+          <li data-filter="design" class="filter"><a href="#">Best Post</a></li>
+        </ul>
+        <!-- /FILTER -->
+        <!-- TOGGLES -->
+        <div class="toggle toggle-transparent toggle-bordered-full">
 
-            <div class="toggle mix design active"><!-- toggle -->
-              <label>동국대 멋쟁이 사자처럼 아이디어톤</label>
-              <div class="toggle-content">
-                <p class="clearfix">
-                  <img class="hidden-sm pull-left img-responsive" src="<%= asset_path 'intro.png' %>" alt="Careers"/>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
-                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
-                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
-                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
-                  iaculis ac massa.
-                  <br/><br/>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
-                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
-                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
-                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
-                  iaculis ac massa.
-                </p>
+          <div class="toggle mix design active"><!-- toggle -->
+            <label>동국대 멋쟁이 사자처럼 아이디어톤</label>
+            <div class="toggle-content">
+              <p class="clearfix">
+                <img class="hidden-sm pull-left img-responsive" src="<%= asset_path 'intro.png' %>" alt="Careers"/>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                iaculis ac massa.
+                <br/><br/>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                iaculis ac massa.
+              </p>
+
+            </div>
+          </div><!-- /toggle -->
+
+          <div class="toggle mix photography"><!-- toggle -->
+            <label>박성준 보아라</label>
+            <div class="toggle-content">
+              <p class="clearfix">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                iaculis ac massa.
+              </p>
+
+              <div class="row">
+
+                <div class="col-md-4 col-sm-6">
+
+                  <ul class="list-icon check-square"><!-- block 2 -->
+                    <li>Nulla lacinia iaculis nulla</li>
+                    <li>Cum sociis natoque penatibus</li>
+                    <li>Magnis dis parturient montes</li>
+                  </ul>
+
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+
+                  <ul class="list-icon check-square"><!-- block 2 -->
+                    <li>Nulla lacinia iaculis nulla</li>
+                    <li>Cum sociis natoque penatibus</li>
+                    <li>Magnis dis parturient montes</li>
+                  </ul>
+
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+
+                  <ul class="list-icon check-square"><!-- block 2 -->
+                    <li>Nulla lacinia iaculis nulla</li>
+                    <li>Cum sociis natoque penatibus</li>
+                    <li>Magnis dis parturient montes</li>
+                  </ul>
+
+                </div>
 
               </div>
-            </div><!-- /toggle -->
 
-            <div class="toggle mix photography"><!-- toggle -->
-              <label>박성준 보아라</label>
-              <div class="toggle-content">
-                <p class="clearfix">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
-                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
-                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
-                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
-                  iaculis ac massa.
-                </p>
+            </div>
+          </div><!-- /toggle -->
 
-                <div class="row">
+          <div class="toggle mix design"><!-- toggle -->
+            <label>싸이먼 도미닉</label>
+            <div class="toggle-content">
+              <p class="clearfix">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                iaculis ac massa.
+              </p>
 
-                  <div class="col-md-4 col-sm-6">
+              <div class="row">
 
-                    <ul class="list-icon check-square"><!-- block 2 -->
-                      <li>Nulla lacinia iaculis nulla</li>
-                      <li>Cum sociis natoque penatibus</li>
-                      <li>Magnis dis parturient montes</li>
-                    </ul>
+                <div class="col-md-4 col-sm-6">
 
+                  <div class="box-content thumbnail text-center">
+                    <a href="assets/images/demo/1200x800/10-min.jpg" class="item-image lightbox" data-plugin-options='{"type":"image"}'>
+                      <img class="img-responsive" src="assets/images/demo/451x300/10-min.jpg" alt=""/>
+                    </a>
                   </div>
 
-                  <div class="col-md-4 col-sm-6">
+                </div>
 
-                    <ul class="list-icon check-square"><!-- block 2 -->
-                      <li>Nulla lacinia iaculis nulla</li>
-                      <li>Cum sociis natoque penatibus</li>
-                      <li>Magnis dis parturient montes</li>
-                    </ul>
+                <div class="col-md-4 col-sm-6">
 
+                  <div class="box-content thumbnail text-center">
+                    <a href="http://www.youtube.com/watch?v=s0MDY9fl-IA" class="item-image lightbox" data-plugin-options='{"type":"iframe"}'>
+                      <img class="img-responsive" src="assets/images/demo/451x300/11-min.jpg" alt=""/>
+                    </a>
                   </div>
 
-                  <div class="col-md-4 col-sm-6">
+                </div>
 
-                    <ul class="list-icon check-square"><!-- block 2 -->
-                      <li>Nulla lacinia iaculis nulla</li>
-                      <li>Cum sociis natoque penatibus</li>
-                      <li>Magnis dis parturient montes</li>
-                    </ul>
+                <div class="col-md-4 col-sm-6">
 
+                  <div class="box-content thumbnail text-center">
+                    <a href="assets/images/demo/1200x800/25-min.jpg" class="item-image lightbox" data-plugin-options='{"type":"image"}'>
+                      <img class="img-responsive" src="assets/images/demo/451x300/25-min.jpg" alt=""/>
+                    </a>
                   </div>
 
                 </div>
 
               </div>
-            </div><!-- /toggle -->
 
-            <div class="toggle mix design"><!-- toggle -->
-              <label>싸이먼 도미닉</label>
-              <div class="toggle-content">
-                <p class="clearfix">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
-                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
-                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
-                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
-                  iaculis ac massa.
-                </p>
+            </div>
+          </div><!-- /toggle -->
 
-                <div class="row">
-
-                  <div class="col-md-4 col-sm-6">
-
-                    <div class="box-content thumbnail text-center">
-                      <a href="assets/images/demo/1200x800/10-min.jpg" class="item-image lightbox" data-plugin-options='{"type":"image"}'>
-                        <img class="img-responsive" src="assets/images/demo/451x300/10-min.jpg" alt=""/>
-                      </a>
-                    </div>
-
-                  </div>
-
-                  <div class="col-md-4 col-sm-6">
-
-                    <div class="box-content thumbnail text-center">
-                      <a href="http://www.youtube.com/watch?v=s0MDY9fl-IA" class="item-image lightbox" data-plugin-options='{"type":"iframe"}'>
-                        <img class="img-responsive" src="assets/images/demo/451x300/11-min.jpg" alt=""/>
-                      </a>
-                    </div>
-
-                  </div>
-
-                  <div class="col-md-4 col-sm-6">
-
-                    <div class="box-content thumbnail text-center">
-                      <a href="assets/images/demo/1200x800/25-min.jpg" class="item-image lightbox" data-plugin-options='{"type":"image"}'>
-                        <img class="img-responsive" src="assets/images/demo/451x300/25-min.jpg" alt=""/>
-                      </a>
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </div><!-- /toggle -->
-
-            <div class="toggle mix development"><!-- toggle -->
-              <label>은지 스케쥴 화이팅</label>
-              <div class="toggle-content">
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
-                  sodales sed, dignissim pretium nunc. Nam et lacus neque.</p>
-                <p class="clearfix">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
-                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
-                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
-                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
-                  iaculis ac massa.
-                  <br/><br/>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
-                  dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
-                  massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
-                  sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
-                  iaculis ac massa.
-                </p>
-              </div>
-            </div><!-- /toggle -->
-          </div>
-          <!-- /TOGGLES -->
+          <div class="toggle mix development"><!-- toggle -->
+            <label>은지 스케쥴 화이팅</label>
+            <div class="toggle-content">
+              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                sodales sed, dignissim pretium nunc. Nam et lacus neque.</p>
+              <p class="clearfix">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                iaculis ac massa.
+                <br/><br/>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed,
+                dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac
+                massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a
+                sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et,
+                iaculis ac massa.
+              </p>
+            </div>
+          </div><!-- /toggle -->
         </div>
+        <!-- /TOGGLES -->
         <!-- /LEFT COLUMNS -->
       </div>
     </div>
@@ -258,64 +250,66 @@
           .owl-padding-20
       -->
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div class="text-center">
-            <div class="owl-carousel owl-padding-10 buttons-autohide controlls-over" data-plugin-options='{"singleItem": false, "items":"3", "autoPlay": 4000, "navigation": true, "pagination": false}'>
-              <div class="img-hover">
-                <div class="text-center list-inline list-separator">
-                  <h2>
-                    <span class="label label-default">2017 02 25</span>
-                  </h2>
-                </div>
-                <a href="blog-single-default.html">
-                  <img class="img-responsive" src="<%= asset_path 'hack2.jpg' %>" alt="">
-                </a>
-                <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
-                <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores quod
-                  est tenetur in.</p>
+        <div class="text-center">
+          <div class="owl-carousel owl-padding-10 buttons-autohide controlls-over" data-plugin-options='{"singleItem": false, "items":"3", "autoPlay": 4000, "navigation": true, "pagination": false}'>
+            <div class="img-hover">
+              <div class="text-center list-inline list-separator">
+                <h2>
+                  <span class="label label-default">2017 02 25</span>
+                </h2>
               </div>
-              <div class="img-hover">
-                <div class="text-center list-inline list-separator">
-                  <h2>
-                    <span class="label label-default">2017 03 22</span>
-                  </h2>
-                </div>
-                <a href="blog-single-default.html">
-                  <img class="img-responsive" src="<%= asset_path 'intro.png' %>" alt="">
-                </a>
+              <a href="blog-single-default.html">
+                <img class="img-responsive" src="<%= asset_path 'hack2.jpg' %>" alt="">
+              </a>
+              <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
+              <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores
+                quod
+                est tenetur in.</p>
+            </div>
+            <div class="img-hover">
+              <div class="text-center list-inline list-separator">
+                <h2>
+                  <span class="label label-default">2017 03 22</span>
+                </h2>
+              </div>
+              <a href="blog-single-default.html">
+                <img class="img-responsive" src="<%= asset_path 'intro.png' %>" alt="">
+              </a>
 
-                <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
-                <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores quod
-                  est tenetur in.</p>
+              <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
+              <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores
+                quod
+                est tenetur in.</p>
+            </div>
+            <div class="img-hover">
+              <div class="text-center list-inline list-separator">
+                <h2>
+                  <span class="label label-default">2017 04 20</span>
+                </h2>
               </div>
-              <div class="img-hover">
-                <div class="text-center list-inline list-separator">
-                  <h2>
-                    <span class="label label-default">2017 04 20</span>
-                  </h2>
-                </div>
-                <a href="blog-single-default.html">
-                  <img class="img-responsive" src="assets/images/demo/451x300/30-min.jpg" alt="">
-                </a>
+              <a href="blog-single-default.html">
+                <img class="img-responsive" src="assets/images/demo/451x300/30-min.jpg" alt="">
+              </a>
 
-                <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
-                <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores quod
-                  est tenetur in.</p>
+              <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
+              <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores
+                quod
+                est tenetur in.</p>
+            </div>
+            <div class="img-hover">
+              <div class="text-center list-inline list-separator">
+                <h2>
+                  <span class="label label-default">2017 05 20</span>
+                </h2>
               </div>
-              <div class="img-hover">
-                <div class="text-center list-inline list-separator">
-                  <h2>
-                    <span class="label label-default">2017 05 20</span>
-                  </h2>
-                </div>
-                <a href="blog-single-default.html">
-                  <img class="img-responsive" src="assets/images/demo/451x300/26-min.jpg" alt="">
-                </a>
+              <a href="blog-single-default.html">
+                <img class="img-responsive" src="assets/images/demo/451x300/26-min.jpg" alt="">
+              </a>
 
-                <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
-                <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores quod
-                  est tenetur in.</p>
-              </div>
+              <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
+              <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores
+                quod
+                est tenetur in.</p>
             </div>
           </div>
         </div>
@@ -333,14 +327,14 @@
 
 
 <!-- SCROLL TO TOP -->
-<a href="#" id="toTop"></a>
+
 
 
 <!--&lt;!&ndash; PRELOADER &ndash;&gt;-->
 <!--<div id="preloader">-->
-  <!--<div class="inner">-->
-    <!--<span class="loader"></span>-->
-  <!--</div>-->
+<!--<div class="inner">-->
+<!--<span class="loader"></span>-->
+<!--</div>-->
 <!--</div>&lt;!&ndash; /PRELOADER &ndash;&gt;-->
 
 <%= render partial: "script" %>

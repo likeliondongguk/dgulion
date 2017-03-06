@@ -4,18 +4,138 @@
 
   <div class="sidebar-nav">
     <aa class="navbar navbar-default" role="navigation">
-
       <!-- OPTIONS -->
       <ul class="top-links list-inline text-center block">
-        <li><a class="dropdown-toggle no-text-underline" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> 로그인 </a></li>
-        <li><a class="dropdown-toggle no-text-underline" href="#"><i class="fa fa-user-circle-o"></i> 마이페이지</a></li>
-      </ul>
+        <li>
+          <% if current_user.nil? %>
+              <a class="dropdown-toggle no-text-underline " data-toggle="modal" data-target="#loginmodal" data-backdrop="false"><i class="fa fa-user"></i>
+                로그인 </a></li>
+              <li>
+                <a class="dropdown-toggle no-text-underline " data-toggle="modal" data-target="#signupmodal" data-backdrop="false"><i class="fa fa-sign-in"></i>
+                  회원가입 </a></li>
+          <% else %>
+              <%= link_to "<i class=\"fa fa-sign-out\"></i>".html_safe+"로그아웃", destroy_user_session_path, method: :delete, class: "dropdown-toggle no-text-underline" %>
+              <li><a class="dropdown-toggle no-text-underline" href="#"><i class="fa fa-user-circle-o"></i> 마이페이지</a>
+              </li>
+          <% end %>
+
+
+          <!-- 로그인 modal content -->
+          <div id="loginmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <form class="new_user sky-form boxed" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post">
+              <input name="utf8" type="hidden" value="✓">
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-users"></i> LION'S LOGIN</h4>
+                  </div>
+
+                  <!-- Modal Body -->
+                  <div class="modal-body">
+
+                    <fieldset class="nomargin">
+
+                      <label class="label margin-top-20">E-mail</label>
+                      <label class="input">
+                        <i class="ico-append fa fa-envelope"></i>
+                        <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">
+                        <span class="tooltip tooltip-top-right">Email Address</span>
+                      </label>
+
+                      <label class="label margin-top-20">Password</label>
+                      <label class="input">
+                        <i class="ico-append fa fa-lock"></i>
+                        <input autocomplete="off" type="password" name="user[password]" id="user_password">
+                        <b class="tooltip tooltip-top-right">Type your Password</b>
+                      </label>
+                      <label class="checkbox margin-top-20">
+                        <input name="user[remember_me]" type="hidden" value="0">
+                        <input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+                        <i></i> remember_me
+                      </label>
+                    </fieldset>
+                    <%#= link_to "Forgat your password", new_user_password_path %>
+                  </div>
+                  <!-- Modal Footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" name="commit" value="Log in">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- 로그인 modal content -->
+
+          <!-- 가입 modal content -->
+          <div id="signupmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <form class="new_user sky-form boxed" id="new_user" action="/users" accept-charset="UTF-8" method="post">
+              <input name="utf8" type="hidden" value="✓">
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-sign-in"></i> LION'S SIGNUP</h4>
+                  </div>
+
+                  <!-- Modal Body -->
+                  <div class="modal-body">
+                    <fieldset class="nomargin">
+                      <label for="user_name">이름</label>
+                      <label class="input margin-bottom-10">
+                        <i class="ico-append fa fa-user"></i>
+                        <input autocomplete="off" type="text" name="user[username]" id="user_username">
+                        <b class="tooltip tooltip-bottom-right">Your Last Name</b>
+                      </label>
+
+                      <label for="user_email">Email</label>
+                      <label class="input margin-bottom-10">
+                        <i class="ico-append fa fa-envelope"></i>
+                        <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">
+                        <b class="tooltip tooltip-bottom-right">Your Email</b>
+                      </label>
+
+                      <label for="user_password">Password</label>
+                      <label class="input margin-bottom-10">
+                        <i class="ico-append fa fa-lock"></i>
+                        <input required="" class="err" autocomplete="off" type="password" name="user[password]" id="user_password">
+                        <b class="tooltip tooltip-bottom-right">Min. 6 characters</b>
+                      </label>
+
+                      <label for="user_password_confirmation">Password confirmation</label>
+                      <label class="input margin-bottom-10">
+                        <i class="ico-append fa fa-lock"></i>
+                        <input autocomplete="off" required="" class="err" type="password" name="user[password_confirmation]" id="user_password_confirmation">
+                        <b class="tooltip tooltip-bottom-right">Type the password again</b>
+                      </label>
+                    </fieldset>
+                  </div>
+                  <!-- Modal Footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" name="commit" value="Sign up">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- 가입 modal content -->
+
+          </ul>
       <!-- /OPTIONS -->
 
-      <a href="<%= url_for(action: :header) %>" class="logo text-center">
+      <a href="<%= url_for(controller: :home, action: :header) %>" class="logo text-center">
         <img src="<%= asset_path 'favicon_s.png' %>" alt="">
       </a>
-      <br>
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
@@ -30,13 +150,13 @@
         <!-- MENU -->
         <ul class="nav navbar-nav">
           <li>
-            <a href="<%= url_for(controller: :home ,action: :index) %>">
+            <a href="<%= url_for(controller: :home, action: :index) %>">
               <i class="et-trophy"></i>
               홈
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="<%= url_for(blog_index_path) %>">
               <i class="et-layers"></i>
               블로그
             </a>
@@ -67,29 +187,18 @@
           </li>
           <li>
             <a href="page-contact-1.html">
-              <i class="et-envelope"></i>
+              <i class="et-lightbulb"></i>
               아이디어
             </a>
           </li>
           <li>
             <a href="page-contact-1.html">
-              <i class="et-envelope"></i>
-              출석
+              <i class="et-calendar"></i>
+              일정
             </a>
           </li>
         </ul>
         <!-- /MENU -->
-
-        <!-- INLINE SEARCH -->
-        <!--<div class="inline-search clearfix margin-top-30 margin-left-15 margin-right-15">-->
-        <!--<form action="" method="get" class="widget_search">-->
-        <!--<input type="search" placeholder="Search..." id="s" name="s" class="serch-input">-->
-        <!--<button type="submit">-->
-        <!--<i class="fa fa-search"></i>-->
-        <!--</button>-->
-        <!--</form>-->
-        <!--</div>-->
-        <!-- /INLINE SEARCH -->
       </div><!--/.nav-collapse -->
     </aa>
   </div>
@@ -122,7 +231,8 @@
 
 
   <!-- Paragraph -->
-  <p class="text-center hidden-xs">office@yourdomain.com</p>
+  <p class="text-center hidden-xs"><%= current_user.username unless current_user.nil? %></p>
   <!-- /Paragraph -->
 
 </div>
+

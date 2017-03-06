@@ -1,6 +1,14 @@
 source 'https://rubygems.org'
 
 
+gem 'figaro'
+gem 'fog-aws'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'ckeditor'
+gem 'pry-rails'
+gem 'awesome_print'
+gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use mysql as the database for Active Record

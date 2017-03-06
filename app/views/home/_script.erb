@@ -1,3 +1,4 @@
+<a href="#" id="toTop"></a>
 <!-- JAVASCRIPT FILES -->
 <script type="text/javascript">var plugin_path = '/assets/plugins/';</script>
 <script type="text/javascript" src="/assets/plugins/jquery/jquery-2.2.3.min.js"></script>
@@ -8,3 +9,14 @@
 <!-- SWIPER SLIDER -->
 <script type="text/javascript" src="/assets/plugins/slider.swiper/dist/js/swiper.min.js"></script>
 <script type="text/javascript" src="/assets/js/view/demo.swiper_slider.js"></script>
+
+<!--<script src="https://cdn.jsdelivr.net/sweetalert2/6.4.2/sweetalert2.min.js"></script>-->
+<% unless notice.nil? %>
+    <script type="text/javascript" charset="utf-8">
+        <%if notice=="성공적으로 로그인 하셨습니다." %>
+        _toastr("<%=current_user.username %>님 반갑습니다.", "top-right", "primary", false);
+        <%else%>
+        _toastr("<%= notice %>", "top-right", "primary", false);
+        <%end%>
+    </script>
+<% end %>

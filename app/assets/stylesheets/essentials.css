@@ -12523,9 +12523,9 @@ div.autosuggest .tt-dataset {
 .sky-form .btn-social {
 	margin:0;
 }
-
+/*no_custom_default*/
 .sky-form.boxed {
-	background-color:#fff;
+	/*background-color:#fff;*/
 }
 .sky-form fieldset {
 	padding: 0 0 30px 0;

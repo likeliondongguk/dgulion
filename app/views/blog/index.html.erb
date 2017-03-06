@@ -1,0 +1,62 @@
+<div id="wrapper">
+  <%= render 'sticky/mainMenu' %>
+  <%= render 'sticky/pageHeader', name: 'blog' %>
+  <!-- -->
+  <%# if @blogs.count==0 %>
+      <%#= render 'sticky/blank' %>
+  <%# else %>
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="text-right">
+              <%= link_to_unless(current_user.nil?, 'New Post', new_blog_path, class: "btn btn-info") %>
+            </div>
+            <br>
+            <div id="blog" class="clearfix blog-isotope blog-isotope-2 ">
+              <% @blogs.each do |blog| %>
+                  <div class="blog-post-item ">
+                    <figure class="margin-bottom-20">
+                      <img class="img-responsive" src="<%= asset_path 'intro.png' %>" width="600" height="399" alt="">
+                    </figure>
+                    <h2><a href="<%= url_for(controller: :blog ,action: :show, id: blog.id) %>"><%= blog.title %></a></h2>
+                    <ul class="blog-post-info list-inline">
+                      <li>
+                        <a href="">
+                          <i class="fa fa-user"></i>
+                          <span class="font-lato"><%= blog.user.username %></span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-clock-o"></i>
+                          <span class="font-lato"><%= time_ago_in_words(blog.created_at) %></span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-comment-o"></i>
+                          <span class="font-lato"><%= blog.comments.count %></span>
+                        </a>
+                      </li>
+                    </ul>
+                    <p><%= blog.content.html_safe %></p>
+                    <a href="<%= url_for(controller: :blog ,action: :show, id: blog.id) %>" class="btn btn-reveal btn-default">
+                      <i class="fa fa-plus"></i>
+                      <span>Read More</span>
+                    </a>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </section>
+  <%# end %>
+  <%= render 'sticky/footer' %>
+</div>
+<!--&lt;!&ndash; PRELOADER &ndash;&gt;-->
+<!--<div id="preloader">-->
+<!--<div class="inner">-->
+<!--<span class="loader"></span>-->
+<!--</div>-->
+<!--</div>&lt;!&ndash; /PRELOADER &ndash;&gt;-->
+<%= render 'script' %>
