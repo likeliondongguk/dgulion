@@ -1,25 +1,155 @@
 <p id="notice"><%= notice %></p>
+<div id="wrapper">
 
-<h1>Listing Tasks</h1>
+  <%= render partial: "sticky/mainMenu" %>
+  <%= render "sticky/pageHeader", name: "Task" %>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <section>
+    <div class="container">
 
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+
+        <!-- RIGHT -->
+
+
+          <!-- real search -->
+          <div class="inline-search clearfix margin-bottom-10 ui-widget ">
+            <%= form_tag(tasks_path, :method => "get")  do %>
+                <%= text_field_tag :search, params[:search], id: 'search-form', placeholder: "Search Posts", size: "50" %>
+                <%= submit_tag "Search" %>
+            <% end %>
+          </div>
+          <!-- /real search -->
+
+          <!-- /INLINE SEARCH -->
+
+
+          <!-- Search result-->
+        <div class="margin-bottom-10">
+          <% if @tasks.present? %>
+              <%= @tasks %>
+            <% else %>
+            <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+          <% end %>
+        </div>
+          <!-- /Search result-->
+
+
+          <!-- INLINE SEARCH
+          <div class="inline-search clearfix margin-bottom-60">
+            <form action="" method="get" class="widget_search">
+              <input type="search" placeholder="Search Forum..." id="s" name="s" class="serch-input">
+              <button type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </form>
+          </div>
+          /INLINE SEARCH -->
+
+
+        <!-- LEFT -->
+
+
+          <!-- FORUM 1 -->
+          <table class="table table-vertical-middle margin-bottom-60">
+            <thead>
+            <tr class="size-15">
+              <th class="weight-400">TASK Submit</th>
+              <th class="text-center hidden-xs width-100 weight-300">P/F</th>
+              <th class="text-center hidden-xs width-100 weight-300">FRESHNESS</th>
+              <th class="text-center hidden-xs width-200 weight-300">Submit</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            <%@tasks.each do |p|%>
+              <tr>
+                <td>
+                  <h4 class="nomargin size-16">
+                    <a href="page-forum-post.html">
+                      <%=link_to "#{p.title}", task_path(p)%>
+                    </a>
+
+                    <ul class="list-inline categories nomargin text-muted size-11 hidden-xs">
+                      <li>Created by <a href="#">Admin</a></li>
+                      <li><%= link_to 'Destroy', p, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                      <li><%= link_to 'Edit', edit_task_path(p) %></li>
+                    </ul>
+
+                  </h4>
+                </td>
+                <td class="text-center hidden-xs">
+                  <a href="#"></a>
+                </td>
+                <td class="text-center hidden-xs">
+                  <a href="#"><%= time_ago_in_words(p.created_at) %></a>
+                </td>
+                <td class="hidden-xs text-center">
+                  <small class="block size-11 text-muted">
+
+                    <!-- If current_user already submitted Task, need to be shown "SeeOthers(submisstion/1 or submisstion/2 or...)"
+                    and "Edit" button-->
+                    <% if @task.present? %>
+                      <%= link_to '<span>Submited</span>'.html_safe, url_for(new_task_path), class: "btn btn-success" %>
+                    <% else %>
+                      <%= link_to '<span>Submit Task</span>'.html_safe, url_for(new_submission_path), class: "btn btn-success" %>
+                    <% end %>
+                  </small>
+
+                  <!--<a class="size-13" href="page-profile.html">Joanna Doe</a>-->
+                </td>
+              </tr>
+            <% end %>
+
+
+            </tbody>
+          </table>
+          <!-- /FORUM 1 -->
+
+          <div class="divider nomargin"><!-- divider --></div>
+
+          <div class="clearfix margin-bottom-60">
+            <!-- Need to be hidden when current_user is not Admin-->
+            <%= link_to '<span>New Task</span>'.html_safe, url_for(new_task_path), class: "btn btn-success" %>
+
+          </div>
+
+          <!-- WARNING
+          <div class="alert alert-warning alert-bordered-dashed text-center margin-bottom-30"></span>
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <p>YOU MUST BE LOGGED IN TO CREATE A NEW TOPIC!</p>
+          </div>-->
+
+
+          <!-- pagination -->
+          <div class="text-center">
+            <ul class="pagination">
+              <li><a href="#">&laquo;</a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">&raquo;</a></li>
+            </ul>
+          </div>
+          <!-- /pagination -->
+
+
+
+
+    </div>
+  </section>
+  <!-- / -->
+</div>
+
+
 
 <br>
 
-<%= link_to 'New Task', new_task_path %>
+<%= render partial: "script"%>
+<%= render partial: "search"%>
+
+
+

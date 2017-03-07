@@ -142,19 +142,7 @@
 
           </ul>
 
-          <!-- OWL SLIDER -->
-          <div class="owl-carousel buttons-autohide controlls-over" data-plugin-options='{"items": 1, "autoPlay": 4500, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}'>
-            <a class="lightbox" href="assets/images/demo/1200x800/10-min.jpg" data-plugin-options='{"type":"image"}'>
-              <img class="img-responsive" src="assets/images/demo/content_slider/10-min.jpg" alt="" />
-            </a>
-            <a class="lightbox" href="assets/images/demo/1200x800/3-min.jpg" data-plugin-options='{"type":"image"}'>
-              <img class="img-responsive" src="assets/images/demo/content_slider/3-min.jpg" alt="" />
-            </a>
-            <a class="lightbox" href="assets/images/demo/1200x800/21-min.jpg" data-plugin-options='{"type":"image"}'>
-              <img class="img-responsive" src="assets/images/demo/content_slider/21-min.jpg" alt="" />
-            </a>
-          </div>
-          <!-- /OWL SLIDER -->
+
 
           <!-- IMAGE -->
           <!--
@@ -178,7 +166,7 @@
 
           <!-- BLOCKQUOTE -->
           <blockquote>
-            <p class="dropcap"><%=@board.content%></p>
+            <p class="dropcap"><%=@board.content.html_safe%></p>
           </blockquote>
 
           <!-- /article content -->

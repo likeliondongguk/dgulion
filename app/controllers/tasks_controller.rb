@@ -1,10 +1,16 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+
+    if params[:search]
+      @tasks = Task.search(params[:search]).order("created_at DESC")
+    else
+      @tasks = Task.all.order('created_at DESC')
+    end
   end
 
   # GET /tasks/1
@@ -24,17 +30,9 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params)
-
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
-    end
+    @task=Task.new(task_params)
+    @task.save
+    redirect_to url_for(controller: :tasks, action: :index, id: @task.id)
   end
 
   # PATCH/PUT /tasks/1
@@ -69,6 +67,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.fetch(:task, {})
+      params.require(:task).permit(:title, :content)
     end
 end

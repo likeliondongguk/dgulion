@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   has_many :tasks, through: :t_rates
 
   validates :username, presence: true
+
 end
