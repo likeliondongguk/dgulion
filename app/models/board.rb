@@ -19,7 +19,6 @@ class Board < ActiveRecord::Base
   end
 
   def self.search(search)
-    where("title LIKE ?", "%#{search}%")
-    where("content LIKE ?", "%#{search}%")
+    where("content || title LIKE ?", "%#{search}%")
   end
 end

@@ -1,7 +1,11 @@
 <% case url %>
 <% when :blog then
      path=url_for(controller: "blog/comments", action: :create, blog_id: commentable.id) %>
+
+<% when :boards then
+     path=url_for(controller: "boards/comments", action: :create, board_id: commentable.id) %>
 <% end %>
+
 <%= form_for [commentable, commentable.comments.new], url: path, remote: true  do |reply| %>
     <div class="row">
       <div class="form-group">

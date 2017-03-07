@@ -62,7 +62,6 @@
     <!-- Search result-->
     <% if @boards.present? %>
         <%= @boards %>
-
     <% else %>
         <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
     <% end %>

@@ -2,6 +2,9 @@
 <% case url %>
 <% when :blog then
      id= :blog_id %>
+
+  <% when :boards then
+       id= :boards %>
 <% end %>
 <% count =0 %>
 <% commentable.comments.each do |c| %>
