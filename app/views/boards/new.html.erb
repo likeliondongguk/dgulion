@@ -20,25 +20,27 @@
   <!--</section>-->
 
   <!-- <textarea class="summernote form-control" data-height="200" data-lang="en-US"></textarea> -->
-  <%= render 'boards/form', url: :new %>
   <!--<section>-->
      <!--<form action="create" method="post">-->
       <!--<div class="container" style="margin-top: 40px; padding-right: 100px; padding-left: 100px">-->
-        <!--<h1>New Board</h1>-->
-        <!--<%= render 'form', url: :new do |f| %>-->
-            <!--<div>-->
-              <!--<%=f.label :title%>-->
-              <!--<%=f.text_field :title%>-->
-            <!--</div>-->
-            <!--<div>-->
-              <!--<%=f.label :content%>-->
-              <!--<%=f.text_field :content%>-->
-            <!--</div>-->
-            <!--<%= f.submit %>-->
-        <!--<%end%>-->
+      <div class="container" style="padding-top: 30px;">
+        <div class="text-right">
+          <%= link_to '<span>돌아가기</span>'.html_safe, url_for(boards_index_path), class: "btn btn-warning" %>
+        </div>
 
-        <!--<%= link_to 'Back', boards_index_path %>-->
-
+        <h1>New Board</h1>
+        <%= render 'form', url: :new do |f| %>
+            <div>
+              <%=f.label :title%>
+              <%=f.text_field :title%>
+            </div>
+            <div>
+              <%=f.label :content%>
+              <%=f.text_field :content%>
+            </div>
+            <%= f.submit %>
+        <%end%>
+      </div>
       <!--</div>-->
      <!--</form>-->
   <!--</section>-->

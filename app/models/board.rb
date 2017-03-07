@@ -17,4 +17,9 @@ class Board < ActiveRecord::Base
     self.save
     Tagging.create(board_id: self.id, tag_id: Tag.find_by_name(tagName).id)
   end
+
+  def self.search(search)
+    where("title LIKE ?", "%#{search}%")
+    where("content LIKE ?", "%#{search}%")
+  end
 end

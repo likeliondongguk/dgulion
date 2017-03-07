@@ -29,12 +29,13 @@
 
     <!-- go to write button-->
     <div align="right">
-      <%=link_to 'new post', new_board_path %>
+        <%= link_to '<span>New post</span>'.html_safe, url_for(new_board_path), class: "btn btn-success" %>
     </div><br>
 
 
     <!-- INLINE SEARCH -->
-    <div class="inline-search clearfix margin-bottom-30">
+
+    <!--<div class="inline-search clearfix margin-bottom-30">
       <form action="#" method="get" class="widget_search">
 
         <input type="search" placeholder="Start Searching..." id="search" name="search_box" class="serch-input">
@@ -42,9 +43,30 @@
           <i class="fa fa-search"></i>
         </button>
       </form>
+
     </div>
+
+    <br> -->
+    <!-- real search -->
+    <div class="inline-search clearfix margin-bottom-30">
+      <%= form_tag(boards_path, :method => "get", id: 'search-form') do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+          <%= submit_tag "Search" %>
+      <% end %>
+    </div>
+    <!-- /real search -->
+
     <!-- /INLINE SEARCH -->
 
+
+    <!-- Search result-->
+    <% if @boards.present? %>
+        <%= @boards %>
+
+    <% else %>
+        <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+    <% end %>
+    <!-- /Search result-->
 
 
 
@@ -52,29 +74,29 @@
     <h2>
       <%@boards.each do |p|%>
           <div>
-            <%=link_to "#{p.title}", board_path(p) %>
-
+            <%=link_to "#{p.title}", board_path(p) %><br>
             <ul class="blog-post-info list-inline">
               <li>
                 <a href="#">
                   <i class="fa fa-user"></i>
-                  <span class="font-lato">Author</span>
+                  <span class="font-lato">Writer : <%= p.user.username %></span>
                 </a>
               </li>
               <li>
                 <a href="#">
                   <i class="fa fa-clock-o"></i>
-                  <span class="font-lato">common_post_created or edited time</span>
+                  <span class="font-lato">Written Time : <%= time_ago_in_words(p.created_at) %></span>
                 </a>
               </li>
               <li>
                 <a href="#">
                   <i class="fa fa-comment-o"></i>
-                  <span class="font-lato"># of Comments</span>
+                  <span class="font-lato"> <%= p.comments.count %> comments</span>
                 </a>
               </li>
 
             </ul>
+
 
           </div>
       <%end%>
@@ -93,3 +115,20 @@
 <a href="#" id="toTop"></a>
 <%= render partial: "script"%>
 
+
+
+
+
+<script>
+    $( function() {
+        var availableTags = [
+            <% @boards.each do |b| %>
+            "<%= b.title %>",
+            "<%= b.content %>",
+            <% end %>
+        ];
+        $( "#search-form" ).autocomplete({
+            source: availableTags
+        });
+    } );
+</script>
