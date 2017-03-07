@@ -4,11 +4,24 @@
   <section>
     <div class="container">
       <div class="row">
-        <h1>New Question</h1>
+        <div class="panel panel-default">
+          <div class="panel-heading panel-heading-transparent">
+            <div class="row">
+              <div class="col-md-9">
+                <h2 class="panel-title bold">New Question</h2>
+              </div>
+              <div class="col-md-3 text-right">
+                <a href="<%= url_for(questions_path) %>" class="btn btn-reveal btn-sm btn-3d btn-blue">
+                  <i class="fa fa-home"></i>
+                  <span>Back</span>
+                </a>
+              </div>
+            </div>
 
-        <%= render 'form', url: :new %>
 
-        <%= link_to 'Back', questions_path %>
+          </div>
+          <%= render 'form', url: :new %>
+        </div>
       </div>
     </div>
   </section>

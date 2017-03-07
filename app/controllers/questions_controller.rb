@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions =Category.get_posts("question")
+    @questions =Category.get_posts("questions")
   end
 
   # GET /questions/1
@@ -26,14 +26,28 @@ class QuestionsController < ApplicationController
   def create
     @question = Post.new(question_params)
     @question.user = current_user
-    @question.category=Category.find_by_name("question")
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to url_for(controller: :questions, action: :show, id: @question.id), notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: @question }
-      else
-        format.html { render :new }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
+    @question.category=Category.find_by_name("questions")
+    puts tag_params[:tag]
+    puts tag_params[:tag].class
+    if tag_params=={}
+      respond_to do |format|
+        if @question.save
+          format.html { redirect_to url_for(controller: :questions, action: :show, id: @question.id), notice: 'Question was successfully created.' }
+          format.json { render :show, status: :created, location: @question }
+        else
+          format.html { render :new }
+          format.json { render json: @question.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        if @question.tag_save(tag_params[:tag])
+          format.html { redirect_to url_for(controller: :questions, action: :show, id: @question.id), notice: 'Question was successfully created.' }
+          format.json { render :show, status: :created, location: @question }
+        else
+          format.html { render :new }
+          format.json { render json: @question.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -63,13 +77,17 @@ class QuestionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_question
-      @question = Category.get_posts("question").find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_question
+    @question = Category.get_posts("questions").find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def question_params
-      params.require(:post).permit(:title, :content)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def question_params
+    params.require(:post).permit(:title, :content)
+  end
+
+  def tag_params
+    params.require(:post).permit(tag: [])
+  end
 end

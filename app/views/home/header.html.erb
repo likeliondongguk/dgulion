@@ -2,7 +2,10 @@
   <%= render "sticky/mainMenu" %>
   <%= render "sticky/pageHeader", name: "헤더" %>
   <%= render 'sticky/blank' %>
+
+
   <%= hidden_field_tag :user_id, "#{current_user.username unless current_user.nil?}" %>
   <%= render partial: "sticky/footer" %>
+
 </div>
 <%= render partial: "script" %>

@@ -18,7 +18,7 @@
 	---------------------------
 	01. Resets
 	02. Headings
-	03. Placeholder
+	03. Placeholder`
 	04. Commons
 	05. Progress Bars & Pie Charts
 	06. Dropcap
@@ -172,8 +172,9 @@ a, a:focus, a:hover, a:active {
 }
 
 p, pre, ul, ol, dl, dd, blockquote,
-address, table, fieldset, form { 
-	margin-bottom: 30px; 
+address, table, fieldset, form {
+    /*no_dafault_custom*/
+	/*margin-bottom: 30px; */
 }
 
 canvas {

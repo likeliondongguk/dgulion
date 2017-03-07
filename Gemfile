@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'select2-rails'
 gem 'figaro'
 gem 'fog-aws'
 gem 'carrierwave'

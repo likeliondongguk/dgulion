@@ -3,10 +3,9 @@
   <%= render 'sticky/pageHeader', name: 'blog' %>
   <section>
     <div class="container">
-      <h1>Editing Blog</h1>
-      <%= render 'form', url: :edit %>
-      <%= link_to 'Show', url_for(controller: :blog, action: :show, id: @blog.id) %> |
-      <%= link_to 'Back', blog_index_path %>
+      <h1>New Blog</h1>
+      <%= render 'form', url: :new %>
+      <%= link_to 'Back', blogs_path %>
     </div>
   </section>
   <%= render 'sticky/footer' %>

@@ -1,8 +1,8 @@
 <% case url %>
 <% when :new then
-     path=blog_index_path %>
+     path=blogs_path %>
 <% when :edit then
-     path=  url_for(controller: :blog, action: :update, id: @blog.id) %>
+     path=  url_for(controller: :blogs, action: :update, id: @blog.id) %>
 <% end %>
 <%= form_for(@blog, url: path, html: {multipart: true}) do |b| %>
     <div class="field">

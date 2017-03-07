@@ -12,10 +12,26 @@ class Post < ActiveRecord::Base
     false
   end
 
-  # 1 레벨의 tag(게시판 이름)걸기
-  def tag_save(tagName)
+  # 사용자 tag(게시판 이름)걸기
+  def tag_save(tagNames)
     self.save
-    Tagging.create(post_id: self.id, tag_id: Tag.find_by_name(tagName).id)
+    if tagNames.class == Array
+      tagNames.each do |tag|
+        if Tag.is_name_exist?(tag)
+          Tagging.create(post_id: self.id, tag_id: Tag.find_by_name(tag.downcase).id)
+        else
+          new_tag=Tag.create(name: tag, level: 2)
+          Tagging.create(post_id: self.id, tag_id: new_tag.id)
+        end
+      end
+    else
+      if Tag.is_name_exist?(tagNames)
+        Tagging.create(post_id: self.id, tag_id: Tag.find_by_name(tagNames.downcase).id)
+      else
+        new_tag=Tag.create(name: tagNames, level: 2)
+        Tagging.create(post_id: self.id, tag_id: new_tag.id)
+      end
+    end
   end
 
   # 이미지만 뽑아내기

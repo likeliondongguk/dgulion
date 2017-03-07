@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'boards/header'
   resources :boards
   # nojong
-  resources :blog do
+  resources :blogs do
     resources :comments, module: :blog, only: [:create, :destroy]
   end
 

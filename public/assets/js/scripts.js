@@ -2334,7 +2334,11 @@
 			loadScript(plugin_path + 'select2/js/select2.full.min.js', function() {
 		
 				if(jQuery().select2) {
-					jQuery('select.select2').select2();
+					jQuery('select.select2').select2({
+                        placeholder: '태그를 입력해주세요',
+                        tags: true,
+                        tokenSeparators: [',', ' ']
+                    });
 				}
 
 			});

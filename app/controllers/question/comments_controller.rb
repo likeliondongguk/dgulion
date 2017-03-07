@@ -3,7 +3,7 @@ class Question::CommentsController < CommentsController
 
   private
   def set_commentable
-    @commentable = Category.get_posts("question").find(params[:question_id])
+    @commentable = Category.get_posts("questions").find(params[:question_id])
     @url= :question
   end
 end

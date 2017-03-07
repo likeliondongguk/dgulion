@@ -30,9 +30,9 @@
                     </a>
                     <!--tag-list-->
                     <div class="margin-top-3 tag-list hidden-xs">
-                      <a class="label label-success">Rails</a>
-                      <a class="label label-default">Ruby</a>
-
+                      <% question.tags.each do |tag| %>
+                          <a class="label label-success"><%= tag.name %></a>
+                      <% end %>
                     </div>
                   </h4>
                 </td>
