@@ -31,7 +31,7 @@
                     <!--tag-list-->
                     <div class="margin-top-3 tag-list hidden-xs">
                       <% question.tags.each do |tag| %>
-                          <a class="label label-success"><%= tag.name %></a>
+                          <a href="<%= url_for(controller: :tags ,action: :search, tag_id: tag.id) %>" class="label <%= tag.tag_color %>"><%= tag.name %></a>
                       <% end %>
                     </div>
                   </h4>

@@ -17,7 +17,7 @@
               <li>
                 <a href="#">
                   <i class="fa fa-comment-o"></i>
-                  <span class="font-lato">1</span>
+                  <span class="font-lato"><%= @question.comments.count %></span>
                 </a>
               </li>
               <li>
@@ -35,20 +35,18 @@
             <i class="fa fa-home"></i>
             <span>Back</span>
           </a>
-          <!--<div class="panel panel-default">-->
-            <!--<div class="panel-body">-->
-              <ul class="margin-top-6 list-inline">
-                <% if @question.is_writer? current_user %>
-                    <li class="text-right">
-                      <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_question_path(@question)), class: "btn btn-xs btn-3d btn-green" %>
-                    </li>
-                    <li class="text-right">
-                      <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :questions, action: :destroy, id: @question.id), method: :delete, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
-                    </li>
-                <% end %>
-              </ul>
-            <!--</div>-->
-          <!--</div>-->
+
+          <ul class="margin-top-6 list-inline">
+            <% if @question.is_writer? current_user %>
+                <li class="text-right">
+                  <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_question_path(@question)), class: "btn btn-xs btn-3d btn-green" %>
+                </li>
+                <li class="text-right">
+                  <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :questions, action: :destroy, id: @question.id), method: :delete, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
+                </li>
+            <% end %>
+          </ul>
+
         </div>
       </div>
       <div class="margin-top-0 panel panel-default">
@@ -59,28 +57,65 @@
         </div>
         <div class="panel-footer">
           <div class="tag-list hidden-xs">
-            <a class="label label-success">Rails</a>
-            <a class="label label-default">Ruby</a>
+            <% @question.tags.each do |tag| %>
+                <a href="<%= url_for(controller: :tags, action: :search, tag_id: tag.id) %>" class="label <%= tag.tag_color %>"><%= tag.name %></a>
+            <% end %>
           </div>
         </div>
       </div>
       <div class="devider"></div>
       <div id="comments" class="comments">
         <h4 class="page-header margin-bottom-60 size-20">
-          <span><%= @question.comments.count %></span> COMMENTS
+          <span><%= @question.answers.count %></span> COMMENTS
         </h4>
-        <%= render 'comments/form', commentable: @question, url: :question %>
-        <div class="comment-list">
-          <% count =0 %>
-          <% @question.comments.each do |comment| %>
-              <!--count보다 더 많이 돌아가는 버그-->
-              <% unless count >= @question.comments.count %>
-                  <!--댓글달기 ajax용 렌더-->
-                  <%= render 'comments/item', comment: comment, url: :question %>
-              <% end %>
-              <% count+=1 %>
-          <% end %>
-        </div>
+        <!--<div class="panel">-->
+        <!--<div class="panel-body">-->
+        <% @question.answers.each do |answer| %>
+            <div class="row">
+              <div class="col-md-1">
+                <div class="margin-left-10">
+
+                    <% if answer.check == false %>
+                      <a href="<%= url_for(controller: :answers, action: :select, id: answer.id) %>"><i class="fa fa-check" style="font-size: 3em;"></i></a>
+                    <% else %>
+                      <a href="<%= url_for(controller: :answers, action: :select, id: answer.id) %>"><i class="fa fa-check" style="font-size: 3em; color: red"></i></a>
+                    <% end %>
+
+                </div>
+              </div>
+              <div class="col-md-11">
+                <%= answer.body.html_safe %>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+        <% end %>
+        <!--</div>-->
+        <!--</div>-->
+
+        <%= form_for [@question, @question.answers.new], url: url_for(controller: "answers", action: :create, question_id: @question.id) do |answer| %>
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label>COMMENT</label>
+                  <%= answer.text_area :body, class: :summernote, row: 4 %>
+                </div>
+              </div>
+            </div>
+            <%= answer.submit '저장' %>
+        <% end %>
+        <!--<%#= render 'comments/form', commentable: @question, url: :question %>-->
+        <!--<div class="comment-list">-->
+        <!--<%# count =0 %>-->
+        <!--<%# @question.comments.each do |comment| %>-->
+        <!--&lt;!&ndash;count보다 더 많이 돌아가는 버그&ndash;&gt;-->
+        <!--<%# unless count >= @question.comments.count %>-->
+        <!--&lt;!&ndash;댓글달기 ajax용 렌더&ndash;&gt;-->
+        <!--<%#= render 'comments/item', comment: comment, url: :question %>-->
+        <!--<%# end %>-->
+        <!--<%# count+=1 %>-->
+        <!--<%# end %>-->
+        <!--</div>-->
       </div>
     </div>
   </section>

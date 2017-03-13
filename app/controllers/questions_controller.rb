@@ -27,8 +27,6 @@ class QuestionsController < ApplicationController
     @question = Post.new(question_params)
     @question.user = current_user
     @question.category=Category.find_by_name("questions")
-    puts tag_params[:tag]
-    puts tag_params[:tag].class
     if tag_params=={}
       respond_to do |format|
         if @question.save
@@ -55,13 +53,26 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
-    respond_to do |format|
-      if @question.update(question_params)
-        format.html { redirect_to url_for(controller: :questions, action: :show, id: @question.id), notice: 'Question was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question }
-      else
-        format.html { render :edit }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
+    if tag_params=={}
+      respond_to do |format|
+        if @question.update(question_params)
+          format.html { redirect_to url_for(controller: :questions, action: :show, id: @question.id), notice: 'Question was successfully updated.' }
+          format.json { render :show, status: :ok, location: @question }
+        else
+          format.html { render :edit }
+          format.json { render json: @question.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        if @question.update(question_params)
+          @question.tag_update(tag_params[:tag])
+          format.html { redirect_to url_for(controller: :questions, action: :show, id: @question.id), notice: 'Question was successfully updated.' }
+          format.json { render :show, status: :ok, location: @question }
+        else
+          format.html { render :edit }
+          format.json { render json: @question.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

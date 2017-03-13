@@ -13,4 +13,17 @@ class Tag < ActiveRecord::Base
     false
   end
 
+  def tag_color
+    color_array = %w(label-default label-primary label-success label-info label-warning label-danger label-blue label-sea label-yellow label-purple label-aqua label-brown label-dark-blue label-light-green label-light label-dark)
+    if color_array.size >= self.id
+      return color_array[self.id]
+    else
+      return color_array[color_array%16]
+    end
+  end
+
+  def self.get_posts(tag_id, category_name)
+    return Tag.find(tag_id).posts.where(category: Category.find_by_name(category_name))
+  end
+
 end

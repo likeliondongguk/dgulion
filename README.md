@@ -106,4 +106,5 @@ show.html.erb
 17.03.05
 -
 category table 추가함
-확인 요망 
+확인 요망 <br>
+user랑 마이페이지 오늘 완성시킨다 기필코!!

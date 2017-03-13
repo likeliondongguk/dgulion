@@ -12,10 +12,13 @@
       <%= f.text_field :title, class: "form-control" %>
       <br>
       <label>태그</label>
-      <%#= select_tag('post[tag]', options_for_select([ ['school', "school"], ['non-profit', "non-profit"]] ), {multiple: true,class: "select2", style: "width: 100%"}) %>
       <select class="select2" name="post[tag][]" multiple="multiple" style="width: 100%">
-        <option value="RUBY">ruby</option>
-        <option value="RAILS">rails</option>
+        <% Tag.all.each do |tag| %>
+            <option value="<%= tag.name %>"
+                    <% if @question.is_exist_tag?(tag) %>
+                    selected="selected"
+                    <% end %>><%= tag.name %></option>
+        <% end %>
       </select>
       <br>
       <br>

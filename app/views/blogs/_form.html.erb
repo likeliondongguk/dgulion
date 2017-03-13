@@ -5,15 +5,26 @@
      path=  url_for(controller: :blogs, action: :update, id: @blog.id) %>
 <% end %>
 <%= form_for(@blog, url: path, html: {multipart: true}) do |b| %>
-    <div class="field">
-      <%= b.label :title %><br>
+    <div class="panel-body">
+      <label>제목</label>
       <%= b.text_field :title %>
-    </div>
-    <div class="field">
-      <%= b.label :content %><br>
+      <br>
+      <label>태그</label>
+      <select class="select2" name="post[tag][]" multiple="multiple" style="width: 100%">
+        <% Tag.all.each do |tag| %>
+            <option value="<%= tag.name %>"
+                    <% if @blog.is_exist_tag?(tag) %>
+                    selected="selected"
+                    <% end %>><%= tag.name %></option>
+        <% end %>
+      </select>
+      <br>
+      <br>
+      <label>본문</label>
       <%= b.text_area :content, class: :summernote %>
     </div>
-    <div class="actions">
-      <%= b.submit '저장' %>
+
+    <div class="panel-footer text-right">
+      <%= b.submit class: "btn btn-success" %>
     </div>
 <% end %>

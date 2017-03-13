@@ -18,8 +18,10 @@ Rails.application.routes.draw do
 
   resources :questions do
     resources :comments, module: :question, only: [:create, :destroy]
+    resources :answers, only: [:create, :destroy]
   end
-
+  get '/answers/select/:id' => 'answers#select'
+  get '/questions/asktags/:tag_id' => 'tags#search'
   post '/imageUpload' => 'summerimage#imageUpload'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

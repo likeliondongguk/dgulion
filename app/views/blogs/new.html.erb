@@ -3,11 +3,26 @@
   <%= render 'sticky/pageHeader', name: 'blog' %>
   <section>
     <div class="container">
-      <h1>New Blog</h1>
-      <%= render 'form', url: :new %>
-      <%= link_to 'Back', blogs_path %>
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-heading panel-heading-transparent">
+            <div class="row">
+              <div class="col-md-9">
+                <h2 class="panel-title bold">New Blog</h2>
+              </div>
+              <div class="col-md-3 text-right">
+                <a href="<%= url_for(blogs_path) %>" class="btn btn-reveal btn-sm btn-3d btn-blue">
+                  <i class="fa fa-home"></i>
+                  <span>Back</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <%= render 'form', url: :new %>
+        </div>
+      </div>
     </div>
   </section>
   <%= render 'sticky/footer' %>
 </div>
-<%= render 'script' %>
+<%= render 'home/script' %>
