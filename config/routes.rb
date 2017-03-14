@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'mypage/index'
+
   devise_for :users, controllers: {
       :registrations => "user/registrations",
       :sessions => "user/sessions" }
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
     resources :comments, module: :question, only: [:create, :destroy]
     resources :answers, only: [:create, :destroy]
   end
+  get '/mypage/:user_id' => 'mypage#index'
   get '/answers/select/:id' => 'answers#select'
   get '/questions/asktags/:tag_id' => 'tags#search'
   post '/imageUpload' => 'summerimage#imageUpload'

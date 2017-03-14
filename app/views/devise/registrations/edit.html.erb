@@ -1,43 +1,104 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div id="wrapper">
+  <%= render 'sticky/mainMenu' %>
+  <%= render 'sticky/pageHeader', name: '개인정보수정' %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+          <div class="box-static box-transparent box-bordered padding-30">
+            <div class="box-title margin-bottom-30">
+              <h2 class="size-20">Edit <%= resource_name.to_s.humanize %></h2>
+            </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, multipart: true, class: "nomargin sky-form"}) do |f| %>
+                <fieldset>
+                  <div class="row">
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <%= f.label :이름 %>
+                        <label class="input margin-bottom-10">
+                          <i class="ico-append fa fa-user"></i>
+                          <%= f.text_field :username, autofocus: false %>
+                          <b class="tooltip tooltip-bottom-right">Your First Name</b>
+                        </label>
+                        <%= f.label :이메일 %>
+                        <label class="input margin-bottom-10">
+                          <i class="ico-append fa fa-envelope"></i>
+                          <%= f.email_field :email, autofocus: false %>
+                          <b class="tooltip tooltip-bottom-right">Your Email</b>
+                        </label>
+                        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                        <% end %>
+                        <%= f.label :전화 %>
+                        <label class="input margin-bottom-10">
+                          <i class="ico-append fa fa-phone"></i>
+                          <%= f.telephone_field :phone_number, autofocus: false, class: "form-control masked", placeholder: "핸드폰 번호를 입력해주세요" %>
+                          <b class="tooltip tooltip-bottom-right">Your Phone (optional)</b>
+                        </label>
+                        <%= f.label :자기소개 %>
+                        <div class="fancy-form"><!-- textarea -->
+                          <%= f.text_area :description, class: "form-control word-count", rows: 4, maxlength: 300 %>
+                          <i class="fa fa-comments"><!-- icon --></i>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+                          <span class="fancy-hint size-11 text-muted">
+										<strong>Hint:</strong> 300글자 제한!!
+									</span>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <%= f.label "현재 비밀번호" %><i>(현재 비밀번호를 입력하셔야 수정가능합니다.)</i><br/>
+                        <label class="input margin-bottom-10">
+                          <i class="ico-append fa fa-lock"></i>
+                          <%= f.password_field :current_password, autocomplete: false, class: :err %>
+                          <b class="tooltip tooltip-bottom-right">Min. 6 characters</b>
+                        </label>
+                        <%= f.label :비밀번호 %> <i>(변경하고 싶지 않으시다면, 빈칸으로 남겨두세요.)</i><br/>
+                        <% if @minimum_password_length %>
+                            (최소한 <%= @minimum_password_length %>자를 입력해주세요)
+                        <% end %>
+                        <label class="input margin-bottom-10">
+                          <i class="ico-append fa fa-lock"></i>
+                          <%= f.password_field :password, autocomplete: "off", class: :err %>
+                          <b class="tooltip tooltip-bottom-right">Min. 6 characters</b>
+                        </label>
+                        <%= f.label :비밀번호확인 %>
+                        <label class="input margin-bottom-10">
+                          <i class="ico-append fa fa-lock"></i>
+                          <%= f.password_field :password_confirmation, autocomplete: "off", class: :err %>
+                          <b class="tooltip tooltip-bottom-right">Type the password again</b>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <%= devise_error_messages! %>
+                <div class="row">
+                  <div class="col-md-12">
+                    <%= f.submit "Update", class: "btn btn-primary" %>
+                  </div>
+                </div>
+            <% end %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+            <!--<h3>Cancel my account</h3>-->
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+            <!--<p>Unhappy? <%#= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>-->
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+            <%#= link_to "Back", :back %>
 
-<h3>Cancel my account</h3>
+          </div>
+        </div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+      </div>
+    </div>
+  </section>
+  <%= render 'sticky/footer' %>
+</div>
+<%= render 'home/script' %>
 
-<%= link_to "Back", :back %>
