@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :authenticate_user!
+
   before_action :set_board, only: [:show, :edit, :update, :destroy ]
   def index
     if params[:search]
@@ -10,6 +10,8 @@ class BoardsController < ApplicationController
   end
   def show
   end
+
+
   def new
     @board = Board.new
   end

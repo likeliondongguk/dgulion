@@ -11,11 +11,23 @@ class SubmissionsController < ApplicationController
       @submissions = Submission.all.order('created_at DESC')
     end
 
-    @paginator, @submissions = paginate :submissions, :per_page => 5,
-                                        :conditions => ['name Like ?', "%#{params[:search]}%"],
-                                        :order => 'name'
-  end
+    @submissionsList = Submission.paginate(:page => params[:page], :per_page => 8)
 
+  end
+  def other
+
+    sub_id= params[:id]
+    task_id= Submission.find(sub_id).task_id
+    if params[:search]
+      @submissions = Submission.where(task_id: task_id).search(params[:search]).order("created_at DESC")
+    else
+      @submissions = Submission.where(task_id: task_id).order('created_at DESC')
+    end
+
+    @submissions = Submission.where(task_id: task_id).paginate(:page => params[:page], :per_page => 8)
+
+    render 'submissions/index'
+  end
   # GET /submissions/1
   # GET /submissions/1.json
   def show
@@ -34,6 +46,8 @@ class SubmissionsController < ApplicationController
   # POST /submissions.json
   def create
     @submission=Submission.new(submission_params)
+    @submission.user=current_user
+    @submission.task_id=params[:task_id]
     @submission.save
     redirect_to url_for(controller: :submissions, action: :show, id: @submission.id)
   end
@@ -41,25 +55,15 @@ class SubmissionsController < ApplicationController
   # PATCH/PUT /submissions/1
   # PATCH/PUT /submissions/1.json
   def update
-    respond_to do |format|
-      if @submission.update(submission_params)
-        format.html { redirect_to @submission, notice: 'Submission was successfully updated.' }
-        format.json { render :show, status: :ok, location: @submission }
-      else
-        format.html { render :edit }
-        format.json { render json: @submission.errors, status: :unprocessable_entity }
-      end
-    end
+    @submission.update(submission_params)
+    redirect_to @submission
   end
 
   # DELETE /submissions/1
   # DELETE /submissions/1.json
   def destroy
     @submission.destroy
-    respond_to do |format|
-      format.html { redirect_to submissions_url, notice: 'Submission was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to @submission
   end
 
   private

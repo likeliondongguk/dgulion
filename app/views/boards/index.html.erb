@@ -28,9 +28,12 @@
 
 
     <!-- go to write button-->
-    <div align="right">
-        <%= link_to '<span>New post</span>'.html_safe, url_for(new_board_path), class: "btn btn-success" %>
-    </div><br>
+    <%if  user_signed_in?%>
+        <div align="right">
+          <%= link_to '<span>New post</span>'.html_safe, url_for(new_board_path), class: "btn btn-success" %>
+        </div><br>
+    <%end%>
+
 
 
     <!-- INLINE SEARCH -->

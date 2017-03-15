@@ -17,6 +17,12 @@
             <%= submit_tag "Search" %>
         <% end %>
       </div>
+
+      <div class="clearfix margin-bottom-20 text-right">
+
+        <%= link_to '<span>New Submission</span>'.html_safe, url_for(new_submission_path), class: "btn btn-success" %>
+        <%= link_to '<span>Back to TaskList</span>'.html_safe, url_for(tasks_path), class: "btn btn-warning" %>
+      </div>
       <!-- /real search -->
 
       <!-- /INLINE SEARCH -->
@@ -30,8 +36,6 @@
       <% end %>
       <!-- /Search result-->
         <!-- LEFT -->
-
-
           <!-- FORUM 1 -->
           <table class="table table-vertical-middle margin-bottom-60">
             <thead>
@@ -52,12 +56,12 @@
 
                         <%= p.title %>
 
-
+                        <%= Task.find(p.task_id).title %>
                       <ul class="list-inline categories nomargin text-muted size-11 hidden-xs">
-                        <li>Created by <a href="#">writer's name</a></li>
+                        <li>Created by <a href="#"> <%= p.user.username %></a></li>
 
                         <!-- Only writer can activate this buttons by using devise-->
-                        <li><%= link_to 'Destroy', p, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                        <li><%= link_to 'Delete', p, method: :delete, data: { confirm: 'Are you sure?' } %></li>
                         <li><%= link_to 'Edit', edit_submission_path(p) %></li>
                       </ul>
 
@@ -70,7 +74,7 @@
                   <td class="hidden-xs text-center">
                     <small class="block size-11 text-muted">
 
-                          <%= link_to '<span>See</span>'.html_safe, url_for(submission_path(p)), class: "btn btn-success" %>
+                          <%= link_to '<span>See</span>'.html_safe, url_for(submission_path(p)), class: "btn btn-danger" %>
 
                     </small>
 
@@ -83,14 +87,11 @@
             </tbody>
           </table>
           <!-- /FORUM 1 -->
+      <div class="text-center"><%= will_paginate @submissionsList %></div>
 
           <div class="divider nomargin"><!-- divider --></div>
 
-          <div class="clearfix margin-bottom-60">
 
-            <%= link_to '<span>New Submission</span>'.html_safe, url_for(new_submission_path), class: "btn btn-success" %>
-            <%= link_to '<span>Back to TaskList</span>'.html_safe, url_for(tasks_index_path), class: "btn btn-warning" %>
-          </div>
 
           <!-- WARNING
           <div class="alert alert-warning alert-bordered-dashed text-center margin-bottom-30"></span>
@@ -99,7 +100,7 @@
           </div>-->
 
 
-          <!-- pagination -->
+          <!-- pagination
           <div class="text-center">
             <ul class="pagination">
               <li><a href="#">&laquo;</a></li>
@@ -111,7 +112,9 @@
               <li><a href="#">&raquo;</a></li>
             </ul>
           </div>
-          <!-- /pagination -->
+           /pagination -->
+
+
 
         </div>
 

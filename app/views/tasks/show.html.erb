@@ -112,24 +112,10 @@
 
 
           <h1 class="blog-post-title"><%=@task.title%>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            &nbsp&nbsp&nbsp
-
-            <!--% if @task.is_writer?(current_user) %> -->
-            <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_task_path(@task)), class: "btn btn-primary" %>
-            <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :tasks, action: :destroy, id: @task.id), method: :delete, class: "btn btn-danger", data: {confirm: 'Are you sure?'} %>
-
-
 
             <!--% end %> -->
           </h1>
+
 
 
 
@@ -203,7 +189,14 @@
 
 
         </div>
+        <div class="right">
+          <%= link_to '<span>Submit Task</span>'.html_safe, url_for(new_task_path(@task)), class: "btn btn-success" %>
+
+        </div>
+
       </div>
+      <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_task_path(@task)), class: "btn btn-primary" %>
+      <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :tasks, action: :destroy, id: @task.id), method: :delete, class: "btn btn-danger", data: {confirm: 'Are you sure?'} %>
     </div>
   </section>
   <!-- / -->
