@@ -2,7 +2,7 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
   def index
-    @blogs=Category.get_posts("blog")
+    @blogs=Category.get_posts("blog").order(created_at: :desc)
   end
 
   def show
@@ -46,6 +46,9 @@ class BlogsController < ApplicationController
   end
 
   def destroy
+    @blog.comments.each do |comment|
+      comment.destroy
+    end
     @blog.destroy
     redirect_to url_for(controller: :blogs, action: :index)
   end

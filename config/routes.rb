@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :comments, module: :question, only: [:create, :destroy]
     resources :answers, only: [:create, :destroy]
   end
-  get '/mypage/:user_id' => 'mypage#index'
+  get '/mypage/:user_id' => 'mypage#index', as: 'mypage'
   get '/answers/select/:id' => 'answers#select'
   get '/questions/asktags/:tag_id' => 'tags#search'
   post '/imageUpload' => 'summerimage#imageUpload'

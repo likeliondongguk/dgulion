@@ -70,34 +70,87 @@
         </h4>
         <!--<div class="panel">-->
         <!--<div class="panel-body">-->
+        <!--<% @question.answers.each do |answer| %>-->
+            <!--<div class="row">-->
+              <!--<div class="col-md-1">-->
+                <!--<div class="margin-left-10">-->
+
+                  <!--<% if answer.check == false %>-->
+                      <!--<a href="<%= url_for(controller: :answers, action: :select, id: answer.id) %>"><i class="fa fa-check" style="font-size: 3em; color: grey"></i></a>-->
+                  <!--<% else %>-->
+                      <!--<a href="<%= url_for(controller: :answers, action: :select, id: answer.id) %>"><i class="fa fa-check" style="font-size: 3em; color: red"></i></a>-->
+                  <!--<% end %>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="col-md-11">-->
+                <!--<%= answer.body.html_safe %>-->
+                <!--<div class="crud margin-top-10">-->
+                  <!--<a href=""><i class="fa fa-trash-o"></i></a>-->
+                <!--</div>-->
+                <!--<div class="row">-->
+                  <!--<div class="col-md-3">-->
+                    <!--<div class="testimonial testimonial-bordered padding-15">-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+
+              <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="divider"></div>-->
+        <!--<% end %>-->
+        <!--</div>-->
+        <!--</div>-->
+
         <% @question.answers.each do |answer| %>
-            <div class="row">
-              <div class="col-md-1">
-                <div class="margin-left-10">
+            <div class="row" id="comment-<%= answer.id %>">
+              <div class="col-md-2 col-sm-2 hidden-xs">
+                <figure class="thumbnail">
+                  <img class="img-responsive" src="<%= asset_path 'avatar.png' %>">
+                  <figcaption class="text-center"><%= answer.user.username %></figcaption>
+                </figure>
+              </div>
+              <div class="col-md-10 col-sm-10">
+                <div class="panel panel-default arrow left">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-10 col-sm-10">
+                        <header class="text-left">
+                          <div class="comment-user"><i class="fa fa-user"></i> <%= answer.user.username %></div>
+                          <span class="comment-date"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(answer.created_at) %></span>
+                        </header>
+                      </div>
+                      <div class="col-md-2 col-sm-2">
+                        <% if current_user == answer.user %>
+                            <div class="text-right">
+                              <%= link_to '<span>x</span>'.html_safe, "/", method: :delete, remote: true, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
+                            </div>
+                        <% end %>
+                      </div>
+                    </div>
 
-                    <% if answer.check == false %>
-                      <a href="<%= url_for(controller: :answers, action: :select, id: answer.id) %>"><i class="fa fa-check" style="font-size: 3em;"></i></a>
-                    <% else %>
-                      <a href="<%= url_for(controller: :answers, action: :select, id: answer.id) %>"><i class="fa fa-check" style="font-size: 3em; color: red"></i></a>
-                    <% end %>
-
+                    <div class="comment-post">
+                      <p>
+                        <%= answer.body.html_safe %>
+                      </p>
+                    </div>
+                    <p class="text-right">
+                      <% if answer.check == false %>
+                          <a href="<%= url_for(controller: :answers, action: :select, id: answer.id) %>" class="btn btn-default btn-sm"><i class="fa fa-check"></i>채택하기</a>
+                      <% else %>
+                          <a href="<%= url_for(controller: :answers, action: :select, id: answer.id) %>" class="btn btn-success btn-sm"><i class="fa fa-check"></i>채택됨</a>
+                      <% end %>
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-11">
-                <%= answer.body.html_safe %>
-              </div>
             </div>
-
-            <div class="divider"></div>
         <% end %>
-        <!--</div>-->
-        <!--</div>-->
-
         <%= form_for [@question, @question.answers.new], url: url_for(controller: "answers", action: :create, question_id: @question.id) do |answer| %>
             <div class="row">
               <div class="form-group">
                 <div class="col-md-12">
-                  <label>COMMENT</label>
+                  <label>답변</label>
                   <%= answer.text_area :body, class: :summernote, row: 4 %>
                 </div>
               </div>

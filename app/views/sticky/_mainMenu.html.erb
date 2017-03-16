@@ -15,7 +15,7 @@
                   회원가입 </a></li>
           <% else %>
               <%= link_to "<i class=\"fa fa-sign-out\"></i>".html_safe+"로그아웃", destroy_user_session_path, method: :delete, class: "dropdown-toggle no-text-underline" %>
-              <li><a class="dropdown-toggle no-text-underline" href="<%= url_for(edit_user_registration_path) %>"><i class="fa fa-user-circle-o"></i> 마이페이지</a>
+              <li><a class="dropdown-toggle no-text-underline" href="<%= url_for(mypage_path(current_user.id)) %>"><i class="fa fa-user-circle-o"></i> 마이페이지</a>
               </li>
           <% end %>
 

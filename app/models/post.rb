@@ -80,4 +80,33 @@ class Post < ActiveRecord::Base
     end
     return result
   end
+
+  def where_post
+    case self.category.name
+      when 'blog' then
+        {controller: :blogs, action: :show, id: self.id}
+      when 'questions' then
+        {controller: :questions, action: :show, id: self.id}
+    end
+  end
+
+  def is_exist_check?
+    result=false
+    self.answers.each do |answer|
+      if answer.check == true
+        result = true
+        break
+      end
+    end
+    return result
+  end
+
+  def check_answer
+    self.answers.each do |answer|
+      if answer.check==true
+        return answer
+      end
+    end
+    return false
+  end
 end

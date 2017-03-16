@@ -14,8 +14,8 @@
           <thead>
           <tr class="size-15">
             <th class="weight-400">질문</th>
-            <th class="text-center hidden-xs width-100 weight-300">댓글</th>
-            <th class="text-center hidden-xs width-100 weight-300">답변</th>
+            <th class="text-center hidden-xs width-100 weight-300">답변 수</th>
+            <th class="text-center hidden-xs width-100 weight-300">답변 유무</th>
             <th class="text-center hidden-xs width-200 weight-300">작성자</th>
           </tr>
           </thead>
@@ -31,16 +31,21 @@
                     <!--tag-list-->
                     <div class="margin-top-3 tag-list hidden-xs">
                       <% question.tags.each do |tag| %>
-                          <a href="<%= url_for(controller: :tags ,action: :search, tag_id: tag.id) %>" class="label <%= tag.tag_color %>"><%= tag.name %></a>
+                          <a href="<%= url_for(controller: :tags, action: :search, tag_id: tag.id) %>" class="label <%= tag.tag_color %>"><%= tag.name %></a>
                       <% end %>
                     </div>
                   </h4>
                 </td>
                 <td class="text-center hidden-xs">
-                  <a href="#"><%= question.comments.count %></a>
+                  <a href="#"><%= question.answers.count %></a>
                 </td>
                 <td class="text-center hidden-xs">
-                  <a href="#">322</a>
+                  <% if question.is_exist_check? %>
+                      <a href="#"><i class="fa fa-check text-red"></i></a>
+                  <% else %>
+                      <a href="#"><i class="fa fa-remove"></i></a>
+                  <% end %>
+
                 </td>
                 <td class="hidden-xs text-center">
                   <small class="block size-11 text-muted"><%= time_ago_in_words(question.created_at) %></small>

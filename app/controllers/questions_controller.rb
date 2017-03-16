@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions =Category.get_posts("questions")
+    @questions =Category.get_posts("questions").order(created_at: :desc)
   end
 
   # GET /questions/1
@@ -80,6 +80,9 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
+    @question.answers.each do |answer|
+      answer.destroy
+    end
     @question.destroy
     respond_to do |format|
       format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
