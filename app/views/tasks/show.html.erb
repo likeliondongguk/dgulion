@@ -186,11 +186,14 @@
 
 
 
-
+          submissions/submittedlist/10
 
         </div>
         <div class="right">
           <%= link_to '<span>Submit Task</span>'.html_safe, url_for(new_task_path(@task)), class: "btn btn-success" %>
+
+          <!-- This button has to be hidden just for Admin -->
+          <%= link_to '<span>See Others</span>'.html_safe, url_for(controller: :submissions, action: :index), class: "btn btn-warning" %>
 
         </div>
 
