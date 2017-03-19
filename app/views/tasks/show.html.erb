@@ -189,17 +189,21 @@
           submissions/submittedlist/10
 
         </div>
-        <div class="right">
-          <%= link_to '<span>Submit Task</span>'.html_safe, url_for(new_task_path(@task)), class: "btn btn-success" %>
+        <%if  user_signed_in?%>
+          <div class="right">
+            <%= link_to '<span>Submit Task</span>'.html_safe, url_for(new_task_submission_path(@task)), class: "btn btn-success" %>
 
-          <!-- This button has to be hidden just for Admin -->
-          <%= link_to '<span>See Others</span>'.html_safe, url_for(controller: :submissions, action: :index), class: "btn btn-warning" %>
+            <!-- This button has to be hidden just for Admin -->
+            <%= link_to '<span>See Others</span>'.html_safe, url_for(controller: :submissions, action: :other, id: @task.id), class: "btn btn-warning" %>
 
-        </div>
+          </div>
+        <% end %>
 
       </div>
-      <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_task_path(@task)), class: "btn btn-primary" %>
-      <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :tasks, action: :destroy, id: @task.id), method: :delete, class: "btn btn-danger", data: {confirm: 'Are you sure?'} %>
+      <%if  user_signed_in?%>
+        <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_task_path(@task)), class: "btn btn-primary" %>
+        <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :tasks, action: :destroy, id: @task.id), method: :delete, class: "btn btn-danger", data: {confirm: 'Are you sure?'} %>
+       <% end %>
     </div>
   </section>
   <!-- / -->

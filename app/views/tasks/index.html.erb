@@ -69,14 +69,14 @@
                 <td>
                   <h4 class="nomargin size-16">
                     <a href="page-forum-post.html">
-                      <%=link_to "#{p.title}", task_path(p) %>
+                      <%=link_to "#{p.title}", url_for(controller: :tasks, action: :show, id: p.id) %>
 
                     </a>
 
                     <ul class="list-inline categories nomargin text-muted size-11 hidden-xs">
                       <li>Created by <a href="#">Admin</a></li>
                       <%if  user_signed_in?%>
-                        <li><%= link_to 'Destroy', p, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                        <li><%= link_to 'Destroy', url_for(controller: :tasks, action: :destroy, id: p.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
                         <li><%= link_to 'Edit', edit_task_path(p) %></li>
                       <% end %>
                     </ul>
@@ -90,7 +90,7 @@
                   <small class="block size-11 text-muted">
 
                     <!-- Check the task -->
-                    <%= link_to '<span>Show Task</span>'.html_safe, task_path(p) , class: "btn btn-success" %>
+                    <%= link_to '<span>Show Task</span>'.html_safe, url_for(controller: :tasks, action: :show, id: p.id) , class: "btn btn-success" %>
 
 
                   </small>
