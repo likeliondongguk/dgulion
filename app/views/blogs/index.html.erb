@@ -12,41 +12,85 @@
               <%= link_to_unless(current_user.nil?, 'New Post', new_blog_path, class: "btn btn-info") %>
             </div>
             <br>
-            <div id="blog" class="clearfix blog-isotope blog-isotope-2 ">
-              <% @blogs.each do |blog| %>
-                  <div class="blog-post-item ">
-                    <figure class="margin-bottom-20">
-                      <img class="img-responsive" src=<%= blog.get_first_thumb %> width="600" height="399" alt="">
-                    </figure>
-                    <h2><a href="<%= url_for(controller: :blogs , action: :show, id: blog.id) %>"><%= blog.title %></a></h2>
-                    <ul class="blog-post-info list-inline">
-                      <li>
-                        <a href="">
-                          <i class="fa fa-user"></i>
-                          <span class="font-lato"><%= blog.user.username %></span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-clock-o"></i>
-                          <span class="font-lato"><%= time_ago_in_words(blog.created_at) %></span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-comment-o"></i>
-                          <span class="font-lato"><%= blog.comments.count %></span>
-                        </a>
-                      </li>
-                    </ul>
-                    <!--<p><%#= blog.content.html_safe %></p>-->
-                    <a href="<%= url_for(controller: :blogs , action: :show, id: blog.id) %>" class="btn btn-reveal btn-default">
-                      <i class="fa fa-plus"></i>
-                      <span>Read More</span>
-                    </a>
-                  </div>
-              <% end %>
-            </div>
+            <% @blogs.each do |blog| %>
+                <div class="blog-post-item col-md-4 col-sm-4">
+                  <figure class="margin-bottom-20">
+                    <img class="img-responsive" src="<%= blog.get_first_thumb %>" alt="" style="height:239px">
+                  </figure>
+                  <h2><a href="<%= url_for(controller: :blogs , action: :show, id: blog.id) %>"><%= blog.title %></a></h2>
+                  <ul class="blog-post-info list-inline">
+                    <li>
+                      <a href="#">
+                        <i class="fa fa-clock-o"></i>
+                        <span class="font-lato"><%= time_ago_in_words(blog.created_at) %></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="fa fa-comment-o"></i>
+                        <span class="font-lato"><%= blog.comments.count %> Comments</span>
+                      </a>
+                    </li>
+                    <li>
+                      <i class="fa fa-folder-open-o"></i>
+
+                      <a class="category" href="#">
+                        <span class="font-lato">Design</span>
+                      </a>
+                      <a class="category" href="#">
+                        <span class="font-lato">Photography</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="fa fa-user"></i>
+                        <span class="font-lato"><%= blog.user.username %></span>
+                      </a>
+                    </li>
+                  </ul>
+                  <a href="<%= url_for(controller: :blogs , action: :show, id: blog.id) %>" class="btn btn-reveal btn-default">
+                    <i class="fa fa-plus"></i>
+                    <span>Read More</span>
+                  </a>
+                </div>
+            <% end %>
+
+            <!--<div class="divider"></div>-->
+            <!--<div id="blog" class="clearfix blog-isotope blog-isotope-2 ">-->
+              <!--<%# @blogs.each do |blog| %>-->
+                  <!--<div class="blog-post-item ">-->
+                    <!--<figure class="margin-bottom-20">-->
+                      <!--<img class="img-responsive" src=<%#= blog.get_first_thumb %> width="600" height="399" alt="">-->
+                    <!--</figure>-->
+                    <!--<h2><a href="<%#= url_for(controller: :blogs , action: :show, id: blog.id) %>"><%#= blog.title %></a></h2>-->
+                    <!--<ul class="blog-post-info list-inline">-->
+                      <!--<li>-->
+                        <!--<a href="">-->
+                          <!--<i class="fa fa-user"></i>-->
+                          <!--<span class="font-lato"><%#= blog.user.username %></span>-->
+                        <!--</a>-->
+                      <!--</li>-->
+                      <!--<li>-->
+                        <!--<a href="#">-->
+                          <!--<i class="fa fa-clock-o"></i>-->
+                          <!--<span class="font-lato"><%#= time_ago_in_words(blog.created_at) %></span>-->
+                        <!--</a>-->
+                      <!--</li>-->
+                      <!--<li>-->
+                        <!--<a href="#">-->
+                          <!--<i class="fa fa-comment-o"></i>-->
+                          <!--<span class="font-lato"><%#= blog.comments.count %></span>-->
+                        <!--</a>-->
+                      <!--</li>-->
+                    <!--</ul>-->
+                    <!--&lt;!&ndash;<p><%#= blog.content.html_safe %></p>&ndash;&gt;-->
+                    <!--<a href="<%#= url_for(controller: :blogs , action: :show, id: blog.id) %>" class="btn btn-reveal btn-default">-->
+                      <!--<i class="fa fa-plus"></i>-->
+                      <!--<span>Read More</span>-->
+                    <!--</a>-->
+                  <!--</div>-->
+              <!--<%# end %>-->
+            <!--</div>-->
           </div>
         </div>
       </section>

@@ -6,7 +6,9 @@ class AnswersController < ApplicationController
     redirect_to :back
   end
   def destroy
-
+    @answer=Answer.find(params[:id])
+    @answer.destroy
+    redirect_to :back, notice: "성공적으로 삭제되었습니다."
   end
 
   def select

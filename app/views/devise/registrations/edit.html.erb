@@ -10,7 +10,7 @@
             <div class="box-title margin-bottom-30">
               <h2 class="size-20">Edit <%= resource_name.to_s.humanize %></h2>
             </div>
-
+            <%= devise_error_messages! %>
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, multipart: true, class: "nomargin sky-form"}) do |f| %>
                 <fieldset>
                   <div class="row">
@@ -43,8 +43,22 @@
                           <i class="fa fa-comments"><!-- icon --></i>
 
                           <span class="fancy-hint size-11 text-muted">
-										<strong>Hint:</strong> 300글자 제한!!
-									</span>
+                            <strong>Hint:</strong> 300글자 제한!!
+                          </span>
+                          <br>
+                          <%= f.label :프로필사진  %>
+                          <% if current_user.avatar.url.present? %>
+                              <img src="<%= current_user.avatar.url %>" alt="이미지 무">
+                              <%#= image_tag(current_user.avatar.url) %>
+                              <%= f.label :remove_avatar do %>
+                                  <%= f.check_box :remove_avatar %>
+                              <% end %>
+                          <% end %>
+                          <input class="custom-file-upload" type="file" id="file" name="user[avatar]" id="" data-btn-text="Select a File" />
+                          <small class="text-muted block">Max file size: 10Mb (zip/pdf/jpg/png)</small>
+
+                          <%#= f.file_field :avatar %>
+                          <%= f.hidden_field :avatar_cache %>
 
                         </div>
                       </div>
@@ -78,7 +92,7 @@
                     </div>
                   </div>
                 </fieldset>
-                <%= devise_error_messages! %>
+
                 <div class="row">
                   <div class="col-md-12">
                     <%= f.submit "Update", class: "btn btn-primary" %>

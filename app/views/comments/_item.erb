@@ -1,7 +1,7 @@
 <div class="row" id="comment-<%= comment.id %>">
   <div class="col-md-2 col-sm-2 hidden-xs">
     <figure class="thumbnail">
-      <img class="img-responsive" src="<%= asset_path 'avatar.png' %>">
+      <img class="img-responsive" src="<%= comment.user.avatar.url %>">
       <figcaption class="text-center"><%= comment.user.username %></figcaption>
     </figure>
   </div>
@@ -25,13 +25,12 @@
         </div>
 
         <div class="comment-post">
-          <p>
+
             <%= comment.body %>
-          </p>
         </div>
-        <p class="text-right">
-          <a href="#" class="btn btn-default btn-sm"><i class="fa fa-check"></i>채택하기</a>
-        </p>
+        <!--<p class="text-right">-->
+          <!--<a href="#" class="btn btn-default btn-sm"><i class="fa fa-check"></i>채택하기</a>-->
+        <!--</p>-->
       </div>
     </div>
   </div>

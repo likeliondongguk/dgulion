@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :questions do
-    resources :comments, module: :question, only: [:create, :destroy]
+    # resources :comments, module: :question, only: [:create, :destroy]
     resources :answers, only: [:create, :destroy]
   end
   get '/mypage/:user_id' => 'mypage#index', as: 'mypage'

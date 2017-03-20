@@ -3,8 +3,8 @@ class Post < ActiveRecord::Base
   belongs_to :category
   has_many :taggings
   has_many :tags, through: :taggings
-  has_many :comments, as: :commentable
-  has_many :answers
+  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :answers, dependent: :destroy
   validates :user_id, presence: true
 
   #작성자 확인 메소드
