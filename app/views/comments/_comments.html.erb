@@ -1,4 +1,5 @@
 <div class="comment-list">
+<<<<<<< HEAD
 <% case url %>
 <% when :blog then
      id= :blog_id %>
@@ -10,8 +11,18 @@
 <% commentable.comments.each do |c| %>
     <!--count보다 더 많이 돌아가는 버그-->
     <% unless count >= commentable.comments.count %>
+=======
+  <% case url %>
+  <% when :blog then
+       id= :blog_id %>
+  <% end %>
+  <% count =0 %>
+  <% commentable.comments.each do |c| %>
+      <!--count보다 더 많이 돌아가는 버그-->
+      <% unless count >= commentable.comments.count %>
+>>>>>>> e8f04c7f8b8f6a78d1b0d248edaed70a80b344ca
           <%= render 'comments/item', c: c, count: count, url: url %>
-    <% end %>
-    <% count+=1 %>
-<% end %>
+      <% end %>
+      <% count+=1 %>
+  <% end %>
 </div>

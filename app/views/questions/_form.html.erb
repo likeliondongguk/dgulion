@@ -1,0 +1,34 @@
+<% case url %>
+<% when :new then
+     path=questions_path %>
+<% when :edit then
+     path= url_for(controller: :questions, action: :update, id: @question.id) %>
+<% end %>
+
+<%= form_for(@question, url: path, html: {multipart: true}) do |f| %>
+    <div class="panel-body">
+
+      <label>제목</label>
+      <%= f.text_field :title, class: "form-control" %>
+      <br>
+      <label>태그</label>
+      <select class="select2" name="post[tag][]" multiple="multiple" style="width: 100%">
+        <% Tag.all.each do |tag| %>
+            <option value="<%= tag.name %>"
+                    <% if @question.is_exist_tag?(tag) %>
+                    selected="selected"
+                    <% end %>><%= tag.name %></option>
+        <% end %>
+      </select>
+      <br>
+      <br>
+      <label>본문</label>
+      <%= f.text_area :content, class: :summernote %>
+      <br>
+    </div>
+    <div class="panel-footer text-right">
+      <%= f.submit class: "btn btn-success" %>
+    </div>
+
+
+<% end %>

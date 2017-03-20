@@ -1,0 +1,120 @@
+<div id="wrapper">
+  <%= render 'sticky/mainMenu' %>
+  <%= render 'sticky/pageHeader', name: 'blog' %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="heading-title heading-border">
+            <h2><%= @blog.title %></h2>
+            <ul class="padding-bottom-10 blog-post-info list-inline">
+              <li>
+                <a href="#">
+                  <i class="fa fa-clock-o"></i>
+                  <span class="font-lato"><%= time_ago_in_words(@blog.created_at) %></span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-comment-o"></i>
+                  <span class="font-lato"><%= @blog.comments.count %></span>
+                </a>
+              </li>
+              <li>
+                <i class="fa fa-folder-open-o"></i>
+
+                <a class="category" href="#">
+                  <span class="font-lato">Design</span>
+                </a>
+                <a class="category" href="#">
+                  <span class="font-lato">Photography</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-user"></i>
+                  <span class="font-lato"><%= @blog.user.username %></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 text-right">
+          <a href="<%= url_for(blogs_path) %>" class="btn btn-reveal btn-sm btn-3d btn-blue">
+            <i class="fa fa-home"></i>
+            <span>Back</span>
+          </a>
+
+          <ul class="margin-top-6 list-inline">
+            <% if @blog.is_writer? current_user %>
+                <li class="text-right">
+                  <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_blog_path(@blog)), class: "btn btn-xs btn-3d btn-green" %>
+                </li>
+                <li class="text-right">
+                  <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :blogs, action: :destroy, id: @blog.id), method: :delete, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <!-- article content -->
+      <div class="margin-top-0 panel panel-default">
+        <div class="panel-body">
+          <p class="font-lato size-18">
+            <%= @blog.content.html_safe %>
+          </p>
+        </div>
+        <div class="panel-footer">
+          <div class="tag-list hidden-xs">
+            <% @blog.tags.each do |tag| %>
+                <a href="<%= url_for(controller: :tags, action: :search, tag_id: tag.id) %>" class="label <%= tag.tag_color %>"><%= tag.name %></a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!--todo: 태그만들기-->
+      <!-- TAGS -->
+      <% @blog.tags.where(level: 2).each do |t| %>
+          <a class="tag" href="#">
+            <span class="txt"><%= t.name %></span>
+            <span class="num"><%= Tagging.where(tag_id: t.id).count %></span>
+          </a>
+      <% end %>
+      <!-- /TAGS -->
+      <!--todo-won: 연관 블로그 넘어가게 하기-->
+      <!--<div class="divider">&lt;!&ndash; divider &ndash;&gt;</div>-->
+      <!--<ul class="pager">-->
+        <!--<li class="previous"><a class="noborder" href="#">&larr; Previous Post</a></li>-->
+        <!--<li class="next"><a class="noborder" href="#">Next Post &rarr;</a></li>-->
+      <!--</ul>-->
+      <!--<div class="divider">&lt;!&ndash; divider &ndash;&gt;</div>-->
+      <!-- COMMENTS -->
+      <div id="comments" class="comments">
+        <h4 class="page-header margin-bottom-60 size-20">
+          <span><%= @blog.comments.count %></span> COMMENTS
+        </h4>
+        <!--댓글 달기폼-->
+        <%= render 'comments/form', commentable: @blog, url: :blog %>
+        <!--댓글 달기 폼끝-->
+        <!--댓글 리스트 반복문 시작 -->
+        <div class="comment-list">
+
+          <% count =0 %>
+          <% @blog.comments.each do |comment| %>
+              <!--count보다 더 많이 돌아가는 버그-->
+              <% unless count >= @blog.comments.count %>
+                  <!--댓글달기 ajax용 렌더-->
+                  <%= render 'comments/item', comment: comment, url: :blog %>
+              <% end %>
+              <% count+=1 %>
+          <% end %>
+        </div>
+        <!--댓글 리스트 반복문 끝-->
+        <%#= render 'comments/comments', commentable: @blog, url: :blog %>
+      </div>
+      <!-- /COMMENTS -->
+    </div>
+  </section>
+  <%= render 'sticky/footer' %>
+</div>
+<%= render 'script' %>

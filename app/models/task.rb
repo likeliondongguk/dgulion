@@ -1,7 +1,7 @@
 class Task < ActiveRecord::Base
   has_many :t_rates
   has_many :users, through: :t_rates
-
+  has_many :submissions
 
   def is_completed?(c)
     return true if !c.nil && c == self.user

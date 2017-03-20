@@ -15,7 +15,7 @@
                   회원가입 </a></li>
           <% else %>
               <%= link_to "<i class=\"fa fa-sign-out\"></i>".html_safe+"로그아웃", destroy_user_session_path, method: :delete, class: "dropdown-toggle no-text-underline" %>
-              <li><a class="dropdown-toggle no-text-underline" href="#"><i class="fa fa-user-circle-o"></i> 마이페이지</a>
+              <li><a class="dropdown-toggle no-text-underline" href="<%= url_for(mypage_path(current_user.id)) %>"><i class="fa fa-user-circle-o"></i> 마이페이지</a>
               </li>
           <% end %>
 
@@ -133,7 +133,7 @@
           </ul>
       <!-- /OPTIONS -->
 
-      <a href="<%= url_for(controller: :home, action: :header) %>" class="logo text-center">
+      <a href="" class="logo text-center">
         <img src="<%= asset_path 'favicon_s.png' %>" alt="">
       </a>
       <div class="navbar-header">
@@ -150,13 +150,13 @@
         <!-- MENU -->
         <ul class="nav navbar-nav">
           <li>
-            <a href="<%= url_for(controller: :home, action: :index) %>">
+            <a href="<%= url_for(home_index_path) %>">
               <i class="et-trophy"></i>
               홈
             </a>
           </li>
           <li>
-            <a href="<%= url_for(blog_index_path) %>">
+            <a href="<%= url_for(blogs_path) %>">
               <i class="et-layers"></i>
               블로그
             </a>
@@ -174,9 +174,9 @@
               게시판
             </a>
             <ul class="dropdown-menu">
-              <li><a href="<%= url_for(action: 'index', controller:'boards') %>">자유 게시판</a></li>
+              <li><a href="<%= url_for(boards_index_path) %>">자유 게시판</a></li>
               <li><a href="blog-default-aside-right.html">사진 게시판</a></li>
-              <li><a href="blog-default-fullwidth.html">질문 게시판</a></li>
+              <li><a href="<%= url_for(questions_path) %>">질문 게시판</a></li>
             </ul>
           </li>
           <li>

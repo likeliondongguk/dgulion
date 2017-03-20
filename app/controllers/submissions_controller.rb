@@ -49,7 +49,7 @@ class SubmissionsController < ApplicationController
     @submission.user=current_user
     @submission.task_id=params[:task_id]
     @submission.save
-    redirect_to url_for(controller: :submissions, action: :show, id: @submission.id)
+    redirect_to url_for(controller: :submissions, action: :show, id: @submission.id, task_id: @tasks.id)
   end
 
   # PATCH/PUT /submissions/1

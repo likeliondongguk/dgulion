@@ -543,7 +543,7 @@ ColVis.prototype = {
 	/**
 	 * Create the DOM for a show / hide group button
 	 *  @method  _fnDomGroupButton
-	 *  @param {int} i Group in question, order based on that provided in settings
+	 *  @param {int} i Group in questions, order based on that provided in settings
 	 *  @returns {Node} Created button
 	 *  @private
 	 */
@@ -580,7 +580,7 @@ ColVis.prototype = {
 	/**
 	 * Create the DOM for a show / hide button
 	 *  @method  _fnDomColumnButton
-	 *  @param {int} i Column in question
+	 *  @param {int} i Column in questions
 	 *  @returns {Node} Created button
 	 *  @private
 	 */

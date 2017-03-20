@@ -2307,8 +2307,8 @@
 						lineCap: 		'square',
 						barColor: 		_t.attr('data-color') || '#0093BF'
 					});
-
-					jQuery("span", this).attr('style', "line-height:"+_size+"px !important; height:"+_size+"px; width:"+_size+"px");
+					spansize= 250
+					jQuery("span", this).attr('style', "line-height:"+spansize+"px !important; height:"+_size+"px; width:"+spansize+"px");
 					jQuery("i", this).attr('style', "line-height:"+_size+"px !important; height:"+_size+"px; width:"+_size+"px");
 					// jQuery("span", this).css({"line-height":_size+"px", "height":_size+"px", "width":_size+"px"});
 					// jQuery("i", this).css({"line-height":_size+"px", "height":_size+"px", "width":_size+"px"});
@@ -2334,7 +2334,11 @@
 			loadScript(plugin_path + 'select2/js/select2.full.min.js', function() {
 		
 				if(jQuery().select2) {
-					jQuery('select.select2').select2();
+					jQuery('select.select2').select2({
+                        placeholder: '태그를 입력해주세요',
+                        tags: true,
+                        tokenSeparators: [',', ' ']
+                    });
 				}
 
 			});
@@ -2452,7 +2456,7 @@
 				_container.each(function() {
 				
 					var _t 				= jQuery(this);
-						_format 		= _t.attr('data-format') 		|| '(999) 999-999999',
+						_format 		= _t.attr('data-format') 		|| '999-9999-9999',
 						_placeholder 	= _t.attr('data-placeholder') 	|| 'X';
 
 					jQuery.mask.definitions['f'] = "[A-Fa-f0-9]";

@@ -123,10 +123,10 @@
           <div class="text-center"><%= will_paginate @tasks %></div>
           <div class="clearfix margin-bottom-60">
             <!-- Need to be hidden when current_user is not Admin-->
-            <%if  user_signed_in?%>
+
             <%= link_to '<span>New Task</span>'.html_safe, url_for(new_task_path), class: "btn btn-warning" %>
             <!-- Need to add 'Only admin authorize' function -->
-            <% end %>
+
           </div>
 
           <!-- WARNING

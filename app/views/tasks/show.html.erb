@@ -189,7 +189,7 @@
           submissions/submittedlist/10
 
         </div>
-        <%if  user_signed_in?%>
+
           <div class="right">
             <%= link_to '<span>Submit Task</span>'.html_safe, url_for(new_task_submission_path(@task)), class: "btn btn-success" %>
 
@@ -197,7 +197,7 @@
             <%= link_to '<span>See Others</span>'.html_safe, url_for(controller: :submissions, action: :other, id: @task.id), class: "btn btn-warning" %>
 
           </div>
-        <% end %>
+
 
       </div>
       <%if  user_signed_in?%>

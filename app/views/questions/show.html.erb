@@ -1,0 +1,179 @@
+<div id="wrapper">
+  <%= render 'sticky/mainMenu' %>
+  <%= render 'sticky/pageHeader', name: 'questions' %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="heading-title heading-border">
+            <h2><%= @question.title %></h2>
+            <ul class="padding-bottom-10 blog-post-info list-inline">
+              <li>
+                <a href="#">
+                  <i class="fa fa-clock-o"></i>
+                  <span class="font-lato"><%= time_ago_in_words(@question.created_at) %></span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-comment-o"></i>
+                  <span class="font-lato"><%= @question.comments.count %></span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-user"></i>
+                  <span class="font-lato"><%= @question.user.username %></span>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+        <div class="col-md-3 text-right">
+          <a href="<%= url_for(questions_path) %>" class="btn btn-reveal btn-sm btn-3d btn-blue">
+            <i class="fa fa-home"></i>
+            <span>Back</span>
+          </a>
+
+          <ul class="margin-top-6 list-inline">
+            <% if @question.is_writer? current_user %>
+                <li class="text-right">
+                  <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_question_path(@question)), class: "btn btn-xs btn-3d btn-green" %>
+                </li>
+                <li class="text-right">
+                  <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :questions, action: :destroy, id: @question.id), method: :delete, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
+                </li>
+            <% end %>
+          </ul>
+
+        </div>
+      </div>
+      <div class="margin-top-0 panel panel-default">
+        <div class="panel-body">
+          <p class="font-lato size-18">
+            <%= @question.content.html_safe %>
+          </p>
+        </div>
+        <div class="panel-footer">
+          <div class="tag-list hidden-xs">
+            <% @question.tags.each do |tag| %>
+                <a href="<%= url_for(controller: :tags, action: :search, tag_id: tag.id) %>" class="label <%= tag.tag_color %>"><%= tag.name %></a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="devider"></div>
+      <div id="comments" class="comments">
+        <h4 class="page-header margin-bottom-60 size-20">
+          <span><%= @question.answers.count %></span> COMMENTS
+        </h4>
+        <!--<div class="panel">-->
+        <!--<div class="panel-body">-->
+        <!--<% @question.answers.each do |answer| %>-->
+            <!--<div class="row">-->
+              <!--<div class="col-md-1">-->
+                <!--<div class="margin-left-10">-->
+
+                  <!--<% if answer.check == false %>-->
+                      <!--<a href="<%= url_for(controller: :answers, action: :select, id: answer.id) %>"><i class="fa fa-check" style="font-size: 3em; color: grey"></i></a>-->
+                  <!--<% else %>-->
+                      <!--<a href="<%= url_for(controller: :answers, action: :select, id: answer.id) %>"><i class="fa fa-check" style="font-size: 3em; color: red"></i></a>-->
+                  <!--<% end %>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="col-md-11">-->
+                <!--<%= answer.body.html_safe %>-->
+                <!--<div class="crud margin-top-10">-->
+                  <!--<a href=""><i class="fa fa-trash-o"></i></a>-->
+                <!--</div>-->
+                <!--<div class="row">-->
+                  <!--<div class="col-md-3">-->
+                    <!--<div class="testimonial testimonial-bordered padding-15">-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+
+              <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="divider"></div>-->
+        <!--<% end %>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <% @question.answers.each do |answer| %>
+            <div class="row" id="comment-<%= answer.id %>">
+              <div class="col-md-2 col-sm-2 hidden-xs">
+                <figure class="thumbnail">
+                  <img class="img-responsive" src="<%= asset_path 'avatar.png' %>">
+                  <figcaption class="text-center"><%= answer.user.username %></figcaption>
+                </figure>
+              </div>
+              <div class="col-md-10 col-sm-10">
+                <div class="panel panel-default arrow left">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-10 col-sm-10">
+                        <header class="text-left">
+                          <div class="comment-user"><i class="fa fa-user"></i> <%= answer.user.username %></div>
+                          <span class="comment-date"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(answer.created_at) %></span>
+                        </header>
+                      </div>
+                      <div class="col-md-2 col-sm-2">
+                        <% if current_user == answer.user %>
+                            <div class="text-right">
+                              <%= link_to '<span>x</span>'.html_safe, "/", method: :delete, remote: true, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
+                            </div>
+                        <% end %>
+                      </div>
+                    </div>
+
+                    <div class="comment-post">
+                      <p>
+                        <%= answer.body.html_safe %>
+                      </p>
+                    </div>
+                    <p class="text-right">
+                      <% if answer.check == false %>
+                          <a href="<%= url_for(controller: :answers, action: :select, id: answer.id) %>" class="btn btn-default btn-sm"><i class="fa fa-check"></i>채택하기</a>
+                      <% else %>
+                          <a href="<%= url_for(controller: :answers, action: :select, id: answer.id) %>" class="btn btn-success btn-sm"><i class="fa fa-check"></i>채택됨</a>
+                      <% end %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+        <%= form_for [@question, @question.answers.new], url: url_for(controller: "answers", action: :create, question_id: @question.id) do |answer| %>
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label>답변</label>
+                  <%= answer.text_area :body, class: :summernote, row: 4 %>
+                </div>
+              </div>
+            </div>
+            <%= answer.submit '저장' %>
+        <% end %>
+        <!--<%#= render 'comments/form', commentable: @question, url: :question %>-->
+        <!--<div class="comment-list">-->
+        <!--<%# count =0 %>-->
+        <!--<%# @question.comments.each do |comment| %>-->
+        <!--&lt;!&ndash;count보다 더 많이 돌아가는 버그&ndash;&gt;-->
+        <!--<%# unless count >= @question.comments.count %>-->
+        <!--&lt;!&ndash;댓글달기 ajax용 렌더&ndash;&gt;-->
+        <!--<%#= render 'comments/item', comment: comment, url: :question %>-->
+        <!--<%# end %>-->
+        <!--<%# count+=1 %>-->
+        <!--<%# end %>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </section>
+  <%= render 'sticky/footer' %>
+</div>
+<%= render 'home/script' %>
+
+

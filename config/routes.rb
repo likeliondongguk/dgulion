@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :submissions
+
+  get 'mypage/index'
+
   devise_for :users, controllers: {
       :registrations => "user/registrations",
       :sessions => "user/sessions" }
@@ -12,15 +14,19 @@ Rails.application.routes.draw do
   post 'boards/index'
   get 'boards/header'
 
-  get 'task' => 'tasks/index'
+
+  get 'task' => 'tasks#index'
   get 'task/:id' => 'tasks#show'
 
   get 'submissions/index'
 
+
+
   # nojong
-  resources :blog do
+  resources :blogs do
     resources :comments, module: :blog, only: [:create, :destroy]
   end
+
 
   # sungjun
   resources :boards do
@@ -32,6 +38,15 @@ Rails.application.routes.draw do
     resources :submissions, only: [:new ,:create]
   end
   get 'submissions/submittedlist/:id' => "submissions#other"
+
+
+  resources :questions do
+    resources :comments, module: :question, only: [:create, :destroy]
+    resources :answers, only: [:create, :destroy]
+  end
+  get '/mypage/:user_id' => 'mypage#index', as: 'mypage'
+  get '/answers/select/:id' => 'answers#select'
+  get '/questions/asktags/:tag_id' => 'tags#search'
 
   post '/imageUpload' => 'summerimage#imageUpload'
   # The priority is based upon order of creation: first created -> highest priority.

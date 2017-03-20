@@ -16,9 +16,9 @@
               <% @blogs.each do |blog| %>
                   <div class="blog-post-item ">
                     <figure class="margin-bottom-20">
-                      <img class="img-responsive" src="<%= asset_path 'intro.png' %>" width="600" height="399" alt="">
+                      <img class="img-responsive" src=<%= blog.get_first_thumb %> width="600" height="399" alt="">
                     </figure>
-                    <h2><a href="<%= url_for(controller: :blog ,action: :show, id: blog.id) %>"><%= blog.title %></a></h2>
+                    <h2><a href="<%= url_for(controller: :blogs , action: :show, id: blog.id) %>"><%= blog.title %></a></h2>
                     <ul class="blog-post-info list-inline">
                       <li>
                         <a href="">
@@ -39,8 +39,8 @@
                         </a>
                       </li>
                     </ul>
-                    <p><%= blog.content.html_safe %></p>
-                    <a href="<%= url_for(controller: :blog ,action: :show, id: blog.id) %>" class="btn btn-reveal btn-default">
+                    <!--<p><%#= blog.content.html_safe %></p>-->
+                    <a href="<%= url_for(controller: :blogs , action: :show, id: blog.id) %>" class="btn btn-reveal btn-default">
                       <i class="fa fa-plus"></i>
                       <span>Read More</span>
                     </a>

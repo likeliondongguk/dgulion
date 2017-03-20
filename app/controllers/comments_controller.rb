@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   #ajax create destroy
   def create
     @comment = @commentable.comments.new(comment_params)

@@ -1569,7 +1569,7 @@
 	 * @param {int} [colIdx] Optional column index
 	 * @param {array|object} [d] Data source object. If `colIdx` is given then this
 	 *   parameter should also be given and will be used to write the data into.
-	 *   Only the column in question will be written
+	 *   Only the column in questions will be written
 	 * @returns {object} Object with two parameters: `data` the data read, in
 	 *   document order, and `cells` and array of nodes (they can be useful to the
 	 *   caller, so rather than needing a second traversal to get them, just return
@@ -13913,7 +13913,7 @@
 		 * than just the static string that DataTables knows of.
 		 * 
 		 * The way these plug-ins work is that you create an array of the values you
-		 * wish to be ordering for the column in question and then return that
+		 * wish to be ordering for the column in questions and then return that
 		 * array. The data in the array much be in the index order of the rows in
 		 * the table (not the currently ordering order!). Which order data gathering
 		 * function is run here depends on the `dt-init columns.orderDataType`
