@@ -9,7 +9,7 @@
       <div class="col-lg-3 col-md-3 col-sm-4">
 
         <div class="thumbnail text-center">
-          <img src="<%= asset_path 'avatar2.jpg' %>" alt="">
+          <img src="<%= current_user.avatar.url %>" alt="">
           <h2 class="size-18 margin-top-10 margin-bottom-0"><%= @user.username %></h2>
           <h3 class="size-11 margin-top-0 margin-bottom-10 text-muted">4기 tutor</h3>
         </div>
@@ -110,10 +110,13 @@
 
           <div class="back">
             <div class="box2 noradius" style="min-height: 201px;">
-              <h4>Description</h4>
+              <h4>자기소개</h4>
               <hr>
-              <p><%= @user.description.html_safe %></p>
-
+              <%if !@user.description.nil? %>
+                  <p><%= @user.description.html_safe %></p>
+              <%else%>
+                <p class="text-red">아직 입력하지 않았습니다!</p>
+              <% end %>
             </div>
           </div>
         </div>

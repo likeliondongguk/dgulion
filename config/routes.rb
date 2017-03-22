@@ -35,13 +35,13 @@ Rails.application.routes.draw do
 
   #sungjun
   resources :tasks do
-    resources :submissions, only: [:new ,:create]
+    resources :submissions
   end
-  get 'submissions/submittedlist/:id' => "submissions#other"
+  get 'submissions/submittedlist/:id' => "submissions#other", as: 'other'
 
 
   resources :questions do
-    resources :comments, module: :question, only: [:create, :destroy]
+    # resources :comments, module: :question, only: [:create, :destroy]
     resources :answers, only: [:create, :destroy]
   end
   get '/mypage/:user_id' => 'mypage#index', as: 'mypage'

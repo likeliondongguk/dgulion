@@ -3,15 +3,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-
-  #sungjun_working on task/t_rate/user 's relation part
-  has_many :t_rates
-  has_many :tasks, through: :t_rates
-
-  validates :username, presence: true
-
-
   has_many :posts
   has_many :comments
   has_many :answers
@@ -38,5 +29,4 @@ class User < ActiveRecord::Base
     end
     return result
   end
-
 end

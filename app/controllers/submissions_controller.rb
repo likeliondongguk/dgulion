@@ -1,6 +1,6 @@
 class SubmissionsController < ApplicationController
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_task, except: [:other]
   # GET /submissions
   # GET /submissions.json
   def index
@@ -15,7 +15,6 @@ class SubmissionsController < ApplicationController
 
   end
   def other
-
     sub_id= params[:id]
     task_id= Submission.find(sub_id).task_id
     if params[:search]
@@ -25,7 +24,6 @@ class SubmissionsController < ApplicationController
     end
 
     @submissions = Submission.where(task_id: task_id).paginate(:page => params[:page], :per_page => 8)
-
     render 'submissions/index'
   end
   # GET /submissions/1
@@ -48,8 +46,8 @@ class SubmissionsController < ApplicationController
     @submission=Submission.new(submission_params)
     @submission.user=current_user
     @submission.task_id=params[:task_id]
-    @submission.save
-    redirect_to url_for(controller: :submissions, action: :show, id: @submission.id, task_id: @tasks.id)
+    @submission.t_save(current_user)
+    redirect_to url_for(controller: :submissions, action: :show, id: @submission.id, task_id: @submission.task_id)
   end
 
   # PATCH/PUT /submissions/1
@@ -63,7 +61,7 @@ class SubmissionsController < ApplicationController
   # DELETE /submissions/1.json
   def destroy
     @submission.destroy
-    redirect_to @submission
+    redirect_to url_for(controller: :submissions, action: :index, task_id: @submission.task_id)
   end
 
   private
@@ -71,7 +69,9 @@ class SubmissionsController < ApplicationController
     def set_submission
       @submission = Submission.find(params[:id])
     end
-
+    def set_task
+      @task = Task.find(params[:task_id])
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def submission_params
       params.require(:submission).permit(:title, :content)
