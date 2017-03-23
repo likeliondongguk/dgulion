@@ -1,11 +1,14 @@
 <p id="notice"><%= notice %></p>
 <div id="wrapper">
 
+
   <%= render partial: "sticky/mainMenu" %>
   <%= render "sticky/pageHeader", name: "Task" %>
 
+
   <section>
     <div class="container">
+
 
 
 
@@ -19,7 +22,8 @@
                 <%= submit_tag "Search" %>
             <% end %>
           </div>
-          <!-- /real search -->
+
+            <!-- /real search -->
 
           <!-- /INLINE SEARCH -->
 
@@ -45,13 +49,84 @@
             </form>
           </div>
           /INLINE SEARCH -->
+      <div class="box-footer">
+        <!-- INLINE SEARCH -->
 
+        <!-- /INLINE SEARCH -->
+
+      </div>
 
         <!-- LEFT -->
 
 
           <!-- FORUM 1 -->
-          <table class="table table-vertical-middle margin-bottom-60">
+
+
+
+
+
+            <% @tasks.each do |p| %>
+
+
+                <div class="box-image text-center width-250 col-md-3 row-md-3 padding-10 margin-right-30 border-2"
+                      style="width:228px;height:291px;overflow-x:hidden;overflow-y:hidden">
+
+                  <label>88% Completed</label>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width: 88%; min-width: 2em;"></div>
+                  </div>
+
+
+
+                    <% if p.is_submitted?(current_user) %>
+                       <div class="img-responsive" style="width:129px;height:149px;overflow-x:hidden;overflow-y:hidden; margin: auto">
+                         <!-- image_tag(p.image.url) needs to be changed-->
+                        <%= link_to "#{image_tag(p.image.url)}".html_safe, url_for(controller: :tasks, action: :show, id: p.id) %>
+                       </div>
+                    <% else %>
+                      <div class="img-responsive" style="width:129px;height:149px;overflow-x:hidden;overflow-y:hidden; margin: auto">
+                          <img class="img-responsive" src="<%= asset_path 'favicon_s.png' %>" alt="default" />
+                      </div>
+                    <% end %>
+
+
+
+
+
+                  <div class="box-image-title">
+                    <%=link_to "#{p.title}", url_for(controller: :tasks, action: :show, id: p.id) %>
+                    <div class="right">
+                        <ul class="list-inline categories nomargin text-muted size-11 hidden-xs">
+                          <%if  user_signed_in?%>
+                            <li><%= link_to 'Destroy', url_for(controller: :tasks, action: :destroy, id: p.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                            <li><%= link_to 'Edit', edit_task_path(p) %></li>
+                          <% end %>
+                          &nbsp
+                          <%= time_ago_in_words(p.created_at) %>
+
+                        </ul>
+                    </div>
+                  </div>
+
+                  <div class="panel-body padding-3">
+
+
+                      <%if  user_signed_in?%>
+                        <% if p.is_submitted?(current_user) %>
+                            <%= link_to '<span>See others</span>'.html_safe, url_for(controller: :submissions, action: :other, id: Submission.find_by(user_id: current_user.id, task_id: p.id)), class: "btn btn-warning" %>
+                            <%= link_to '<span>수정하기</span>'.html_safe, url_for(controller: :submissions, action: :edit,  id: Submission.find_by(user_id: current_user.id, task_id: p.id), task_id: p.id), class: "btn btn-primary" %>
+                        <% else %>
+                               <%= link_to '<span>Submit Task</span>'.html_safe, url_for(controller: :submissions, action: :new , task_id: p.id), class: "btn btn-success" %>
+                        <% end %>
+                      <% else %>
+
+                      <% end %>
+                  </div>
+                </div>
+
+            <% end %>
+              <!--
+              <table class="table table-vertical-middle margin-bottom-60">
             <thead>
             <tr class="size-15">
               <th class="weight-400">TASK Submit</th>
@@ -62,35 +137,32 @@
             </tr>
             </thead>
             <tbody>
-
-
-            <%@tasks.each do |p|%>
-              <tr>
+            <tr >
                 <td>
                   <h4 class="nomargin size-16">
-                    <a href="page-forum-post.html">
-                      <%=link_to "#{p.title}", url_for(controller: :tasks, action: :show, id: p.id) %>
 
-                    </a>
+                      <%#=link_to "#{p.title}", url_for(controller: :tasks, action: :show, id: p.id) %>
+
+
 
                     <ul class="list-inline categories nomargin text-muted size-11 hidden-xs">
                       <li>Created by <a href="#">Admin</a></li>
-                      <%if  user_signed_in?%>
-                        <li><%= link_to 'Destroy', url_for(controller: :tasks, action: :destroy, id: p.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
-                        <li><%= link_to 'Edit', edit_task_path(p) %></li>
-                      <% end %>
+                      <%#if  user_signed_in?%>
+                        <li><%#= link_to 'Destroy', url_for(controller: :tasks, action: :destroy, id: p.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                        <li><%#= link_to 'Edit', edit_task_path(p) %></li>
+                      <%# end %>
                     </ul>
 
                   </h4>
                 </td>
                 <td class="text-center hidden-xs">
-                  <a href="#"><a href="#"><%= time_ago_in_words(p.created_at) %></a></a>
+                  <a href="#"><%#= time_ago_in_words(p.created_at) %></a>
                 </td>
                 <td class="text-center hidden-xs">
                   <small class="block size-11 text-muted">
 
-                    <!-- Check the task -->
-                    <%= link_to '<span>Show Task</span>'.html_safe, url_for(controller: :tasks, action: :show, id: p.id) , class: "btn btn-success" %>
+                    &lt;!&ndash; Check the task &ndash;&gt;
+                    <%#= link_to '<span>Show Task</span>'.html_safe, url_for(controller: :tasks, action: :show, id: p.id) , class: "btn btn-success" %>
 
 
                   </small>
@@ -98,33 +170,41 @@
                 <td class="hidden-xs text-center">
                   <small class="block size-11 text-muted">
 
-                    <!-- If current_user already submitted Task, need to be shown "SeeOthers(submisstion/1 or submisstion/2 or...)"
-                    and "Edit" button-->
-                    <%if  user_signed_in?%>
-                      <% if @task.present? %>
-                      <%= link_to '<span>Submited</span>'.html_safe, url_for(new_task_path), class: "btn btn-success" %>
-                        <% else %>
-                        <%= link_to '<span>Submit Task</span>'.html_safe, url_for(controller: :submissions, action: :new , task_id: p.id), class: "btn btn-success" %>
-                      <% end %>
-                    <% end %>
+                    &lt;!&ndash; If current_user already submitted Task, need to be shown "SeeOthers(submisstion/1 or submisstion/2 or...)"
+                    and "Edit" button&ndash;&gt;
+                    <%#if  user_signed_in?%>
+                      <%# if @task.present? %>
+                      <%#= link_to '<span>Submited</span>'.html_safe, url_for(new_task_path), class: "btn btn-success" %>
+                        <%# else %>
+                        <%#= link_to '<span>Submit Task</span>'.html_safe, url_for(controller: :submissions, action: :new , task_id: p.id), class: "btn btn-success" %>
+                      <%# end %>
+                    <%# end %>
                   </small>
 
-                  <!--<a class="size-13" href="page-profile.html">Joanna Doe</a>-->
+                  &lt;!&ndash;<a class="size-13" href="page-profile.html">Joanna Doe</a>&ndash;&gt;
                 </td>
-              </tr>
-            <% end %>
+              </tr>-->
+
 
 
             </tbody>
           </table>
           <!-- /FORUM 1 -->
 
+
+
+
+
+
+
+
+
           <div class="divider nomargin"><!-- divider --></div>
           <div class="text-center"><%= will_paginate @tasks %></div>
           <div class="clearfix margin-bottom-60">
             <!-- Need to be hidden when current_user is not Admin-->
 
-            <%= link_to '<span>New Task</span>'.html_safe, url_for(new_task_path), class: "btn btn-warning" %>
+
             <!-- Need to add 'Only admin authorize' function -->
 
           </div>
@@ -152,16 +232,19 @@
 
 
 
-
+      <div>
+        <%= link_to '<span>New Task</span>'.html_safe, url_for(new_task_path), class: "btn btn-warning" %>
+      </div>
     </div>
+
   </section>
+
   <!-- / -->
 </div>
 
 
 
 <br>
-
 <%= render partial: "script"%>
 <%= render partial: "search"%>
 
