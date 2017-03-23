@@ -54,7 +54,7 @@ class SubmissionsController < ApplicationController
   # PATCH/PUT /submissions/1.json
   def update
     @submission.update(submission_params)
-    redirect_to @submission
+    redirect_to url_for(controller: :submissions, action: :show, id: @submission.id, task_id: @submission.task_id)
   end
 
   # DELETE /submissions/1
@@ -74,6 +74,7 @@ class SubmissionsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def submission_params
-      params.require(:submission).permit(:title, :content)
+      params.require(:submission).permit(:title, :content, :image)
+
     end
 end

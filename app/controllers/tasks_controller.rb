@@ -33,7 +33,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task=Task.new(task_params)
-    @task.save
+    @task.t_save
     redirect_to url_for(controller: :tasks, action: :index, id: @task.id)
   end
 
@@ -59,6 +59,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :content)
+      params.require(:task).permit(:title, :content, :image)
     end
 end
