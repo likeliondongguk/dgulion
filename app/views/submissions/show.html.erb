@@ -1,0 +1,206 @@
+
+
+<!--
+  AVAILABLE BODY CLASSES:
+
+  smoothscroll 			= create a browser smooth scroll
+  enable-animation		= enable WOW animations
+
+  bg-grey					= grey background
+  grain-grey				= grey grain background
+  grain-blue				= blue grain background
+  grain-green				= green grain background
+  grain-blue				= blue grain background
+  grain-orange			= orange grain background
+  grain-yellow			= yellow grain background
+
+  boxed 					= boxed layout
+  pattern1 ... patern11	= pattern background
+  menu-vertical-hide		= hidden, open on click
+
+  BACKGROUND IMAGE [together with .boxed class]
+  data-background="assets/images/boxed_background/1.jpg"
+-->
+
+<!-- wrapper -->
+<div id="wrapper">
+
+
+  <!--
+    AVAILABLE HEADER CLASSES
+
+    Default nav height: 96px
+    .header-md 		= 70px nav height
+    .header-sm 		= 60px nav height
+
+    .noborder 		= remove bottom border (only with transparent use)
+    .transparent	= transparent header
+    .translucent	= translucent header
+    .sticky			= sticky header
+    .static			= static header
+    .dark			= dark header
+    .bottom			= header on bottom
+
+    shadow-before-1 = shadow 1 header top
+    shadow-after-1 	= shadow 1 header bottom
+    shadow-before-2 = shadow 2 header top
+    shadow-after-2 	= shadow 2 header bottom
+    shadow-before-3 = shadow 3 header top
+    shadow-after-3 	= shadow 3 header bottom
+
+    .clearfix		= required for mobile menu, do not remove!
+
+    Example Usage:  class="clearfix sticky header-sm transparent noborder"
+  -->
+
+
+  <!--
+    PAGE HEADER
+
+    CLASSES:
+      .page-header-xs	= 20px margins
+      .page-header-md	= 50px margins
+      .page-header-lg	= 80px margins
+      .page-header-xlg= 130px margins
+      .dark			= dark page header
+
+      .shadow-before-1 	= shadow 1 header top
+      .shadow-after-1 	= shadow 1 header bottom
+      .shadow-before-2 	= shadow 2 header top
+      .shadow-after-2 	= shadow 2 header bottom
+      .shadow-before-3 	= shadow 3 header top
+      .shadow-after-3 	= shadow 3 header bottom
+  -->
+  <%= render partial: "sticky/mainMenu" %>
+  <%= render "sticky/pageHeader", name: "Show" %>
+
+
+
+  <!-- -->
+  <section>
+    <div class="container">
+
+      <br><br>
+      <div class="row">
+        <!-- LEFT -->
+        <div class="col-md-9 col-sm-9">
+
+
+          <h1 class="blog-post-title"><%=@submission.title%>
+
+
+            <!--% if @submission.is_writer?(current_user) %> -->
+            <% if @submission.is_writer?(current_user) %>
+              <%= link_to '<span>수정하기</span>'.html_safe, url_for(controller: :submissions, action: :edit,  id: @submission.id, task_id: @task.id), class: "btn btn-primary" %>
+              <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :submissions, action: :destroy, id: @submission.id, task_id: @task.id), method: :delete, class: "btn btn-danger", data: {confirm: 'Are you sure?'} %>
+              <%= link_to '<span>See others</span>'.html_safe, url_for(controller: :submissions, action: :other, id: @submission.id), class: "btn btn-warning" %>
+            <% end %>
+            <!--% end %> -->
+          </h1>
+
+
+
+
+          <ul class="blog-post-info list-inline">
+            <li>
+              <a href="#">
+                <i class="fa fa-user"></i>
+                <span class="font-lato">Writer : <%= @submission.user.username %></span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-clock-o"></i>
+                <span class="font-lato">Written Time : <%= time_ago_in_words(@submission.created_at) %></span>
+              </a>
+            </li>
+            <!--<li>
+              <a href="#">
+                <i class="fa fa-comment-o"></i>
+                <span class="font-lato"><%= @submission.comments.count %> comments</span>
+              </a>
+            </li>-->
+
+          </ul>
+
+
+
+          <!-- IMAGE -->
+          <!--
+          <figure class="margin-bottom-20">
+            <img class="img-responsive" src="assets/images/demo/content_slider/10-min.jpg" alt="img" />
+          </figure>
+          -->
+          <!-- /IMAGE -->
+
+          <!-- VIDEO -->
+          <!--
+          <div class="margin-bottom-20 embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="http://player.vimeo.com/video/8408210" width="800" height="450"></iframe>
+          </div>
+          -->
+          <!-- /VIDEO -->
+
+
+          <!-- article content -->
+
+
+          <!-- BLOCKQUOTE -->
+          <blockquote>
+
+
+              <div class="img-responsive" style="width:100%;height:170px;overflow-x:hidden;overflow-y:hidden; margin: auto">
+                <!-- image_tag(p.image.url) needs to be changed-->
+                <%= image_tag(@submission.image.url(:medium)).html_safe %>
+              </div>
+              <br>
+            <p>
+              <%=@submission.content.html_safe%>
+            </p>
+
+
+          </blockquote>
+
+          <!-- /article content -->
+
+
+          <div class="divider divider-dotted"><!-- divider --></div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / -->
+
+
+
+
+
+</div>
+<%= render partial: "script"%>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<a href="#" id="toTop"></a>
+
+
+<!--
+  PRELOADER
+<div id="preloader">
+  <div class="inner">
+    <span class="loader"></span>
+  </div>
+</div> /PRELOADER
+-->
+
