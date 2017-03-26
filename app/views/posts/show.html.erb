@@ -1,0 +1,93 @@
+<div id="wrapper">
+  <%= render 'sticky/mainMenu' %>
+  <%= render 'sticky/pageHeader', name: 'board' %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="heading-title">
+            <h2><%= @post.title %></h2>
+            <ul class="padding-bottom-10 blog-post-info list-inline">
+              <li>
+                <i class="fa fa-folder-open-o"></i>
+                <a class="category" href="#">
+                  <span class="font-lato"><%= @post.category.name %></span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-user"></i>
+                  <span class="font-lato"><%= @post.user.username %></span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-clock-o"></i>
+                  <span class="font-lato"><%= time_ago_in_words(@post.created_at) %></span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-comment-o"></i>
+                  <span class="font-lato"><%= @post.comments.count %></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 text-right">
+          <a href="<%= url_for(category_posts_path(@category)) %>" class="btn btn-reveal btn-sm btn-3d btn-blue">
+            <i class="fa fa-home"></i>
+            <span>Back</span>
+          </a>
+          <ul class="margin-top-6 list-inline">
+            <% if @post.is_writer? current_user %>
+                <li class="text-right">
+                  <%= link_to '<span>수정하기</span>'.html_safe, url_for(controller: :posts, action: :edit, category_id: @category.id, id: @post.id), class: "btn btn-xs btn-3d btn-green" %>
+                </li>
+                <li class="text-right">
+                  <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :posts, action: :destroy,category_id: @category.id, id: @post.id), method: :delete, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="margin-top-0 panel panel-default">
+        <div class="panel-body">
+          <p class="font-lato size-18">
+            <%= @post.content.html_safe %>
+          </p>
+        </div>
+      </div>
+      <div class="devider"></div>
+      <div id="comments" class="comments">
+        <h4 class="page-header margin-bottom-60 size-20">
+          <span><%= @post.comments.count %></span> COMMENTS
+        </h4>
+        댓글은 여기야
+        <!--댓글 달기폼-->
+        <%= render 'comments/form', commentable: @post, url: :post, category: @category %>
+        <!--댓글 달기 폼끝-->
+        <!--댓글 리스트 반복문 시작 -->
+        <div class="comment-list">
+          <% count =0 %>
+          <% @post.comments.each do |comment| %>
+              <!--count보다 더 많이 돌아가는 버그-->
+              <% unless count >= @post.comments.count %>
+                  <!--댓글달기 ajax용 렌더-->
+                  <%= render 'comments/item', comment: comment, url: :post, category: @category %>
+              <% end %>
+              <% count+=1 %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <%#= render 'sticky/footer' %>
+</div>
+<%= render 'home/script' %>
+
+
+
+
+

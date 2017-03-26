@@ -1,7 +1,7 @@
 <div id="wrapper">
   <%= render "sticky/mainMenu" %>
-  <%#= render "sticky/pageHeader", name: "헤더" %>
-  <%= render 'sticky/pageHeader2' %>
+  <%= render "sticky/pageHeader", name: "헤더" %>
+  <%#= render 'sticky/pageHeader2' %>
   <%= render 'sticky/blank' %>
 
   <%= hidden_field_tag :user_id, "#{current_user.username unless current_user.nil?}" %>

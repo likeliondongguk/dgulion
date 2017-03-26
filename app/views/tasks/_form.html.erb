@@ -1,0 +1,31 @@
+<% case url %>
+<% when :new then
+     path=url_for(controller: :tasks, action: :create)%>
+
+<% when :create then
+     path=tasks_create_path %>
+
+<% when :edit then
+
+     path=  url_for(controller: :tasks, action: :update, id: @task.id) %>
+
+<% end %>
+<%= form_for(@task, url: path, html: {multipart: true}) do |b| %>
+    <div class="field">
+      <%= b.label :title %><br>
+      <%= b.text_field :title %>
+    </div>
+    <div class="field">
+      <%= b.label :content %><br>
+      <%= b.text_area :content, class: :summernote %>
+    </div>
+
+    <!-- Need to set up devise by getting pull through jongwon's part-->
+    <div class="field">
+      <!--<input name="task[user_id]" id="task_user_id" value="" type="hidden"> -->
+    </div>
+    <br>
+    <div class="actions">
+      <%= b.submit '저장'%>
+    </div>
+<% end %>

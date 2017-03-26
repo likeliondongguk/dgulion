@@ -1,0 +1,29 @@
+<div id="wrapper">
+  <%= render 'sticky/mainMenu' %>
+  <%= render 'sticky/pageHeader', name: '일정' %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-heading panel-heading-transparent">
+            <div class="row">
+              <div class="col-md-9">
+                <h2 class="panel-title bold">
+                  일정 수정
+                </h2>
+              </div>
+              <div class="col-md-3 text-right">
+                <a href="<%= url_for(sches_path(@sch)) %>" class="btn btn-reveal btn-sm btn-3d btn-blue">
+                  <i class="fa fa-home"></i>
+                  <span>뒤로가기</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <%= render 'form' %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<%= render 'home/script' %>

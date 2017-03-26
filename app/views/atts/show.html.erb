@@ -1,0 +1,42 @@
+<div id="wrapper">
+  <%= render 'sticky/mainMenu' %>
+  <%= render 'sticky/pageHeader', name: 'schedule' %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="table-responsive">
+          <!--이거 여러 오브젝트 한번에 받는 form_tag-->
+          <%= form_tag url_for(controller: :atts, action: :update),method: :patch do %>
+              <table class="table table-bordered">
+                <thead>
+                <tr>
+                  <th>일정 이름</th>
+                  <th>학생 이름</th>
+                  <th>출석 상태</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @atts.each do |att| %>
+                    <%= fields_for 'atts[]', att do |p| %>
+                        <tr>
+                          <td><%= att.sch.title %></td>
+                          <td><%= att.user.username %></td>
+                          <td>
+                            <label><%= p.radio_button :status, 'true' %> 출석</label>
+                            <label><%= p.radio_button :status, 'false' %> 결석</label>
+                        </tr>
+                    <% end %>
+                <% end %>
+                </tbody>
+              </table>
+              <%= submit_tag %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SCROLL TO TOP -->
+<a href="#" id="toTop"></a>
+<%= render partial: "home/script" %>

@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
-<!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
-<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
-<head>
+
+
   <meta charset="utf-8" />
   <title>post_details</title>
   <meta name="keywords" content="HTML5,CSS3,Template" />
@@ -26,7 +23,7 @@
   <!-- PAGE LEVEL SCRIPTS -->
   <link href="assets/css/header-1.css" rel="stylesheet" type="text/css" />
   <link href="assets/css/color_scheme/green.css" rel="stylesheet" type="text/css" id="color_scheme" />
-</head>
+
 
 <!--
   AVAILABLE BODY CLASSES:
@@ -49,7 +46,6 @@
   BACKGROUND IMAGE [together with .boxed class]
   data-background="assets/images/boxed_background/1.jpg"
 -->
-<body class="smoothscroll enable-animation">
 
 <!-- wrapper -->
 <div id="wrapper">
@@ -100,36 +96,25 @@
       .shadow-before-3 	= shadow 3 header top
       .shadow-after-3 	= shadow 3 header bottom
   -->
-  <section class="page-header dark page-header-xs">
-    <div class="container">
-
-      <h1>common_post_show</h1>
-
-      <!-- breadcrumbs -->
-      <ol class="breadcrumb">
-        <li><a href="/">Main</a></li>
-        <li><a href="board">Board</a></li>
-        <li class="active">common_post</li>
-      </ol><!-- /breadcrumbs -->
-
-    </div>
-  </section>
-  <!-- /PAGE HEADER -->
-
+  <%= render partial: "sticky/mainMenu" %>
+  <%= render "sticky/pageHeader", name: "Show" %>
 
 
 
   <!-- -->
   <section>
     <div class="container">
-
+      <div class="right">
+        <% if @board.is_writer?(current_user) %>
+            <div class="text-right">
+              <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_board_path(@board)), class: "btn btn-primary" %>
+              <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :boards, action: :destroy, id: @board.id), method: :delete, class: "btn btn-danger", data: {confirm: 'Are you sure?'} %>
+              <%= link_to '<span>돌아가기</span>'.html_safe, url_for(boards_index_path), class: "btn btn-warning" %>
+            </div>
+        <% end %>
+      </div>
+      <br><br>
       <div class="row">
-        <div align="right">
-          <%= link_to 'edit post', edit_board_path(@board) %>
-          <%= link_to 'delete post', @board, method: :delete %>
-          <%= link_to '돌아가기', boards_path %>
-
-        </div><br>
         <!-- LEFT -->
         <div class="col-md-9 col-sm-9">
 
@@ -139,37 +124,25 @@
             <li>
               <a href="#">
                 <i class="fa fa-user"></i>
-                <span class="font-lato">Author</span>
+                <span class="font-lato">Writer : <%= @board.user.username %></span>
               </a>
             </li>
             <li>
               <a href="#">
                 <i class="fa fa-clock-o"></i>
-                <span class="font-lato">common_post_created or edited time</span>
+                <span class="font-lato">Written Time : <%= time_ago_in_words(@board.created_at) %></span>
               </a>
             </li>
             <li>
               <a href="#">
                 <i class="fa fa-comment-o"></i>
-                <span class="font-lato"># of Comments</span>
+                <span class="font-lato"><%= @board.comments.count %> comments</span>
               </a>
             </li>
 
           </ul>
 
-          <!-- OWL SLIDER -->
-          <div class="owl-carousel buttons-autohide controlls-over" data-plugin-options='{"items": 1, "autoPlay": 4500, "autoHeight": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp", "progressBar":"false"}'>
-            <a class="lightbox" href="assets/images/demo/1200x800/10-min.jpg" data-plugin-options='{"type":"image"}'>
-              <img class="img-responsive" src="assets/images/demo/content_slider/10-min.jpg" alt="" />
-            </a>
-            <a class="lightbox" href="assets/images/demo/1200x800/3-min.jpg" data-plugin-options='{"type":"image"}'>
-              <img class="img-responsive" src="assets/images/demo/content_slider/3-min.jpg" alt="" />
-            </a>
-            <a class="lightbox" href="assets/images/demo/1200x800/21-min.jpg" data-plugin-options='{"type":"image"}'>
-              <img class="img-responsive" src="assets/images/demo/content_slider/21-min.jpg" alt="" />
-            </a>
-          </div>
-          <!-- /OWL SLIDER -->
+
 
           <!-- IMAGE -->
           <!--
@@ -189,16 +162,13 @@
 
 
           <!-- article content -->
-          <p class="dropcap"><%=@board.content%></p>
+
 
           <!-- BLOCKQUOTE -->
           <blockquote>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <cite>Source Title</cite>
+            <p class="dropcap"><%=@board.content.html_safe%></p>
           </blockquote>
 
-          <p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.Quisque velit nisi, pretium ut lacinia in, elementum id enim. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Pellentesque in ipsum id orci porta dapibus. Nulla quis lorem ut libero malesuada feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
-          <p>Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           <!-- /article content -->
 
 
@@ -333,52 +303,9 @@
 
 
 
-            <h4 class="page-header size-20 margin-bottom-60 margin-top-100">
-              LEAVE A <span>COMMENT</span>
-            </h4>
 
-            <!-- Form -->
-            <form action="#" method="post">
 
-              <div class="row">
-                <div class="form-group">
-                  <div class="col-md-4">
-                    <label>NAME</label>
-                    <input required="required" type="text" value="" maxlength="100" class="form-control input-lg" name="author" id="author">
-                  </div>
-                  <div class="col-md-4">
-                    <label>EMAIL</label>
-                    <input required="required" type="email" value="" maxlength="100" class="form-control input-lg" name="contact_email" id="contact_email">
-                  </div>
-                  <div class="col-md-4">
-                    <label>WEBSITE</label>
-                    <input type="email" value="" maxlength="100" class="form-control input-lg" name="url" id="url">
-                  </div>
-                </div>
-              </div>
 
-              <div class="row">
-                <div class="form-group">
-                  <div class="col-md-12">
-                    <label>COMMENT</label>
-                    <textarea required="required" maxlength="5000" rows="5" class="form-control" name="comment" id="comment"></textarea>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-
-                  <button class="btn btn-3d btn-lg btn-reveal btn-black">
-                    <i class="fa fa-check"></i>
-                    <span>SUBMIT MESSAGE</span>
-                  </button>
-
-                </div>
-              </div>
-
-            </form>
-            <!-- /Form -->
 
           </div>
           <!-- /COMMENTS -->
@@ -535,6 +462,7 @@
 
 
 </div>
+<%= render partial: "script"%>
 <!-- /wrapper -->
 
 
@@ -551,15 +479,3 @@
 </div> /PRELOADER
 -->
 
-
-<!-- JAVASCRIPT FILES -->
-<script type="text/javascript">var plugin_path = 'assets/plugins/';</script>
-<script type="text/javascript" src="assets/plugins/jquery/jquery-2.2.3.min.js"></script>
-
-<script type="text/javascript" src="assets/js/scripts.js"></script>
-
-<!-- STYLESWITCHER - REMOVE -->
-<script async type="text/javascript" src="assets/plugins/styleswitcher/styleswitcher.js"></script>
-
-</body>
-</html>

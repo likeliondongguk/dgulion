@@ -1,0 +1,117 @@
+<div id="wrapper">
+  <%= render 'sticky/mainMenu' %>
+  <%= render 'sticky/pageHeader', name: "schedule" %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="heading-title">
+            <h2><%= @sch.title %></h2>
+            <ul class="padding-bottom-10 blog-post-info list-inline">
+              <li>
+                <a href=""><i class="fa fa-clock-o"></i>
+                  <span class="font-lato">
+                <%= @sch.date %>
+              </span>
+                </a>
+              </li>
+              <li><a href="">
+                <i class="fa fa-comment-o"></i>
+                <span class="font-lato">
+                <%= @sch.form %>
+              </span>
+              </a></li>
+              <li><a href="">
+                <i class="fa fa-comment-o"></i>
+                <span class="font-lato">
+                100%
+              </span>
+              </a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 text-right">
+          <a href="<%= url_for(sches_path) %>" class="btn btn-reveal btn-sm btn-3d btn-blue">
+            <i class="fa fa-home"></i>
+            <span>Back</span>
+          </a>
+          <ul class="margin-top-6 list-inline">
+            <% if user_signed_in?&&current_user.admin %>
+                <li class="text-right">
+                  <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_sch_path(@sch)), class: "btn btn-xs btn-3d btn-green" %>
+                </li>
+                <li class="text-right">
+                  <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :sches, action: :destroy, id: @sch.id), method: :delete, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="margin-top-0 panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <img class="pull-left img-responsive margin-bottom-20 margin-left-20" src="<%=@sch.image%>" width="300" alt="" />
+            <h2>일정 내용</h2>
+            <p><%= @sch.content %></p>
+          </div>
+          <div class="row">
+
+            <div class="col-md-6">
+
+              <div class="box-icon box-icon-center box-icon-round box-icon-transparent box-icon-large box-icon-content">
+                <div class="box-icon-title">
+                  <i class="fa fa-check-circle-o"></i>
+                  <h2>참석</h2>
+                </div>
+                <br>
+                <div class="tag-list hidden-xs">
+                  <% @sch.att_status(true).each do |att| %>
+                      <a href="<%= url_for(mypage_path(att.user.id)) %>" class="btn btn-default" >
+                        <%= att.user.username %>
+                      </a>
+                  <% end %>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+              <div class="box-icon box-icon-center box-icon-round box-icon-transparent box-icon-large box-icon-content">
+                <div class="box-icon-title">
+                  <i class="fa fa-close"></i>
+                  <h2>불참석</h2>
+                </div>
+                <br>
+                <div class="tag-list hidden-xs">
+                  <% @sch.att_status(false).each do |att| %>
+                      <a href="<%= url_for(mypage_path(att.user.id)) %>" class="btn btn-danger" >
+                        <%= att.user.username %>
+                      </a>
+                  <% end %>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <%if user_signed_in? && current_user.admin? %>
+            <div class="panel-footer text-right">
+              <a href="<%= url_for(sch_atts_path(@sch)) %>" class="btn btn-reveal btn-default">
+                <i class="fa fa-plus"></i>
+                <span>출석 체크 하러가기</span>
+              </a>
+            </div>
+        <%end%>
+
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<!-- SCROLL TO TOP -->
+<a href="#" id="toTop"></a>
+<%= render partial: "home/script" %>

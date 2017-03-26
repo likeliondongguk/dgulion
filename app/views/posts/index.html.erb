@@ -1,0 +1,82 @@
+<div id="wrapper">
+  <%= render partial: "sticky/mainMenu" %>
+  <%= render "sticky/pageHeader", name: "Board" %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <!-- POST ITEM -->
+        <div class="blog-post-item container">
+          <!-- go to write button-->
+          <div class="row ">
+            <div class="col-md-6">
+              <ul class="nav nav-pills margin-bottom-30">
+                <li class="<%= @category.get_active(Category.find_by_name("all")) %>">
+                  <a href="<%= url_for(category_posts_path(Category.find_by_name("all"))) %>">전체 게시판</a></li>
+                <li class="<%= @category.get_active(Category.find_by_name("board")) %>">
+                  <a href="<%= url_for(category_posts_path(Category.find_by_name("board"))) %>">자유게시판</a></li>
+                <li class="<%= @category.get_active(Category.find_by_name("anony")) %>">
+                  <a href="<%= url_for(category_posts_path(Category.find_by_name("anony"))) %>">익명게시판</a></li>
+                <li class="<%= @category.get_active(Category.find_by_name("notice")) %>">
+                  <a href="<%= url_for(category_posts_path(Category.find_by_name("notice"))) %>">공지사항</a></li>
+                <li class="<%= @category.get_active(Category.find_by_name("event")) %>">
+                  <a href="<%= url_for(category_posts_path(Category.find_by_name("event"))) %>">이벤트</a></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <% if user_signed_in? %>
+                  <div align="right">
+                    <% unless @category.name=='all' %>
+                        <%= link_to '<span>글 쓰기</span>'.html_safe, url_for(new_category_post_path(@category)), class: "btn btn-success" %>
+                    <% end %>
+
+                  </div>
+                  <br>
+              <% end %>
+            </div>
+            <div></div>
+            <table class="table table-vertical-middle margin-bottom-30 table-hover table-bordered" >
+              <thead>
+              <tr class="size-15">
+                <th class="text-center hidden-xs width-100 weight-300">게시판</th>
+                <th class="weight-400">제목</th>
+                <th class="text-center hidden-xs width-100 weight-300">댓글</th>
+                <th class="text-center hidden-xs width-200 weight-300">작성자</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @posts.each do |board| %>
+                  <tr class="<%= board.category.name %>">
+                    <td class="text-center tag-list hidden-xs">
+                      <a href="<%= url_for(category_posts_path(Category.find_by_name("#{board.category.name}"))) %>" class="label label-default"><%= board.category.name %></a>
+                    </td>
+                    <td class="weight-400">
+                      <h4 class="nomargin size-16">
+                        <!--글 제목-->
+                        <a href="<%= url_for(controller: :posts, action: :show, category_id: @category.id, id: board.id) %>">
+                          <%= board.title %>
+                        </a>
+                      </h4>
+                    </td>
+                    <td class="text-center hidden-xs">
+                      <a href="#"><%= board.comments.count %></a>
+                    </td>
+                    <td class="hidden-xs text-center">
+                      <small class="block size-11 text-muted"><%= time_ago_in_words(board.created_at) %></small>
+                      <a class="size-13" href="page-profile.html"><%= board.user.username %></a>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- /POST ITEM -->
+      </div>
+    </div>
+  </section>
+  <!-- FOOTER -->
+  <%#= render partial: "sticky/footer" %>
+</div>
+<!-- SCROLL TO TOP -->
+<a href="#" id="toTop"></a>
+<%= render partial: "home/script" %>

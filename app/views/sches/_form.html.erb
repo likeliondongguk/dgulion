@@ -1,0 +1,37 @@
+<%= form_for(@sch, html: {multipart: true}) do |f| %>
+    <div class="panel-body">
+      <% if @sch.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@sch.errors.count, "error") %> prohibited this sch from being saved:</h2>
+
+            <ul>
+              <% @sch.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <label>일정 이름</label>
+      <%= f.text_field :title, class: "form-control",placeholder: "ex) [1주] 일정 제목" %>
+      <br>
+      <label>일정 날짜</label>
+      <%= f.text_field :date, class: "form-control datepicker", autocomplete: false,placeholder: "  일정 날짜를 선택하세요" %>
+      <br>
+      <label>일정 소개</label>
+      <div class="fancy-form"><!-- textarea -->
+        <%= f.text_area :content, class: "form-control word-count", rows: 4, maxlength: 300,placeholder: "간단히 일정에 대한 설명을 적어주세요" %>
+        <i class="et-calendar"><!-- icon --></i>
+      </div>
+      <br>
+      <label>일정 이미지 등록</label>
+      <input class="custom-file-upload" type="file" id="file" name="image" id="contact:attachment" data-btn-text="파일 선택"/>
+      <small class="text-muted block">Max file size: 10Mb (zip/pdf/jpg/png)</small>
+      <br>
+      <label><%= f.check_box :form, {}, 'true', 'false' %> 출석 체크 여부 (출석체크를 원하면 체크해주세요)  </label>
+      <br>
+      <label><%= f.check_box 'home_check', {}, 'true', 'false' %> 홈 일정 공개 여부(홈 화면에서 일정공개를 원하면 체크해주세요)  </label>
+    </div>
+    <div class="panel-footer text-right">
+      <%= f.submit class: "btn btn-success" %>
+    </div>
+<% end %>

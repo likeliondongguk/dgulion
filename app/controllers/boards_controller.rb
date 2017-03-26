@@ -1,17 +1,26 @@
 class BoardsController < ApplicationController
+
   before_action :set_board, only: [:show, :edit, :update, :destroy ]
   def index
-    @boards=Board.all
+    if params[:search]
+      @boards = Category.get_posts("board").search(params[:search]).order("created_at DESC")
+    else
+      @boards = Category.get_posts("board").all.order('created_at DESC')
+    end
   end
   def show
   end
+
+
   def new
-    @board = Board.new
+    @board = Post.new
   end
   def create
-    @board=Board.new(board_params)
+    @board=Post.new(board_params)
+    @board.category=Category.find_by_name("board")
+    @board.user=current_user
     @board.save
-    redirect_to url_for(controller: :boards, action: :show, id: @board.id)
+    redirect_to url_for(controller: :boards, action: :index, id: @board.id)
   end
   def edit
   end
@@ -26,9 +35,9 @@ class BoardsController < ApplicationController
 
   private
   def set_board
-    @board=Board.find(params[:id])
+    @board=Category.get_posts("board").find(params[:id])
   end
   def board_params
-    params.require(:board).permit(:title, :content)
+    params.require(:post).permit(:title, :content)
   end
 end

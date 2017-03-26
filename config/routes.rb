@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'mypage/index'
 
+  resources :submissions
   devise_for :users, controllers: {
       :registrations => "user/registrations",
       :sessions => "user/sessions" }
@@ -12,7 +13,12 @@ Rails.application.routes.draw do
   get 'boards/index'
   post 'boards/index'
   get 'boards/header'
-  resources :boards
+
+  get 'task' => 'tasks/index'
+  get 'task/:id' => 'tasks#show'
+
+  get 'submissions/index'
+
   # nojong
   resources :blogs do
     resources :comments, module: :blog, only: [:create, :destroy]
@@ -25,6 +31,17 @@ Rails.application.routes.draw do
   get '/mypage/:user_id' => 'mypage#index', as: 'mypage'
   get '/answers/select/:id' => 'answers#select'
   get '/questions/asktags/:tag_id' => 'tags#search'
+  # sungjun
+  resources :boards do
+    resources :comments, module: :boards, only: [:create, :destroy]
+  end
+
+  #sungjun
+  resources :tasks do
+    resources :submissions, only: [:new ,:create]
+  end
+  get 'submissions/submittedlist/:id' => "submissions#other"
+
   post '/imageUpload' => 'summerimage#imageUpload'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

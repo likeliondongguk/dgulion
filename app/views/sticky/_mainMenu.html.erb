@@ -161,17 +161,11 @@
             </a>
           </li>
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="">
-              <i class="et-beaker"></i>
-              과제
+            <a href="<%= url_for(tasks_path) %>">
+              <i class="et-layers"></i>
+              Task
             </a>
-            <ul class="dropdown-menu">
-              <li><a href="portfolio-grid-2-columns.html">2 Columns</a></li>
-              <li><a href="portfolio-grid-3-columns.html">3 Columns</a></li>
-              <li><a href="portfolio-grid-4-columns.html">4 Columns</a></li>
-              <li><a href="portfolio-layout-default.html">Single Basic</a></li>
-              <li><a href="portfolio-layout-aside-left.html">Left Sidebar</a></li>
-            </ul>
+
           </li>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="">
@@ -179,19 +173,19 @@
               게시판
             </a>
             <ul class="dropdown-menu">
-              <li><a href="<%= url_for(boards_index_path) %>">자유 게시판</a></li>
+              <li><a href="<%= url_for(category_posts_path(Category.get_default)) %>">자유 게시판</a></li>
               <li><a href="blog-default-aside-right.html">사진 게시판</a></li>
               <li><a href="<%= url_for(questions_path) %>">질문 게시판</a></li>
             </ul>
           </li>
           <li>
-            <a href="page-contact-1.html">
+            <a href="">
               <i class="et-lightbulb"></i>
               아이디어
             </a>
           </li>
           <li>
-            <a href="page-contact-1.html">
+            <a href="<%= url_for(sches_path) %>">
               <i class="et-calendar"></i>
               일정
             </a>

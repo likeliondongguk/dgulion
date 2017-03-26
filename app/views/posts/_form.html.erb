@@ -1,0 +1,23 @@
+<% case url %>
+<% when :new then
+     path=category_posts_path(@category) %>
+<% when :edit then
+     path= url_for(controller: :posts, action: :update, id: @post.id, category_id: @category.id) %>
+<% end %>
+
+<%= form_for(@post, url: path, html: {multipart: true}) do |f| %>
+    <div class="panel-body">
+
+      <label>제목</label>
+      <%= f.text_field :title, class: "form-control" %>
+      <br>
+      <label>본문</label>
+      <%= f.text_area :content, class: :summernote %>
+      <br>
+    </div>
+    <div class="panel-footer text-right">
+      <%= f.submit class: "btn btn-success" %>
+    </div>
+
+
+<% end %>

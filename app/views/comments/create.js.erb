@@ -1,6 +1,10 @@
-(function($){
+(function ($) {
     console.log("<%= @comment.body %>")
     $("#comment_body").val("")
+    <%if @url==:post %>
+    var html = "<%= escape_javascript(render(partial: 'comments/item', locals: {comment: @comment, url: @url,  category: @category})) %>";
+    <%else%>
     var html = "<%= escape_javascript(render(partial: 'comments/item', locals: {comment: @comment, url: @url})) %>";
+    <%end%>
     $("#comments").append(html);
 })(jQuery)

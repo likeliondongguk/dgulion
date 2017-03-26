@@ -1,8 +1,13 @@
 <% case url %>
 <% when :new then
-     path=boards_index_path %>
+     path=url_for(controller: :boards, action: :create)%>
+
+<% when :create then
+     path=boards_create_path %>
+
 <% when :edit then
      path=  url_for(controller: :boards, action: :update, id: @board.id) %>
+
 <% end %>
 <%= form_for(@board, url: path, html: {multipart: true}) do |b| %>
     <div class="field">
@@ -15,8 +20,11 @@
     </div>
 
     <!-- Need to set up devise by getting pull through jongwon's part-->
-    <input type="hidden" name="board[user_id]" value="<%=current_user.id unless current_user.nil?%>" id="board_user_id">
+    <div class="field">
+      <!--<input name="board[user_id]" id="board_user_id" value="" type="hidden"> -->
+    </div>
+    <br>
     <div class="actions">
-      <%= b.submit '저장' %>
+      <%= b.submit '저장'%>
     </div>
 <% end %>

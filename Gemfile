@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem "simple_calendar", "~> 2.0"
+gem 'paginate'
 gem 'select2-rails'
 gem 'figaro'
 gem 'fog-aws'

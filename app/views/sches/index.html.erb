@@ -1,0 +1,72 @@
+<div id="wrapper">
+  <%= render 'sticky/mainMenu' %>
+  <%= render 'sticky/pageHeader', name: "schedule" %>
+  <section>
+    <p id="notice"><%= notice %></p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <%= month_calendar events: @sches do |date, meetings| %>
+              <%= date %>
+              <% meetings.each do |meeting| %>
+                  <a href="<%= url_for(sch_path(meeting)) %>">
+                    <div>
+                      <span class="label <%= meeting.form == true ? "label-primary" : "label-danger" %>"><%=truncate(meeting.title, length: 11)  %></span>
+                      <br>
+                    </div>
+                  </a>
+              <% end %>
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <div class="text-right">
+            <% if user_signed_in? && current_user.admin %>
+                <%= link_to '<span>일정 만들기</span>'.html_safe, url_for(new_sch_path), class: "btn btn-success" %>
+                <br>
+                <br>
+            <% end %>
+          </div>
+
+          <!-- CATEGORIES -->
+          <div class="side-nav">
+            <div class="side-nav-head">
+              <button class="fa fa-bars"></button>
+              <h4>월별 일정</h4>
+            </div>
+            <ul class="list-group list-group-bordered list-group-noicon uppercase">
+              <% @sches.month_ary.each do |sch_month| %>
+                  <li class="list-group-item">
+                    <a class="dropdown-toggle" href="#"><%= sch_month %>월</a>
+                    <ul>
+                      <% Sch.month_result(sch_month).each do |sch| %>
+                          <li>
+                            <% if sch.form == true %>
+                                <span class="size-11 text-muted pull-right label label-primary margin-right-6">정규</span>
+                            <% else %>
+                                <span class="size-11 text-muted pull-right label label-danger margin-right-6">특별</span>
+                            <% end %>
+                            <a href="<%= url_for(sch_path(sch)) %>">
+                              <%= sch.title %>
+                            </a>
+
+                          </li>
+                      <% end %>
+                    </ul>
+                  </li>
+              <% end %>
+            </ul>
+
+          </div>
+          <!-- /CATEGORIES -->
+        </div>
+      </div>
+
+
+    </div>
+
+  </section>
+</div>
+
+<!-- SCROLL TO TOP -->
+<a href="#" id="toTop"></a>
+<%= render partial: "home/script" %>

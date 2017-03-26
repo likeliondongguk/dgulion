@@ -5,6 +5,11 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  #sungjun_working on task/t_rate/user 's relation part
+  has_many :t_rates
+  has_many :tasks, through: :t_rates
+
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :answers, dependent: :destroy
@@ -25,6 +30,7 @@ class User < ActiveRecord::Base
     end
     return result
   end
+
 
   def check_count
     result = 0
