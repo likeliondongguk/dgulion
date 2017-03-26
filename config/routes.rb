@@ -14,10 +14,13 @@ Rails.application.routes.draw do
   post 'boards/index'
   get 'boards/header'
 
-  get 'task' => 'tasks/index'
+
+  get 'task' => 'tasks#index'
   get 'task/:id' => 'tasks#show'
 
   get 'submissions/index'
+
+
 
   # nojong
   resources :blogs do
@@ -26,6 +29,14 @@ Rails.application.routes.draw do
   resources :sches do
     resource :atts, only: [:show, :update]
   end
+
+  #sungjun
+  resources :tasks do
+    resources :submissions
+  end
+  get 'submissions/submittedlist/:id' => "submissions#other", as: 'other'
+
+
   resources :questions do
     resources :answers, only: [:create, :destroy]
   end

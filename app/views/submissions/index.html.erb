@@ -9,18 +9,28 @@
 
 
 
-
-      <!-- real search -->
-      <div class="inline-search clearfix margin-bottom-30 ui-widget">
-        <%= form_tag(submissions_path, :method => "get") do %>
+     <%if action_name=="index" %>
+           <!--real search -->
+          <div class="inline-search clearfix margin-bottom-30 ui-widget">
+          <%= form_tag(task_submissions_path, :method => "get") do %>
             <%= text_field_tag :search, params[:search], id: 'search-form', placeholder: "Search Posts" %>
             <%= submit_tag "Search" %>
-        <% end %>
-      </div>
+          <% end %>
+          </div>
+      <% else %>
+          <div class="inline-search clearfix margin-bottom-30 ui-widget">
+            <%= form_tag(other_path, :method => "get") do %>
+                <%= text_field_tag :search, params[:search], id: 'search-form', placeholder: "Search Posts" %>
+                <%= submit_tag "Search" %>
+            <% end %>
+          </div>
+     <%end%>
+
 
       <div class="clearfix margin-bottom-20 text-right">
-
-        <%= link_to '<span>New Submission</span>'.html_safe, url_for(new_submission_path), class: "btn btn-success" %>
+        <%unless action_name== 'other' %>
+          <%= link_to '<span>New Submission</span>'.html_safe, url_for(controller: :submissions, action: :new, task_id: @task.id), class: "btn btn-success" %>
+        <%end%>
         <%= link_to '<span>Back to TaskList</span>'.html_safe, url_for(tasks_path), class: "btn btn-warning" %>
       </div>
       <!-- /real search -->
@@ -61,8 +71,8 @@
                         <li>Created by <a href="#"> <%= p.user.username %></a></li>
 
                         <!-- Only writer can activate this buttons by using devise-->
-                        <li><%= link_to 'Delete', p, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-                        <li><%= link_to 'Edit', edit_submission_path(p) %></li>
+                        <li><%= link_to 'Delete', url_for(controller: :submissions, action: :destroy, task_id: p.task_id, id: p.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                        <li><%= link_to 'Edit', url_for(controller: :submissions, action: :edit, id: p.id, task_id: p.task_id) %></li>
                       </ul>
 
                     </h4>
@@ -74,7 +84,7 @@
                   <td class="hidden-xs text-center">
                     <small class="block size-11 text-muted">
 
-                          <%= link_to '<span>See</span>'.html_safe, url_for(submission_path(p)), class: "btn btn-danger" %>
+                          <%= link_to '<span>See</span>'.html_safe, url_for(controller: :submissions, action: :show, task_id: p.task_id, id: p.id), class: "btn btn-danger" %>
 
                     </small>
 

@@ -7,9 +7,9 @@
 <script>
     $( function() {
         var availableTags = [
-            <% @tasks.each do |t| %>
-            "<%= t.title %>",
-            "<%= t.content %>",
+            <% @tasks.each do |p| %>
+            "<%= p.title %>",
+            "<%= p.content %>",
             <% end %>
         ];
         $( "#search-form" ).autocomplete({
