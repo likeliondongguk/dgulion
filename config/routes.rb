@@ -23,9 +23,10 @@ Rails.application.routes.draw do
   resources :blogs do
     resources :comments, module: :blog, only: [:create, :destroy]
   end
-
+  resources :sches do
+    resource :atts, only: [:show, :update]
+  end
   resources :questions do
-    # resources :comments, module: :question, only: [:create, :destroy]
     resources :answers, only: [:create, :destroy]
   end
   get '/mypage/:user_id' => 'mypage#index', as: 'mypage'
@@ -33,12 +34,16 @@ Rails.application.routes.draw do
   get '/questions/asktags/:tag_id' => 'tags#search'
   # sungjun
   resources :boards do
-    resources :comments, module: :boards, only: [:create, :destroy]
-  end
 
+  end
+  resources :category, only: [:index] do
+    resources :posts do
+      resources :comments, module: :post, only: [:create, :destroy]
+    end
+  end
   #sungjun
   resources :tasks do
-    resources :submissions, only: [:new ,:create]
+    resources :submissions
   end
   get 'submissions/submittedlist/:id' => "submissions#other"
 

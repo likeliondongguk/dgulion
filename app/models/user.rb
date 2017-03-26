@@ -13,6 +13,11 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :answers, dependent: :destroy
+
+  has_many :atts, dependent: :destroy
+  has_many :sches, through: :atts
+
+  has_many :studyinfos
   validates :username, presence: true
 
   # User Avatar Validation

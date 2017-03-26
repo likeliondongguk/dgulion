@@ -59,6 +59,10 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def self.search(search)
+    where("content || title LIKE ?", "%#{search}%")
+  end
+
   # 이미지만 뽑아내기
   def get_first_thumb
     if self.content.slice(/h([^<]+)(png|jpg|psd|gif|jpeg)/).nil?
@@ -87,6 +91,14 @@ class Post < ActiveRecord::Base
         {controller: :blogs, action: :show, id: self.id}
       when 'questions' then
         {controller: :questions, action: :show, id: self.id}
+      when 'board' then
+        {controller: :posts, action: :show, id: self.id, category_id: Category.find_by_name('board').id}
+      when 'anony' then
+        {controller: :posts, action: :show, id: self.id, category_id: Category.find_by_name('anony').id}
+      when 'notice' then
+        {controller: :posts, action: :show, id: self.id, category_id: Category.find_by_name('notice').id}
+      when 'event' then
+        {controller: :posts, action: :show, id: self.id, category_id: Category.find_by_name('event').id}
     end
   end
 

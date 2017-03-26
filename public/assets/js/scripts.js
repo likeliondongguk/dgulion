@@ -2308,7 +2308,7 @@
 						barColor: 		_t.attr('data-color') || '#0093BF'
 					});
 					spansize= 250
-					jQuery("span", this).attr('style', "line-height:"+spansize+"px !important; height:"+_size+"px; width:"+spansize+"px");
+					jQuery("span", this).attr('style', "line-height:"+_size+"px !important; height:"+_size+"px; width:"+_size+"px");
 					jQuery("i", this).attr('style', "line-height:"+_size+"px !important; height:"+_size+"px; width:"+_size+"px");
 					// jQuery("span", this).css({"line-height":_size+"px", "height":_size+"px", "width":_size+"px"});
 					// jQuery("i", this).css({"line-height":_size+"px", "height":_size+"px", "width":_size+"px"});
