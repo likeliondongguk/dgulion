@@ -1,0 +1,31 @@
+<% case url %>
+<% when :new then
+     path=url_for(controller: :submissions, action: :create)%>
+
+<% when :create then
+     path=submissions_create_path %>
+
+<% when :edit then
+     path=  url_for(controller: :submissions, action: :update, id: @submission.id) %>
+<% end %>
+<%= form_for(@submission, url: path, html: {multipart: true}) do |b| %>
+    <div class="panel-body">
+      <label>c9주소</label>
+      <%= b.text_field :c9, class: 'form-control', placeholder: 'http://'%>
+      <br>
+      <label>github주소</label>
+      <%= b.text_field :github, class: 'form-control', placeholder: 'http://' %>
+      <br>
+      <label>과제 내용</label>
+      <%= b.text_area :content, class: :summernote %>
+      <br>
+      <label>과제 이미지 등록</label>
+      <input class="custom-file-upload" type="file" id="file" name="image" id="contact:attachment" data-btn-text="파일 선택"/>
+      <small class="text-muted block">Max file size: 10Mb (zip/pdf/jpg/png)</small>
+      <br>
+      <br>
+    </div>
+    <div class="panel-footer text-right">
+      <%= b.submit '저장', class: "btn btn-success" %>
+    </div>
+<% end %>

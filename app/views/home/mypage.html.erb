@@ -11,7 +11,7 @@
         <div class="thumbnail text-center">
           <img src="<%= @user.avatar.url %>" alt="">
           <h2 class="size-18 margin-top-10 margin-bottom-0"><%= @user.username %></h2>
-          <h3 class="size-11 margin-top-0 margin-bottom-10 text-muted">4기 tutor</h3>
+          <!--<h3 class="size-11 margin-top-0 margin-bottom-10 text-muted">4기 tutor</h3>-->
         </div>
 
         <!-- completed -->
@@ -57,9 +57,9 @@
                 <% end %>
               </li>
               <li class="margin-bottom-10"><i class="fa fa-facebook width-20 hidden-xs hidden-sm"></i>
-                <a href="http://www.facebook.com/stepofweb">stepofweb</a></li>
+                <a href="https://www.facebook.com/DGUlion/?fref=ts">멋쟁이사자처럼 동국대</a></li>
               <li class="margin-bottom-10"><i class="fa fa-twitter width-20 hidden-xs hidden-sm"></i>
-                <a href="http://www.twitter.com/stepofweb">@stepofweb</a></li>
+                <a href="https://uni.likelion.org">UNILION</a></li>
             </ul>
           </div>
 
@@ -79,7 +79,7 @@
                 <i class="fa fa-user"></i>
                 <h2><%= @user.username %>– Profile</h2>
               </div>
-              <p>멋쟁이사자처럼 4기 개발팀</p>
+              <p><%= @user.nickname %></p>
             </div>
           </div>
 
@@ -107,23 +107,22 @@
 
               <div class="box-inner">
                 <h3>
-                  <a class="pull-right size-11 text-warning" href="#">GO DETAIL</a>
+                  <a class="pull-right size-11 text-warning" href="<%=  url_for(sches_path) %>">일정 보러가기</a>
                   출석률
                 </h3>
                 <div class="row text-center">
-                  <div class="piechart" data-color="#C10841" data-trackcolor="rgba(255,255,255,0.3)" data-size="200" data-percent="100" data-width="20" data-animate="1700">
+                  <div class="piechart" data-color="#C10841" data-trackcolor="rgba(255,255,255,0.3)" data-size="200" data-percent="<%= Att.rate(@user)*100 %>" data-width="20" data-animate="1700">
 								<span class="size-40 weight-300">
-									<span class="countTo" data-speed="3000">100</span>%
+									<span class="countTo" data-speed="3000"><%= Att.rate(@user)*100 %></span>%
 								</span>
                   </div>
                 </div>
-
               </div>
               <div class="box-footer">
                 <!-- INLINE SEARCH -->
-                <label>88% completed profile</label>
+                <label><%= number_to_percentage(Att.rate(@user)*100, precision: 0) %> 출석률</label>
                 <div class="progress progress-xxs">
-                  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width: 88%; min-width: 2em;"></div>
+                  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<%= Att.rate(@user)*100 %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= Att.rate(@user)*100 %>%; min-width: 2em;"></div>
                 </div>
                 <!-- /INLINE SEARCH -->
 
@@ -136,13 +135,13 @@
 
               <div class="box-inner">
                 <h3>
-                  <a class="pull-right size-11 text-warning" href="#">GO DETAIL</a>
+                  <a class="pull-right size-11 text-warning" href="<%= url_for(tasks_path) %>">과제 보러가기</a>
                   과제 제출
                 </h3>
                 <div class="row text-center">
-                  <div class="piechart" data-color="#C10841" data-trackcolor="rgba(255,255,255,0.3)" data-size="200" data-percent="100" data-width="20" data-animate="1700">
+                  <div class="piechart" data-color="#C10841" data-trackcolor="rgba(255,255,255,0.3)" data-size="200" data-percent="<%= TRate.rate(@user)*100 %>" data-width="20" data-animate="1700">
 								<span class="size-40 weight-300">
-									<span class="countTo" data-speed="3000">100</span>%
+									<span class="countTo" data-speed="3000"><%= TRate.rate(@user)*100 %></span>%
 								</span>
                   </div>
                 </div>
@@ -150,9 +149,9 @@
 
               <div class="box-footer">
                 <!-- INLINE SEARCH -->
-                <label>88% completed profile</label>
+                <label><%= number_to_percentage(TRate.rate(@user)*100, precision: 0) %> 제출률</label>
                 <div class="progress progress-xxs">
-                  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width: 88%; min-width: 2em;"></div>
+                  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<%= TRate.rate(@user)*100 %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= TRate.rate(@user)*100 %>%; min-width: 2em;"></div>
                 </div>
                 <!-- /INLINE SEARCH -->
 
@@ -193,21 +192,6 @@
                   <% end %>
                 </div>
               </div>
-              <!--todo 검색기능-->
-              <!--<div class="box-footer">-->
-              <!--&lt;!&ndash; INLINE SEARCH &ndash;&gt;-->
-              <!--<div class="inline-search clearfix">-->
-              <!--<form action="#" method="get" class="widget_search nomargin">-->
-              <!--<input type="search" placeholder="Search Discussion..." name="s" class="serch-input">-->
-              <!--<button type="submit">-->
-              <!--<i class="fa fa-search"></i>-->
-              <!--</button>-->
-              <!--<div class="clear"></div>-->
-              <!--</form>-->
-              <!--</div>-->
-              <!--&lt;!&ndash; /INLINE SEARCH &ndash;&gt;-->
-
-              <!--</div>-->
 
             </div>
             <!-- /DISCUSSIONS -->
@@ -238,22 +222,6 @@
 
                 </div>
               </div>
-              <!--todo 검색기능-->
-              <!--<div class="box-footer">-->
-              <!--&lt;!&ndash; INLINE SEARCH &ndash;&gt;-->
-              <!--<div class="inline-search clearfix">-->
-              <!--<form action="#" method="get" class="widget_search nomargin">-->
-              <!--<input type="search" placeholder="Search notification..." name="s" class="serch-input">-->
-              <!--<button type="submit">-->
-              <!--<i class="fa fa-search"></i>-->
-              <!--</button>-->
-              <!--<div class="clear"></div>-->
-              <!--</form>-->
-              <!--</div>-->
-              <!--&lt;!&ndash; /INLINE SEARCH &ndash;&gt;-->
-
-              <!--</div>-->
-
             </div>
             <!-- /NOTIFICATIONS -->
 
@@ -263,9 +231,12 @@
         </div>
         <br>
         <div class="row">
-          <div class="text-center">
-            <%= link_to('프로필 수정하러가기', edit_user_registration_path, class: "btn btn-default btn-lg") %>
-          </div>
+          <%if user_signed_in? && @user==current_user %>
+              <div class="text-center">
+                <%= link_to('프로필 수정하러가기', edit_user_registration_path, class: "btn btn-default btn-lg") %>
+              </div>
+          <%end%>
+
         </div>
 
         <!--todo 메세지 기능-->

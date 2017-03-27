@@ -1,6 +1,6 @@
 <div id="wrapper">
   <%= render 'sticky/mainMenu' %>
-  <%= render 'sticky/pageHeader', name: 'questions' %>
+  <%= render 'sticky/pageHeader', name: '질문 게시판' %>
   <section>
     <div class="container">
       <div class="row">
@@ -8,7 +8,7 @@
           <div class="panel-heading panel-heading-transparent">
             <div class="row">
               <div class="col-md-9">
-                <h2 class="panel-title bold">New Question</h2>
+                <h2 class="panel-title bold">질문 작성하기</h2>
               </div>
               <div class="col-md-3 text-right">
                 <a href="<%= url_for(questions_path) %>" class="btn btn-reveal btn-sm btn-3d btn-blue">
@@ -23,7 +23,7 @@
       </div>
     </div>
   </section>
-  <%= render 'sticky/footer' %>
+  <%#= render 'sticky/footer' %>
 </div>
 <%= render 'home/script' %>
 

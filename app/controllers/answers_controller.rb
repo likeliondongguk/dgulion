@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :user?
   def create
     @answer=Category.get_posts("questions").find(params[:question_id]).answers.new(answer_params)
     @answer.user=current_user
@@ -19,5 +20,11 @@ class AnswersController < ApplicationController
   private
   def answer_params
     params.require(:answer).permit(:body)
+  end
+
+  def user?
+    if !user_signed_in?
+      redirect_to root_path, notice: '로그인하고 사용하세요'
+    end
   end
 end

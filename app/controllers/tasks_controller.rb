@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
   #before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-
+  before_action :user_admin?, except: [:show, :index]
+  before_action :user?
   # GET /tasks
   # GET /tasks.json
   def index
@@ -52,13 +53,30 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def task_params
-      params.require(:task).permit(:title, :content, :image)
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def task_params
+    params.require(:task).permit(:title, :content, :image)
+  end
+
+  def user_admin?
+    if user_signed_in?
+      if current_user.admin
+      else
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path, notice: "로그인하고 사용하세요"
     end
+  end
+
+  def user?
+    if !user_signed_in?
+      redirect_to root_path, notice: '로그인하고 사용하세요'
+    end
+  end
 end

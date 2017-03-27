@@ -2,134 +2,56 @@
 <div id="wrapper">
 
   <%= render partial: "sticky/mainMenu" %>
-  <%= render "sticky/pageHeader", name: "Submission index" %>
+  <%= render "sticky/pageHeader", name: "과제 제출" %>
 
   <section>
     <div class="container">
-
-
-
-     <%if action_name=="index" %>
-           <!--real search -->
-          <div class="inline-search clearfix margin-bottom-30 ui-widget">
-          <%= form_tag(task_submissions_path, :method => "get") do %>
-            <%= text_field_tag :search, params[:search], id: 'search-form', placeholder: "Search Posts" %>
-            <%= submit_tag "Search" %>
-          <% end %>
-          </div>
-      <% else %>
-          <div class="inline-search clearfix margin-bottom-30 ui-widget">
-            <%= form_tag(other_path, :method => "get") do %>
-                <%= text_field_tag :search, params[:search], id: 'search-form', placeholder: "Search Posts" %>
-                <%= submit_tag "Search" %>
-            <% end %>
-          </div>
-     <%end%>
-
-
       <div class="clearfix margin-bottom-20 text-right">
-        <%unless action_name== 'other' %>
-          <%= link_to '<span>New Submission</span>'.html_safe, url_for(controller: :submissions, action: :new, task_id: @task.id), class: "btn btn-success" %>
-        <%end%>
-        <%= link_to '<span>Back to TaskList</span>'.html_safe, url_for(tasks_path), class: "btn btn-warning" %>
+        <% unless action_name== 'other' %>
+            <%= link_to '<span>New Submission</span>'.html_safe, url_for(controller: :submissions, action: :new, task_id: @task.id), class: "btn btn-success" %>
+        <% end %>
+        <%= link_to '<span>과제 페이지</span>'.html_safe, url_for(tasks_path), class: "btn btn-warning" %>
       </div>
-      <!-- /real search -->
 
-      <!-- /INLINE SEARCH -->
+      <div class="row">
+        <% @submissions.each do |submission| %>
+            <div class="box-image text-center width-250 col-md-3 row-md-3 padding-10 margin-right-30 border-2"
+                 style="width:228px;height:300px;overflow-x:hidden;overflow-y:hidden">
 
+              <!--<label>88% Completed</label>-->
 
-      <!-- Search result-->
-      <% if @submissions.present? %>
-          <%= @submissions %>
-      <% else %>
-          <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
-      <% end %>
-      <!-- /Search result-->
-        <!-- LEFT -->
-          <!-- FORUM 1 -->
-          <table class="table table-vertical-middle margin-bottom-60">
-            <thead>
-            <tr class="size-15">
-              <th class="weight-300">Submitted Tasks</th>
+              <!--<div class="progress progress-xxs">-->
+              <!--<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width: 88%; min-width: 2em;"></div>-->
+              <!--</div>-->
+              <% if submission.image.nil? %>
+                  <div class="img-responsive" style="width:100%;height:155px;overflow-x:hidden;overflow-y:hidden; margin: auto">
+                    <img class="img-responsive" src="<%= asset_path 'favicon_s.png' %>" alt="default"/>
+                  </div>
+              <% else %>
+                  <div class="img-responsive" style="width:100%;height:155px;overflow-x:hidden;overflow-y:hidden; margin: auto">
+                    <img class="img-responsive" src="<%= submission.image %>" alt="default"/>
+                  </div>
 
-              <th class="text-center hidden-xs width-100 weight-300">FRESHNESS</th>
-              <th class="text-center hidden-xs width-200 weight-300"></th>
-            </tr>
-            </thead>
-            <tbody>
-
-
-            <%@submissions.each do |p|%>
-                <tr>
-                  <td>
-                    <h4 class="nomargin size-16">
-
-                        <%= p.title %>
-
-                        <%= Task.find(p.task_id).title %>
-                      <ul class="list-inline categories nomargin text-muted size-11 hidden-xs">
-                        <li>Created by <a href="#"> <%= p.user.username %></a></li>
-
-                        <!-- Only writer can activate this buttons by using devise-->
-                        <li><%= link_to 'Delete', url_for(controller: :submissions, action: :destroy, task_id: p.task_id, id: p.id), method: :delete, data: { confirm: 'Are you sure?' } %></li>
-                        <li><%= link_to 'Edit', url_for(controller: :submissions, action: :edit, id: p.id, task_id: p.task_id) %></li>
-                      </ul>
-
-                    </h4>
-                  </td>
-
-                  <td class="text-center hidden-xs">
-                    <a href="#"><%= time_ago_in_words(p.created_at) %></a>
-                  </td>
-                  <td class="hidden-xs text-center">
-                    <small class="block size-11 text-muted">
-
-                          <%= link_to '<span>See</span>'.html_safe, url_for(controller: :submissions, action: :show, task_id: p.task_id, id: p.id), class: "btn btn-danger" %>
-
-                    </small>
-
-                    <!--<a class="size-13" href="page-profile.html">Joanna Doe</a>-->
-                  </td>
-                </tr>
-            <% end %>
-
-
-            </tbody>
-          </table>
-          <!-- /FORUM 1 -->
-      <div class="text-center"><%= will_paginate @submissionsList %></div>
-
-          <div class="divider nomargin"><!-- divider --></div>
-
-
-
-          <!-- WARNING
-          <div class="alert alert-warning alert-bordered-dashed text-center margin-bottom-30"></span>
-            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <p>YOU MUST BE LOGGED IN TO CREATE A NEW TOPIC!</p>
-          </div>-->
-
-
-          <!-- pagination
-          <div class="text-center">
-            <ul class="pagination">
-              <li><a href="#">&laquo;</a></li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#">&raquo;</a></li>
-            </ul>
-          </div>
-           /pagination -->
-
-
-
+              <% end %>
+              <div class="box-image-title">
+                <h4 class="nomargin size-16">
+                  <%= link_to "#{submission.task.title}", url_for(controller: :submissions, action: :show, task_id: submission.task_id, id: submission.id) %>
+                </h4>
+                <a href="<%= url_for(mypage_path(submission.user.id)) %>" class="text-black"><%= submission.user.username %></a>
+                <div class="panel-body margin-top-10">
+                  <%= link_to '<span>보러가기</span>'.html_safe, url_for(controller: :submissions, action: :show, task_id: submission.task_id, id: submission.id), class: "btn btn-danger" %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="flickr_pagination">
+          <%= will_paginate @submissions, :container => false %>
         </div>
 
-
-
+      </div>
+    </div>
 
   </section>
   <!-- / -->
@@ -138,8 +60,5 @@
 
 <br>
 
-<%= render partial: "script"%>
-<%= render partial: "search"%>
-
-
-
+<%= render partial: "script" %>
+<%#= render partial: "search" %>

@@ -10,8 +10,8 @@
               <a class="dropdown-toggle no-text-underline " data-toggle="modal" data-target="#loginmodal" data-backdrop="false"><i class="fa fa-user"></i>
                 로그인 </a></li>
               <li>
-                <a class="dropdown-toggle no-text-underline " data-toggle="modal" data-target="#signupmodal" data-backdrop="false"><i class="fa fa-sign-in"></i>
-                  회원가입 </a></li>
+                <!--<a class="dropdown-toggle no-text-underline " data-toggle="modal" data-target="#signupmodal" data-backdrop="false"><i class="fa fa-sign-in"></i>-->
+                  <!--회원가입 </a></li>-->
           <% else %>
               <%= link_to "<i class=\"fa fa-sign-out\"></i>".html_safe+"로그아웃", destroy_user_session_path, method: :delete, class: "dropdown-toggle no-text-underline" %>
               <li><a class="dropdown-toggle no-text-underline" href="<%= url_for(mypage_path(current_user.id)) %>"><i class="fa fa-user-circle-o"></i> 마이페이지</a>
@@ -132,7 +132,7 @@
           </ul>
       <!-- /OPTIONS -->
 
-      <a href="<%= url_for(home_header_path) %>" class="logo text-center">
+      <a href="/" class="logo text-center hidden-sm hidden-xs">
         <img src="<%= asset_path 'favicon_s.png' %>" alt="">
       </a>
       <div class="navbar-header">
@@ -155,15 +155,16 @@
             </a>
           </li>
           <li>
-            <a href="<%= url_for(blogs_path) %>">
-              <i class="et-layers"></i>
+            <a href="<%#= url_for(blogs_path) %>/">
+              <span class="badge pull-right">준비중</span>
+              <i class="et-book-open"></i>
               블로그
             </a>
           </li>
           <li class="dropdown">
             <a href="<%= url_for(tasks_path) %>">
               <i class="et-layers"></i>
-              Task
+              과제
             </a>
 
           </li>
@@ -174,12 +175,13 @@
             </a>
             <ul class="dropdown-menu">
               <li><a href="<%= url_for(category_posts_path(Category.get_default)) %>">자유 게시판</a></li>
-              <li><a href="blog-default-aside-right.html">사진 게시판</a></li>
+              <li><a href="/"><span class="badge pull-right">준비중</span>사진 게시판</a></li>
               <li><a href="<%= url_for(questions_path) %>">질문 게시판</a></li>
             </ul>
           </li>
           <li>
-            <a href="">
+            <a href="/">
+              <span class="badge pull-right">준비중</span>
               <i class="et-lightbulb"></i>
               아이디어
             </a>
@@ -199,33 +201,33 @@
 
   <!-- Social Icons -->
   <div class="social-icons hidden-md hidden-sm hidden-xs text-center">
-    <a href="#" class="social-icon social-icon-sm social-icon-light social-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+    <a href="https://uni.likelion.org" class="social-icon social-icon-sm social-icon-light social-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
       <i class="icon-facebook"></i>
       <i class="icon-facebook"></i>
     </a>
-    <a href="#" class="social-icon social-icon-sm social-icon-light social-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
-      <i class="icon-twitter"></i>
-      <i class="icon-twitter"></i>
-    </a>
-    <a href="#" class="social-icon social-icon-sm social-icon-light social-pinterest" data-toggle="tooltip" data-placement="top" title="Pinterest">
-      <i class="icon-pinterest"></i>
-      <i class="icon-pinterest"></i>
-    </a>
-    <a href="#" class="social-icon social-icon-sm social-icon-light social-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin">
-      <i class="icon-linkedin"></i>
-      <i class="icon-linkedin"></i>
-    </a>
-    <a href="#" class="social-icon social-icon-sm social-icon-light social-gplus" data-toggle="tooltip" data-placement="top" title="Google Plus">
-      <i class="icon-gplus"></i>
-      <i class="icon-gplus"></i>
-    </a>
+    <!--<a href="#" class="social-icon social-icon-sm social-icon-light social-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">-->
+      <!--<i class="icon-twitter"></i>-->
+      <!--<i class="icon-twitter"></i>-->
+    <!--</a>-->
+    <!--<a href="#" class="social-icon social-icon-sm social-icon-light social-pinterest" data-toggle="tooltip" data-placement="top" title="Pinterest">-->
+      <!--<i class="icon-pinterest"></i>-->
+      <!--<i class="icon-pinterest"></i>-->
+    <!--</a>-->
+    <!--<a href="#" class="social-icon social-icon-sm social-icon-light social-linkedin" data-toggle="tooltip" data-placement="top" title="Linkedin">-->
+      <!--<i class="icon-linkedin"></i>-->
+      <!--<i class="icon-linkedin"></i>-->
+    <!--</a>-->
+    <!--<a href="#" class="social-icon social-icon-sm social-icon-light social-gplus" data-toggle="tooltip" data-placement="top" title="Google Plus">-->
+      <!--<i class="icon-gplus"></i>-->
+      <!--<i class="icon-gplus"></i>-->
+    <!--</a>-->
   </div>
   <!-- /Social Icons -->
 
 
-  <!-- Paragraph -->
-  <p class="text-center hidden-xs"><%= current_user.username unless current_user.nil? %></p>
-  <!-- /Paragraph -->
+  <!--&lt;!&ndash; Paragraph &ndash;&gt;-->
+  <!--<p class="text-center hidden-xs"><%= current_user.username unless current_user.nil? %></p>-->
+  <!--&lt;!&ndash; /Paragraph &ndash;&gt;-->
 
 </div>
 

@@ -1,6 +1,7 @@
 class BoardsController < ApplicationController
 
   before_action :set_board, only: [:show, :edit, :update, :destroy ]
+  before_action :user?
   def index
     if params[:search]
       @boards = Category.get_posts("board").search(params[:search]).order("created_at DESC")
@@ -39,5 +40,10 @@ class BoardsController < ApplicationController
   end
   def board_params
     params.require(:post).permit(:title, :content)
+  end
+  def user?
+    if !user_signed_in?
+      redirect_to root_path, notice: '로그인하고 사용하세요'
+    end
   end
 end

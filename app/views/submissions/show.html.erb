@@ -1,0 +1,70 @@
+<div id="wrapper">
+  <%= render partial: "sticky/mainMenu" %>
+  <%= render "sticky/pageHeader", name: "과제 제출" %>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="heading-title">
+            <h2><%= @task.title %></h2>
+            <ul class="padding-bottom-10 blog-post-info list-inline">
+              <li>
+                <a href="#">
+                  <i class="fa fa-clock-o"></i>
+                  <span class="font-lato"><%= time_ago_in_words(@submission.created_at) %></span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-user"></i>
+                  <span class="font-lato"><%= @submission.user.username %></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 text-right">
+          <% if user_signed_in?&&@submission.is_writer?(current_user) %>
+              <%= link_to '<span>수정하기</span>'.html_safe, url_for(controller: :submissions, action: :edit, id: @submission.id, task_id: @task.id), class: "btn btn-primary" %>
+              <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :submissions, action: :destroy, id: @submission.id, task_id: @task.id), method: :delete, class: "btn btn-danger", data: {confirm: 'Are you sure?'} %>
+          <% end %>
+          <%= link_to '<span>훔쳐보기</span>'.html_safe, url_for(controller: :submissions, action: :other, id: @submission.id), class: "btn btn-warning" %>
+        </div>
+      </div>
+      <div class="margin-top-0 panel panel-default">
+        <div class="panel-body">
+          <img class="image-response fit-image" src="<%= @submission.image %>" alt="">
+
+
+          <p class="font-lato size-25 margin-top-30">
+            <%= @submission.content.html_safe %>
+          </p>
+          <div class="text-center margin-top-30 text-20">
+            <% if !@submission.c9.nil? && @submission.c9 != "" %>
+                <a href="<%= @submission.c9 %>" target="_blank" class="social-icon social-github" data-toggle="tooltip" data-placement="top" title="Github">
+                  <i class="icon-github-circled"></i>
+                  <i class="icon-github-circled"></i>
+                </a>
+            <% end %>
+            <% if !@submission.github.nil? && @submission.github != "" %>
+                <a href="<%= @submission.github %>" target="_blank" class="social-icon social-delicious" data-toggle="tooltip" data-placement="top" title="Cloud9">
+                  <i class="icon-cloudapp"></i>
+                  <i class="icon-cloudapp"></i>
+                </a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / -->
+
+
+</div>
+<%= render partial: "script" %>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<a href="#" id="toTop"></a>

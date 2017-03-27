@@ -1,6 +1,6 @@
 <div id="wrapper">
   <%= render partial: "sticky/mainMenu" %>
-  <%= render "sticky/pageHeader", name: "Board" %>
+  <%= render "sticky/pageHeader", name: "게시판" %>
   <section>
     <div class="container">
       <div class="row">
@@ -68,9 +68,15 @@
               <% end %>
               </tbody>
             </table>
+
           </div>
         </div>
         <!-- /POST ITEM -->
+      </div>
+      <div class="row">
+        <div class="flickr_pagination">
+          <%= will_paginate @posts%>
+        </div>
       </div>
     </div>
   </section>

@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true
 
   # User Avatar Validation
-  validates_integrity_of  :avatar
+  validates_integrity_of :avatar
   validates_processing_of :avatar
 
   def complete_profile
@@ -45,6 +45,16 @@ class User < ActiveRecord::Base
       end
     end
     return result
+  end
+
+  def nickname
+    name=""
+    if self.admin
+      name="동국대 멋쟁이 사자처럼 5기 운영진"
+    else
+      name="동국대 멋쟁이 사자처럼 5기"
+    end
+    return name
   end
 
   private

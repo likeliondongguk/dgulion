@@ -1,50 +1,30 @@
 <div id="wrapper">
-  <!--
-      SIDE MENU
 
-      .sidebar-hidden = open only on click
-    -->
   <%= render partial: "sticky/mainMenu" %>
-  <%= render "sticky/pageHeader", name: "New" %>
-  <!--<section class="page-header dark page-header-xs">-->
-  <!--<div class="container">-->
-  <!--<h1>New</h1>-->
-  <!--&lt;!&ndash; breadcrumbs &ndash;&gt;-->
-  <!--<ol class="breadcrumb">-->
-  <!--<li><a href="/">Main</a></li>-->
-  <!--<li><a href="board">Board</a></li>-->
-  <!--<li class="active">New</li>-->
-  <!--</ol>&lt;!&ndash; /breadcrumbs &ndash;&gt;-->
-
-  <!--</div>-->
-  <!--</section>-->
-
-  <!-- <textarea class="summernote form-control" data-height="200" data-lang="en-US"></textarea> -->
-  <!--<section>-->
-  <!--<form action="create" method="post">-->
-  <!--<div class="container" style="margin-top: 40px; padding-right: 100px; padding-left: 100px">-->
-  <div class="container" style="padding-top: 30px;">
-    <div class="text-right">
-      <%= link_to '<span>돌아가기</span>'.html_safe, url_for(tasks_path), class: "btn btn-warning" %>
+  <%= render "sticky/pageHeader", name: "과제" %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-heading panel-heading-transparent">
+            <div class="row">
+              <div class="col-md-9">
+                <h2 class="panel-title bold">과제 만들기</h2>
+              </div>
+              <div class="col-md-3 text-right">
+                <a href="<%= url_for(tasks_path) %>" class="btn btn-reveal btn-sm btn-3d btn-blue">
+                  <i class="fa fa-home"></i>
+                  <span>Back</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <%= render 'form', url: :new %>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <h1>New Task</h1>
-    <%= render 'form', url: :new do |f| %>
-        <div>
-          <%=f.label :title%>
-          <%=f.text_field :title%>
-        </div>
-        <div>
-          <%=f.label :content%>
-          <%=f.text_field :content%>
-        </div>
-        <%= f.submit %>
-    <%end%>
   </div>
-  <!--</div>-->
-  <!--</form>-->
-  <!--</section>-->
-
-</div>
 
 <%= render partial: "script"%>

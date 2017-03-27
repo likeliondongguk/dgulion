@@ -1,197 +1,39 @@
-
-
-
-
-
-<!--
-  AVAILABLE BODY CLASSES:
-
-  smoothscroll 			= create a browser smooth scroll
-  enable-animation		= enable WOW animations
-
-  bg-grey					= grey background
-  grain-grey				= grey grain background
-  grain-blue				= blue grain background
-  grain-green				= green grain background
-  grain-blue				= blue grain background
-  grain-orange			= orange grain background
-  grain-yellow			= yellow grain background
-
-  boxed 					= boxed layout
-  pattern1 ... patern11	= pattern background
-  menu-vertical-hide		= hidden, open on click
-
-  BACKGROUND IMAGE [together with .boxed class]
-  data-background="assets/images/boxed_background/1.jpg"
--->
-
-<!-- wrapper -->
 <div id="wrapper">
-
-
-  <!--
-    AVAILABLE HEADER CLASSES
-
-    Default nav height: 96px
-    .header-md 		= 70px nav height
-    .header-sm 		= 60px nav height
-
-    .noborder 		= remove bottom border (only with transparent use)
-    .transparent	= transparent header
-    .translucent	= translucent header
-    .sticky			= sticky header
-    .static			= static header
-    .dark			= dark header
-    .bottom			= header on bottom
-
-    shadow-before-1 = shadow 1 header top
-    shadow-after-1 	= shadow 1 header bottom
-    shadow-before-2 = shadow 2 header top
-    shadow-after-2 	= shadow 2 header bottom
-    shadow-before-3 = shadow 3 header top
-    shadow-after-3 	= shadow 3 header bottom
-
-    .clearfix		= required for mobile menu, do not remove!
-
-    Example Usage:  class="clearfix sticky header-sm transparent noborder"
-  -->
-
-
-  <!--
-    PAGE HEADER
-
-    CLASSES:
-      .page-header-xs	= 20px margins
-      .page-header-md	= 50px margins
-      .page-header-lg	= 80px margins
-      .page-header-xlg= 130px margins
-      .dark			= dark page header
-
-      .shadow-before-1 	= shadow 1 header top
-      .shadow-after-1 	= shadow 1 header bottom
-      .shadow-before-2 	= shadow 2 header top
-      .shadow-after-2 	= shadow 2 header bottom
-      .shadow-before-3 	= shadow 3 header top
-      .shadow-after-3 	= shadow 3 header bottom
-  -->
   <%= render partial: "sticky/mainMenu" %>
-  <%= render "sticky/pageHeader", name: "Show" %>
-
-
-
-  <!-- -->
+  <%= render "sticky/pageHeader", name: "과제" %>
   <section>
     <div class="container">
-
-      <br><br>
       <div class="row">
         <!-- LEFT -->
-        <div class="col-md-9 col-sm-9">
-
-
-          <h1 class="blog-post-title"><%=@task.title%>
-
-            <!--% end %> -->
-          </h1>
-
-
-
-
-
-          <ul class="blog-post-info list-inline">
-            <li>
-              <a href="#">
-                <i class="fa fa-user"></i>
-                <span class="font-lato">Writer : </span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-clock-o"></i>
-                <span class="font-lato">Written Time : <%= time_ago_in_words(@task.created_at) %></span>
-              </a>
-            </li>
-
-
-          </ul>
-
-
-
-          <!-- IMAGE -->
-          <!--
-          <figure class="margin-bottom-20">
-            <img class="img-responsive" src="assets/images/demo/content_slider/10-min.jpg" alt="img" />
-          </figure>
-          -->
-          <!-- /IMAGE -->
-
-          <!-- VIDEO -->
-          <!--
-          <div class="margin-bottom-20 embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="http://player.vimeo.com/video/8408210" width="800" height="450"></iframe>
+        <div class="col-md-9">
+          <div class="heading-title">
+            <h2><%=@task.title%></h2>
           </div>
-          -->
-          <!-- /VIDEO -->
-
-
-          <!-- article content -->
-
-
-          <!-- BLOCKQUOTE -->
-          <blockquote>
-            <p class="dropcap"><%=@task.content.html_safe%></p>
-          </blockquote>
-
-          <!-- /article content -->
-
-
-          <div class="divider divider-dotted"><!-- divider --></div>
-
-
-
-
-
-          <div class="divider"><!-- divider --></div>
-
-
-          <ul class="pager">
-            <li class="previous"><a class="noborder" href="#">&larr; Previous Post</a></li>
-            <li class="next"><a class="noborder" href="#">Next Post &rarr;</a></li>
-          </ul>
-
-
-          <div class="divider"><!-- divider --></div>
-
-
-
-          submissions/submittedlist/10
-
         </div>
+        <div class="col-md-3 text-right">
+          <%if  user_signed_in?%>
+              <%= link_to '<span>과제내기</span>'.html_safe, url_for(new_task_submission_path(@task)), class: "btn btn-success" %>
 
-          <div class="right">
-            <%if  user_signed_in?%>
-              <%= link_to '<span>Submit Task</span>'.html_safe, url_for(new_task_submission_path(@task)), class: "btn btn-success" %>
-
-              <!-- This button has to be hidden just for Admin -->
-              <%= link_to '<span>See Others</span>'.html_safe, url_for(controller: :submissions, action: :other, id: @task.id), class: "btn btn-warning" %>
-            <% else %>
-            <% end %>
-          </div>
-
-
+              <%if @task.is_submitted?(current_user) %>
+                  <%= link_to '<span>훔쳐보기</span>'.html_safe, url_for(controller: :submissions, action: :other, id: @task.id), class: "btn btn-warning" %>
+              <%end%>
+          <% else %>
+          <% end %>
+        </div>
       </div>
-      <%if  user_signed_in?%>
+      <div class="margin-top-0 panel panel-default">
+        <div class="panel-body">
+          <p class="font-lato size-18">
+            <%=@task.content.html_safe%>
+          </p>
+        </div>
+      </div>
+      <%if  user_signed_in? && current_user.admin%>
         <%= link_to '<span>수정하기</span>'.html_safe, url_for(edit_task_path(@task)), class: "btn btn-primary" %>
         <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :tasks, action: :destroy, id: @task.id), method: :delete, class: "btn btn-danger", data: {confirm: 'Are you sure?'} %>
        <% end %>
     </div>
   </section>
-  <!-- / -->
-
-
-
-
-
 </div>
 <%= render partial: "script"%>
 <!-- /wrapper -->
@@ -200,13 +42,4 @@
 <!-- SCROLL TO TOP -->
 <a href="#" id="toTop"></a>
 
-
-<!--
-  PRELOADER
-<div id="preloader">
-  <div class="inner">
-    <span class="loader"></span>
-  </div>
-</div> /PRELOADER
--->
 

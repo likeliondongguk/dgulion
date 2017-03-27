@@ -1,18 +1,5 @@
-<!-- wrapper -->
 <div id="wrapper">
-
-  <!--
-    SIDE MENU
-
-    .sidebar-hidden = open only on click
-  -->
   <%= render partial: "sticky/mainMenu" %>
-  <!--
-    SLIDER
-
-    Classes:
-      .fullheight = full height slider
-  -->
   <section id="slider" class="fullheight" style="background-image:url('<%= asset_path '17-min.jpg' %>')">
     <div class="overlay dark-3"><!-- dark overlay [0 to 9 opacity] --></div>
     <div class="display-table">
@@ -39,28 +26,6 @@
     </div>
 
   </section>
-
-  <!--
-
-  FULLWIDTH: OUTSIDE OF <section>
-
-    Available Classes:
-    alert-default
-    alert-info
-    alert-warning
-    alert-danger
-    alert-success
-  -->
-  <!--<div class="callout alert alert-info noborder noradius nomargin">-->
-  <!--<div class="text-center">-->
-  <!--<h3>Call now at <strong>+800-565-2390</strong> and get 15% discount!</h3>-->
-  <!--<p class="font-lato size-20">-->
-  <!--We truly care about our users and our product.-->
-  <!--</p>-->
-  <!--<a href="#purchase" rel="nofollow" target="_blank" class="btn btn-default btn-lg margin-top-30">PURCHASE NOW</a>-->
-  <!--</div>-->
-  <!--</div>-->
-
   <section id="notice">
     <div class="container">
       <div class="row mix-grid">
@@ -102,87 +67,23 @@
         <p class="lead font-lato">다가오는 일정</p>
       </header>
       <br/>
-      <!--
-        controlls-over		= navigation buttons over the image
-        buttons-autohide 	= navigation buttons visible on mouse hover only
-
-        data-plugin-options:
-          "singleItem": true
-          "autoPlay": true (or ms. eg: 4000)
-          "navigation": true
-          "pagination": true
-          "items": "4"
-
-        owl-carousel item paddings
-          .owl-padding-0
-          .owl-padding-3
-          .owl-padding-6
-          .owl-padding-10
-          .owl-padding-15
-          .owl-padding-20
-      -->
       <div class="row">
         <div class="text-center">
           <div class="owl-carousel owl-padding-10 buttons-autohide controlls-over" data-plugin-options='{"singleItem": false, "items":"3", "autoPlay": 4000, "navigation": true, "pagination": false}'>
-            <div class="img-hover">
-              <div class="text-center list-inline list-separator">
-                <h2>
-                  <span class="label label-default">2017 02 25</span>
-                </h2>
-              </div>
-              <a href="blog-single-default.html">
-                <img class="img-responsive" src="<%= asset_path 'hack2.jpg' %>" alt="">
-              </a>
-              <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
-              <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores
-                quod
-                est tenetur in.</p>
-            </div>
-            <div class="img-hover">
-              <div class="text-center list-inline list-separator">
-                <h2>
-                  <span class="label label-default">2017 03 22</span>
-                </h2>
-              </div>
-              <a href="blog-single-default.html">
-                <img class="img-responsive" src="<%= asset_path 'intro.png' %>" alt="">
-              </a>
-
-              <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
-              <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores
-                quod
-                est tenetur in.</p>
-            </div>
-            <div class="img-hover">
-              <div class="text-center list-inline list-separator">
-                <h2>
-                  <span class="label label-default">2017 04 20</span>
-                </h2>
-              </div>
-              <a href="blog-single-default.html">
-                <img class="img-responsive" src="assets/images/demo/451x300/30-min.jpg" alt="">
-              </a>
-
-              <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
-              <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores
-                quod
-                est tenetur in.</p>
-            </div>
-            <div class="img-hover">
-              <div class="text-center list-inline list-separator">
-                <h2>
-                  <span class="label label-default">2017 05 20</span>
-                </h2>
-              </div>
-              <a href="blog-single-default.html">
-                <img class="img-responsive" src="assets/images/demo/451x300/26-min.jpg" alt="">
-              </a>
-
-              <h4 class="text-left margin-top-20"><a href="blog-single-default.html">Lorem Ipsum Dolor</a></h4>
-              <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores
-                quod
-                est tenetur in.</p>
-            </div>
+            <% @events.each do |event| %>
+                <div class="img-hover">
+                  <div class="text-center list-inline list-separator">
+                    <h2>
+                      <span class="label label-default"><%= event.date %></span>
+                    </h2>
+                  </div>
+                  <a href="<%= url_for(sch_path(event.id)) %>">
+                    <img class="img-responsive" src="<%= event.image %>" alt="">
+                  </a>
+                  <h4 class="text-center margin-top-20"><a href="<%= url_for(sch_path(event.id)) %>"><%= truncate(event.title, length: 15) %></a></h4>
+                  <p class="text-center"><%= truncate(event.content, length: 20) %></p>
+                </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -192,21 +93,9 @@
   <!-- /Carousel 4 -->
   <!-- / -->
 
-  <%= render partial: "sticky/footer" %>
+  <%#= render partial: "sticky/footer" %>
 
 </div>
-<!-- /wrapper -->
 
-
-<!-- SCROLL TO TOP -->
-
-
-
-<!--&lt;!&ndash; PRELOADER &ndash;&gt;-->
-<!--<div id="preloader">-->
-<!--<div class="inner">-->
-<!--<span class="loader"></span>-->
-<!--</div>-->
-<!--</div>&lt;!&ndash; /PRELOADER &ndash;&gt;-->
 
 <%= render partial: "script" %>

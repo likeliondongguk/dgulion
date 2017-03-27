@@ -1,10 +1,10 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-
+  before_action :user?
   # GET /questions
   # GET /questions.json
   def index
-    @questions =Category.get_posts("questions").order(created_at: :desc)
+    @questions =Category.get_posts("questions").order(created_at: :desc).paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /questions/1
@@ -103,5 +103,11 @@ class QuestionsController < ApplicationController
 
   def tag_params
     params.require(:post).permit(tag: [])
+  end
+
+  def user?
+    if !user_signed_in?
+      redirect_to root_path, notice: '로그인하고 사용하세요'
+    end
   end
 end

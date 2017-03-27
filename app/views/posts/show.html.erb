@@ -1,6 +1,6 @@
 <div id="wrapper">
   <%= render 'sticky/mainMenu' %>
-  <%= render 'sticky/pageHeader', name: 'board' %>
+  <%= render 'sticky/pageHeader', name: '게시판' %>
   <section>
     <div class="container">
       <div class="row">
@@ -64,7 +64,6 @@
         <h4 class="page-header margin-bottom-60 size-20">
           <span><%= @post.comments.count %></span> COMMENTS
         </h4>
-        댓글은 여기야
         <!--댓글 달기폼-->
         <%= render 'comments/form', commentable: @post, url: :post, category: @category %>
         <!--댓글 달기 폼끝-->

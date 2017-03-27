@@ -1,6 +1,6 @@
 <div id="wrapper">
   <%= render 'sticky/mainMenu' %>
-  <%= render 'sticky/pageHeader', name: 'questions' %>
+  <%= render 'sticky/pageHeader', name: '질문 게시판' %>
   <section>
     <div class="container">
       <div class="row">
@@ -57,11 +57,16 @@
 
           </tbody>
         </table>
+        <div class="row">
+          <div class="flickr_pagination">
+            <%= will_paginate @questions%>
+          </div>
+        </div>
 
       </div>
     </div>
   </section>
-  <%= render 'sticky/footer' %>
+  <%#= render 'sticky/footer' %>
 </div>
 <%= render 'home/script' %>
 <%# @questions.each do |questions| %>
