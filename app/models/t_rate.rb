@@ -19,6 +19,6 @@ class TRate < ActiveRecord::Base
         top+=1
       end
     end
-    return top.fdiv(bottom)
+    return top.fdiv(bottom).nan? ? 0 : top.fdiv(bottom)
   end
 end
