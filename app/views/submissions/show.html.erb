@@ -27,7 +27,7 @@
         <div class="col-md-3 text-right">
           <% if user_signed_in?&&@submission.is_writer?(current_user) %>
               <%= link_to '<span>수정하기</span>'.html_safe, url_for(controller: :submissions, action: :edit, id: @submission.id, task_id: @task.id), class: "btn btn-primary" %>
-              <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :submissions, action: :destroy, id: @submission.id, task_id: @task.id), method: :delete, class: "btn btn-danger", data: {confirm: 'Are you sure?'} %>
+              <%#= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :submissions, action: :destroy, id: @submission.id, task_id: @task.id), method: :delete, class: "btn btn-danger", data: {confirm: 'Are you sure?'} %>
           <% end %>
           <%= link_to '<span>훔쳐보기</span>'.html_safe, url_for(controller: :submissions, action: :other, id: @submission.id), class: "btn btn-warning" %>
         </div>

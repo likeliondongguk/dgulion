@@ -1,7 +1,7 @@
 class TRate < ActiveRecord::Base
   belongs_to :task
   belongs_to :user
-  has_one :submission
+  has_one :submission, dependent: :destroy
 
   def self.other_ids(task_id)
     ary = []

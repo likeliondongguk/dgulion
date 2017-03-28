@@ -1,7 +1,8 @@
 class Att < ActiveRecord::Base
   belongs_to :sch
   belongs_to :user
-
+  validates :user_id, presence: true
+  validates :sch_id, presence: true
   def self.rate(user)
     bottom=self.where(user_id: user.id).count
     top=0

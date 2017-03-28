@@ -1,8 +1,7 @@
 class Task < ActiveRecord::Base
-  has_many :t_rates
+  has_many :t_rates, dependent: :destroy
   has_many :users, through: :t_rates
-  has_many :submissions
-
+  validates :title, presence: true
 
 
   def is_writer?(u)
@@ -35,4 +34,18 @@ class Task < ActiveRecord::Base
    return false
   end
 
+  def fifth_rate
+    ary = []
+    User.where(admin: false).each do |user|
+      ary << user.id
+    end
+    bottom= TRate.where(user_id: ary, task_id: self.id).count
+    top=0
+    TRate.where(user_id: ary, task_id: self.id).each do |trate|
+      if trate.status
+        top +=1
+      end
+    end
+    return top.fdiv(bottom).nan? ? 0 : top.fdiv(bottom)
+  end
 end

@@ -1,7 +1,7 @@
 class Answer < ActiveRecord::Base
   belongs_to :user
   belongs_to :post
-
+  validates :post_id, presence: true
   def check_save(user)
     if self.post.user == user
       if self.post.is_exist_check?

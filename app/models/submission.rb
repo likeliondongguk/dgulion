@@ -1,6 +1,9 @@
 class Submission < ActiveRecord::Base
   has_many :comments, as: :commentable
   belongs_to :t_rate
+
+  validates :t_rate_id, presence: true
+
   def self.search(search)
     where("content || title LIKE ?", "%#{search}%")
   end

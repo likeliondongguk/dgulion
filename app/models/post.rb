@@ -6,7 +6,9 @@ class Post < ActiveRecord::Base
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :answers, dependent: :destroy
   validates :user_id, presence: true
-
+  validates :category_id, presence: true
+  validates :title, presence: true
+  validates :content, presence: true
   #작성자 확인 메소드
   def is_writer?(user)
     return true if !user.nil? && user == self.user

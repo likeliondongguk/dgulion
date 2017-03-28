@@ -33,7 +33,7 @@ class PostsController < ApplicationController
         format.html { redirect_to url_for(controller: :posts, action: :show, category_id: @post.category.id, id: @post.id), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new }
+        format.html { render :new, notice: @post.errors}
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end

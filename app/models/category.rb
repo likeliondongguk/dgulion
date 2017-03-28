@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   def self.get_posts(name)
     self.find_by_name(name).posts

@@ -1,6 +1,8 @@
 class Sch < ActiveRecord::Base
   has_many :atts, dependent: :destroy
   has_many :users, through: :atts
+  validates :title, presence: true
+  validates :date, presence: true
 
   def att_save
     if self.save
