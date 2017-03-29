@@ -17,7 +17,17 @@
               <li>
                 <a href="#">
                   <i class="fa fa-user"></i>
-                  <span class="font-lato"><%= @post.user.username %></span>
+                  <% case @category.name %>
+                  <% when 'anony' %>
+                      <span class="font-lato">익명</span>
+                  <% when 'notice' %>
+                      <span class="font-lato">운영진</span>
+                  <% when 'event' %>
+                      <span class="font-lato">운영진</span>
+                  <% else %>
+                      <span class="font-lato"><%= @post.user.username %></span>
+                  <% end %>
+
                 </a>
               </li>
               <li>
@@ -46,7 +56,7 @@
                   <%= link_to '<span>수정하기</span>'.html_safe, url_for(controller: :posts, action: :edit, category_id: @category.id, id: @post.id), class: "btn btn-xs btn-3d btn-green" %>
                 </li>
                 <li class="text-right">
-                  <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :posts, action: :destroy,category_id: @category.id, id: @post.id), method: :delete, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
+                  <%= link_to '<span>삭제하기</span>'.html_safe, url_for(controller: :posts, action: :destroy, category_id: @category.id, id: @post.id), method: :delete, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
                 </li>
             <% end %>
           </ul>
