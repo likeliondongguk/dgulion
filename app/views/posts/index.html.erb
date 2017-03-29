@@ -62,7 +62,7 @@
                     </td>
                     <td class="hidden-xs text-center">
                       <small class="block size-11 text-muted"><%= time_ago_in_words(board.created_at) %></small>
-                      <% case @category.name %>
+                      <% case board.category.name %>
                       <% when 'anony' %>
                           <a class="size-13" href="">익명</a>
                       <% when 'notice' %>
