@@ -62,7 +62,17 @@
                     </td>
                     <td class="hidden-xs text-center">
                       <small class="block size-11 text-muted"><%= time_ago_in_words(board.created_at) %></small>
-                      <a class="size-13" href="page-profile.html"><%= board.user.username %></a>
+                      <% case @category.name %>
+                      <% when 'anony' %>
+                          <a class="size-13" href="">익명</a>
+                      <% when 'notice' %>
+                          <a class="size-13" href="">운영진</a>
+                      <% when 'event' %>
+                          <a class="size-13" href="">운영진</a>
+                      <% else %>
+                          <a class="size-13" href="<%= url_for(mypage_path(board.user.id)) %>"><%= board.user.username %></a>
+                      <% end %>
+
                     </td>
                   </tr>
               <% end %>
