@@ -64,7 +64,7 @@
                   <h2>참석</h2>
                 </div>
                 <br>
-                <div class="tag-list hidden-xs">
+                <div class="tag-list">
                   <% @sch.att_status(true).each do |att| %>
                       <a href="<%= url_for(mypage_path(att.user.id)) %>" class="btn btn-default" >
                         <%= att.user.username %>

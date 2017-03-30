@@ -174,7 +174,7 @@
                   작성한 글 & 질문
                 </h3>
                 <div class="height-250 slimscroll" data-always-visible="true" data-size="5px" data-position="right" data-opacity="0.4" disable-body-scroll="true">
-                  <% @user.posts.order(created_at: :desc).each do |post| %>
+                  <% @posts.order(created_at: :desc).each do |post| %>
                       <a href="<%= url_for(post.where_post) %>">
                         <div class="clearfix margin-bottom-20"><!-- discussion item -->
                           <!--<img class="thumbnail pull-left" src="assets/images/demo/people/300x300/3-min.jpg" width="60" height="60" alt="" />-->

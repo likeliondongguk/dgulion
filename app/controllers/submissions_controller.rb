@@ -17,8 +17,9 @@ class SubmissionsController < ApplicationController
   end
 
   def other
-    sub_id= params[:id]
-    task_id= Submission.find(sub_id).t_rate.task_id
+    #sub_id= params[:id]
+    #task_id= Submission.find(sub_id).t_rate.task_id
+    task_id=params[:id]
     # if params[:search]
     #   @submissions = Submission.where(task_id: task_id).search(params[:search]).order("created_at DESC")
     # else
