@@ -42,13 +42,13 @@
           </p>
           <div class="text-center margin-top-30 text-20">
             <% if !@submission.c9.nil? && @submission.c9 != "" %>
-                <a href="<%= @submission.github %>" target="_blank" class="social-icon social-github" data-toggle="tooltip" data-placement="top" title="Github">
+                <a href="<%= @submission.c9 %>" target="_blank" class="social-icon social-github" data-toggle="tooltip" data-placement="top" title="Github">
                   <i class="icon-github-circled"></i>
                   <i class="icon-github-circled"></i>
                 </a>
             <% end %>
             <% if !@submission.github.nil? && @submission.github != "" %>
-                <a href="<%= @submission.c9 %>" target="_blank" class="social-icon social-delicious" data-toggle="tooltip" data-placement="top" title="Cloud9">
+                <a href="<%= @submission.github %>" target="_blank" class="social-icon social-delicious" data-toggle="tooltip" data-placement="top" title="Cloud9">
                   <i class="icon-cloudapp"></i>
                   <i class="icon-cloudapp"></i>
                 </a>

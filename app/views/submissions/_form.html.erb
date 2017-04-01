@@ -11,10 +11,10 @@
 <%= form_for(@submission, url: path, html: {multipart: true}) do |b| %>
     <div class="panel-body">
       <label>c9주소</label>
-      <%= b.text_field :c9, class: 'form-control', placeholder: 'http://'%>
+      <%= b.text_field :c9, class: 'form-control', placeholder: 'https://'%>
       <br>
       <label>github주소</label>
-      <%= b.text_field :github, class: 'form-control', placeholder: 'http://' %>
+      <%= b.text_field :github, class: 'form-control', placeholder: 'https://' %>
       <br>
       <label>과제 내용</label>
       <%= b.text_area :content, class: :summernote %>
