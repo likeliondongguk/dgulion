@@ -20,6 +20,10 @@ class Submission < ActiveRecord::Base
     end
   end
 
+  def where_post
+    return {controller: :submissions, action: :show, id: self.id, task_id: self.task.id}
+  end
+
   def self.other(task_id)
     Submission.where(t_rate_id: TRate.other_ids(task_id))
   end
@@ -31,9 +35,11 @@ class Submission < ActiveRecord::Base
   def user_id
     self.t_rate.user_id
   end
+
   def task
     self.t_rate.task
   end
+
   def task_id
     self.t_rate.task_id
   end

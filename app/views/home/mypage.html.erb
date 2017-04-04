@@ -206,10 +206,10 @@
                 </h3>
                 <div class="height-250 slimscroll" data-always-visible="true" data-size="5px" data-position="right" data-opacity="0.4" disable-body-scroll="true">
                   <% @reply.each do |reply| %>
-                      <a href="<%= url_for(reply.post.where_post) %>">
+                      <a href="<%= url_for(reply.commentable.where_post) %>">
                         <div class="clearfix margin-bottom-20"><!-- notification item -->
                           <span class="label label-default label-square pull-left">
-													<i class="<%= reply.post.category.get_icon %>"></i>
+													<i class="et-heart"></i>
 												</span>
                           <span class="size-14 text-muted"><%= truncate(sanitize(reply.body), length: 20) %></span>
                           <span class="text-success size-11"><%= time_ago_in_words(reply.created_at) %></span>
