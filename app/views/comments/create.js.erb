@@ -3,7 +3,9 @@
     $("#comment_body").val("")
     <%if @url==:post %>
     var html = "<%= escape_javascript(render(partial: 'comments/item', locals: {comment: @comment, url: @url,  category: @category})) %>";
-    <%else%>
+    <%elsif @url==:submission%>
+    var html = "<%= escape_javascript(render(partial: 'comments/item', locals: {comment: @comment, url: @url,  task: @task})) %>";
+    <% else %>
     var html = "<%= escape_javascript(render(partial: 'comments/item', locals: {comment: @comment, url: @url})) %>";
     <%end%>
     $("#comments").append(html);

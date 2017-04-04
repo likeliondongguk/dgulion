@@ -1,5 +1,5 @@
 class Submission < ActiveRecord::Base
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   belongs_to :t_rate
 
   validates :t_rate_id, presence: true

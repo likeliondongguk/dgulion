@@ -2,7 +2,9 @@
 <% when :blog then
      path=url_for(controller: "blog/comments", action: :create, blog_id: commentable.id) %>
 <% when :post then
-     path=url_for(controller: "post/comments", action: :create, post_id: commentable.id, category_id: category.id)%>
+     path=url_for(controller: "post/comments", action: :create, post_id: commentable.id, category_id: category.id) %>
+<% when :submission then
+    path=url_for(controller: "submission/comments", action: :create, submission_id: commentable.id, task_id: task.id )%>
 
 <% end %>
 <%= form_for [commentable, commentable.comments.new], url: path, remote: true do |reply| %>

@@ -56,6 +56,26 @@
           </div>
         </div>
       </div>
+      <div id="comments" class="comments">
+        <h4 class="page-header margin-bottom-60 size-20">
+          <span><%= @submission.comments.count %></span> COMMENTS
+        </h4>
+        <!--댓글 달기폼-->
+        <%= render 'comments/form', commentable: @submission, url: :submission, task: @task %>
+        <!--댓글 달기 폼끝-->
+        <!--댓글 리스트 반복문 시작 -->
+        <div class="comment-list">
+          <% count =0 %>
+          <% @submission.comments.each do |comment| %>
+              <!--count보다 더 많이 돌아가는 버그-->
+              <% unless count >= @submission.comments.count %>
+                  <!--댓글달기 ajax용 렌더-->
+                  <%= render 'comments/item', comment: comment, url: :submission, task: @task %>
+              <% end %>
+              <% count+=1 %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </section>
   <!-- / -->

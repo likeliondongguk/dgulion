@@ -24,7 +24,9 @@ Rails.application.routes.draw do
 
   #sungjun
   resources :tasks do
-    resources :submissions, except: [:index]
+    resources :submissions, except: [:index] do
+      resources :comments, module: :submission, only: [:create, :destroy]
+    end
   end
   get 'submissions/submittedlist/:id' => "submissions#other", as: 'other'
 

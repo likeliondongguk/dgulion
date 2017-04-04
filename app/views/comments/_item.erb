@@ -20,6 +20,8 @@
                 <div class="text-right">
                   <% if url==:post %>
                       <%= link_to '<span>x</span>'.html_safe, url_for(controller: url.to_s+"/comments", action: "destroy", id: comment.id, (url.to_s+"_id").to_sym => comment.commentable_id, category_id: category.id), method: :delete, remote: true, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
+                  <% elsif url==:submission %>
+                      <%= link_to '<span>x</span>'.html_safe, url_for(controller: url.to_s+"/comments", action: "destroy", id: comment.id, (url.to_s+"_id").to_sym => comment.commentable_id, task_id: task.id), method: :delete, remote: true, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
                   <% else %>
                       <%= link_to '<span>x</span>'.html_safe, url_for(controller: url.to_s+"/comments", action: "destroy", id: comment.id, (url.to_s+"_id").to_sym => comment.commentable_id), method: :delete, remote: true, class: "btn btn-xs btn-3d btn-red", data: {confirm: 'Are you sure?'} %>
                   <% end %>
